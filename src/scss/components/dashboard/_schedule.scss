@@ -1,0 +1,39 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+.schedule-box {
+    margin: auto;
+    flex: 1;
+
+    
+    &__title {
+        @include m.title-section;
+    }
+}
+
+.schedule {
+    height: 600px;
+
+    margin: 40px;
+    background-color: white;
+    @include m.border-section-dashboard;
+
+    display: flex;
+    justify-content: center;
+    
+    &__date {
+        color: v.$main-white;
+        font-family: v.$font-main;
+        font-weight: 500;
+
+        background-color: v.$main-blue;
+
+        height: 45px;
+        width: 180px;
+        border-radius: 60px;
+        margin-top: 20px;
+
+        @include m.center;
+        
+    }
+}

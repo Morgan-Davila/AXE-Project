@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>App productivité</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="public/css/style.css">
+
+        <!-- JS -->
+        <script type="module" src="src/js/main.js" defer></script>
+
+        <!-- Lib -->
+        <script src="node_modules/chart.js/dist/chart.umd.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__hour-Box">
+                <div class="header__hour-Box__text">
+                    
+                </div>
+            </div>
+
+            <label class="header__burger">
+                <input type="checkbox">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <nav class="mobile-menu">
+                    <a href="index.html">Dashboard</a>
+                    <a href="public/pages/schedule.html">Emploi du temps</a>
+                    <a href="public/pages/habits.html">Habitudes</a>
+                    <a href="public/pages/graphs-stats.html">Graphiques et Stats</a>
+                </nav>
+            </label>
+
+            <div class="header__menu">
+                <nav>
+                    <ul>
+                        <li>
+                            <a class="header__menu__link" href="index.html">Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="public/pages/schedule.html">Emploi du temps</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="public/pages/habits.html">Habitudes</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="public/pages/graphs-stats.html">Graphiques & stats</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__day-Box">
+                <div class="header__day-Box__text">
+                    
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+
+            <div class="top">
+                <div class="habits-box">
+
+                    <p class="habits-box__title">Tâches du jour :</p>
+
+                    <div class="habits">
+                    
+                        <article class="habits__cell">
+                            
+                            <p class="habits__cell__title">Faire mes pompes matin et soir</p>
+
+                            <div class="habits__cell--right">
+                                <span class="habits__cell__streak">7🔥</span>
+
+                                <div class="habits__cell__checkmark">
+                                    <label class="container">
+                                        <input checked="checked" type="checkbox">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                        </article>
+
+                        <article class="habits__cell">
+                            
+                            <p class="habits__cell__title">Faire mes pompes matin et soir</p>
+
+                            <div class="habits__cell--right">
+                                <span class="habits__cell__streak">7🔥</span>
+
+                                <div class="habits__cell__checkmark">
+                                    <label class="container">
+                                        <input checked="checked" type="checkbox">
+                                        <div class="checkmark"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                        </article>
+
+                    </div>
+                </div>
+
+                <div class="schedule-box">
+                    <p class="schedule-box__title">Emploi du temps du jour :</p>
+
+                    <div class="schedule">
+                        <div class="schedule__date">Lundi 20/04</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="graph-box">
+                    <p class="graph-box__title">Les stats :</p>
+
+                    <div class="graph">
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__text">© Morgan Davila - <span id="year"></span></div>
+        </footer>
+    </body>
+</html>

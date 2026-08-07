@@ -1,0 +1,136 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+.habitManagerBox {
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    // background-color: red;
+    height: 1000px;
+    width: 95%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.habitManager {
+    background-color: white;
+    @include m.border-section-dashboard;
+    margin: auto;
+    height: 900px;
+    width: 90%;
+
+    color: v.$main-darkBlue;
+    
+    > div {
+        margin: auto;
+        margin-top: 20px;
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    &__table {
+
+        &__button {
+            margin-top: 20px;
+            cursor: pointer;
+            padding: 5px;
+            width: 150px;
+            border-radius: 10px;
+                                    
+            display: flex;
+            justify-content: space-around;
+
+            color: v.$main-grey;
+            text-align: end;
+            font-size: 15px;
+
+            transition: all ease-in-out 100ms;
+        }
+        &__button:hover {
+            background-color: v.$secondary-liteGrey;
+        }
+    }
+}
+
+.habitManagerMenu {
+    display: flex;
+    margin-left: auto;
+    margin-right: 5%;
+    margin-bottom: -35px;
+
+    gap: 10px;
+
+    &__menu {
+        cursor: pointer;
+        background: v.$main-blue;
+        width: 140px;
+        border-radius: 45px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-right: 5px;
+        padding-left: 5px;
+
+        &__line {
+            height: 70%;
+            background-color: white;
+            width: 1px;
+        }
+
+        &__icon {
+            margin-top: 5px;
+        }
+    }
+
+    &__icons {
+        color: v.$main-darkBlue;
+        cursor: pointer;
+        display: flex;
+        list-style: none;
+        gap: 10px;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+    th, td {
+        border: 1px solid v.$main-liteGrey;
+        padding: 5px;
+    }
+
+    thead{
+        th {
+            text-align: start;
+
+            border-right: none;
+            border-left: none;
+            border-top: none;
+        }
+    }
+
+    tbody {
+       tr {
+            height: 50px;
+        }
+    }
+
+    td:first-child {
+        border-left : none;
+    }
+    td:last-child {
+        border-right: none;
+    }
+
+    .large {
+        width: 40%;
+    }
+    .narrow {
+        width: 20%;
+    }
+}

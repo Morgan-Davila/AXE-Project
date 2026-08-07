@@ -1,0 +1,136 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+.habits-box {
+    margin: auto;
+	flex: 1.618;
+
+    &__title {
+        @include m.title-section;
+    }
+}
+.habits {
+    height: 600px;
+    
+
+    margin: 40px;
+    background-color: white;
+    @include m.border-section-dashboard;
+
+	padding-top: 20px;
+
+    &__cell {
+        margin: auto;
+		margin-bottom: 20px;
+        background-color: #F8F8F8;
+		padding: 10px;
+        min-height: 60px;
+        width: 90%;
+
+        border-radius: 50px;
+
+		display: flex;
+		align-items: center;
+
+		transition: transform ease-in-out 200ms, background ease-in-out 350ms;
+
+		&--right {
+			margin-left: auto;
+			margin-right: 40px;
+			display: flex;
+			align-items: center; 
+		}
+
+		&__title {
+			@include m.text-habit-cell;
+			margin-left: 20px;
+		}
+
+		&__streak {
+			@include m.text-habit-cell;
+			margin-right: 20px;
+		}
+
+		&__checkmark {
+			display: flex;
+			align-items: center;
+		}
+
+
+		@media (max-width: 1200px) {
+			display: block;
+
+			&--right {
+				margin-top: 15px;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			&__streak {
+				margin-right: 0px;
+				margin-left: 20px;
+			}
+		}
+    }
+
+	&__cell:hover {
+		transform: translateY(-1px);
+
+		background-color: #f2f3ff;
+	}
+}
+
+
+.container {
+    --input-focus: #2d8cf0;
+    --input-out-of-focus: #ccc;
+    --bg-color: #fff;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+    position: relative;
+    cursor: pointer;
+
+	&__input {
+		position: absolute;
+  	opacity: 0;
+	}
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkmark {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--input-out-of-focus);
+  transition: all 0.3s;
+}
+
+.container input:checked ~ .checkmark {
+  background-color: var(--input-focus);
+}
+
+.checkmark:after {
+  content: "";
+  width: 7px;
+  height: 15px;
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  display: none;
+  border: solid var(--bg-color);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}

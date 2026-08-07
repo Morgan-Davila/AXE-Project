@@ -1,0 +1,218 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+
+
+.habitPopupOverlay {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,.25);
+    backdrop-filter: blur(6px);
+
+    opacity: 1;
+    transition: opacity .2s;
+}
+
+.habitPopup {
+    background: white;
+    width: 550px;
+    max-width: 90vw;
+
+    padding: 32px;
+
+    border-radius: 20px;
+
+    color: v.$main-darkBlue;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .1);
+
+    transform: scale(1);
+    transition: transform .2s;
+
+    h2 {
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: .95rem;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 14px 16px;
+
+            @include m.popupHabitFormBorder;
+
+            font-size: 1rem;
+
+            transition: .2s;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, .1);
+        }
+
+        input[type="range"] {
+            padding: 0;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 10px;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #4f46e5;
+            color: white;
+
+            font-size: 1rem;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+
+            background: #4338ca;
+        }
+    }
+
+    &__type {
+        position: relative;
+        margin-bottom: 60px;
+    }
+}
+
+#typeProposition {
+	position: absolute;
+
+    width: 486px;
+    height: 48px;
+
+    top: 75px;
+
+    @include m.popupHabitFormBorder;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+
+    .popup {
+       transform: scale(.95); 
+    }
+}
+
+
+
+
+.duration-picker {
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+
+    &__title {
+        margin: 0;
+        font-size: 14px;
+    }
+
+
+    &__input {
+
+        display: flex;
+        gap: 8px;
+
+
+        input {
+            width: 80px;
+            padding: 8px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            font-size: 15px;
+        }
+
+
+        select {
+            padding: 8px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+    }
+
+
+    &__options {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: space-around;
+    }
+}
+
+
+.duration-option {
+
+    padding: 6px 12px;
+
+    border: 1px solid v.$main-violet;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+
+    &.durationActive {
+        background-color: v.$main-violet;
+        color: white;
+        border-color: v.$main-violet;
+    }
+}
+

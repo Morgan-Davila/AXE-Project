@@ -1,0 +1,20 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+.graph-box {
+    margin: auto;
+	width: 100%;
+	
+    &__title {
+        @include m.title-section;
+    }
+}
+
+.graph {
+    height: 300px;
+    
+
+    margin: 40px;
+    background-color: white;
+    @include m.border-section-dashboard;
+}

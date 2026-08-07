@@ -1,0 +1,72 @@
+# ==========================
+# Dependencies
+# ==========================
+
+node_modules/
+
+
+# ==========================
+# Build / Compiled files
+# ==========================
+
+public/css/*.map
+
+dist/
+build/
+
+
+# ==========================
+# Environment files
+# ==========================
+
+.env
+.env.local
+
+
+# ==========================
+# Editor files
+# ==========================
+
+.vscode/
+.idea/
+
+*.code-workspace
+
+
+# ==========================
+# OS files
+# ==========================
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+
+
+# ==========================
+# Logs
+# ==========================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ==========================
+# Temporary files
+# ==========================
+
+*.tmp
+*.temp
+*.bak
+
+
+# ==========================
+# Local data
+# ==========================
+
+*.json.backup
+*.save

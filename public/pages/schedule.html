@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Votre emploi du temps</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+        <!-- JS -->
+        <script type="module" src="../../src/js/main.js" defer></script>
+
+        <!-- Lib -->
+        <script src="../../node_modules/chart.js/dist/chart.umd.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__hour-Box">
+                <div class="header__hour-Box__text">
+                    
+                </div>
+            </div>
+
+            <label class="header__burger">
+                <input type="checkbox">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <nav class="mobile-menu">
+                    <a href="../../index.html">Dashboard</a>
+                    <a href="schedule.html">Emploi du temps</a>
+                    <a href="habits.html">Habitudes</a>
+                    <a href="graphs-stats.html">Graphiques et Stats</a>
+                </nav>
+            </label>
+
+            <div class="header__menu">
+                <nav class="header__nav">
+                    <ul>
+                        <li>
+                            <a class="header__menu__link" href="../../index.html">Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="schedule.html">Emploi du temps</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="habits.html">Habitudes</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="graphs-stats.html">Graphiques & stats</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__day-Box">
+                <div class="header__day-Box__text">
+                    
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+
+            <div class="calendarBox">
+
+                <div class="calendarMenu">
+                    
+                    <ul class="calendarMenu__icons">
+                        <li id="calendarMenu__icons--plus">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </li>
+                        <li id="calendarMenu__icons--search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>           
+                        </li>
+                        <li id="calendarMenu__icons--large">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-maximize2-icon lucide-maximize-2"><path d="M15 3h6v6"/><path d="m21 3-7 7"/><path d="m3 21 7-7"/><path d="M9 21H3v-6"/></svg>
+                        </li>
+                    </ul>
+                    <div class="calendarMenu__menu">
+                        <p class="calendarMenu__menu__text">
+                            Vue : <span class="calendarMenu__menu__text--state">mois</span>
+                        </p>
+
+                        <span class="calendarMenu__menu__line">
+
+                        </span>
+
+                        <div class="calendarMenu__menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down-icon lucide-chevron-down"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calendar">
+
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer__text">Morgan Davila - <span id="year"></span></div>
+        </footer>
+    </body>
+</html>

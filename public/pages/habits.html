@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Votre emploi du temps</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+        <!-- JS -->
+        <script type="module" src="../../src/js/main.js" defer></script>
+
+        <!-- Lib -->
+        <script src="../../node_modules/chart.js/dist/chart.umd.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__hour-Box">
+                <div class="header__hour-Box__text">
+                    
+                </div>
+            </div>
+
+            <label class="header__burger">
+                <input type="checkbox">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <nav class="mobile-menu">
+                    <a href="../../index.html">Dashboard</a>
+                    <a href="schedule.html">Emploi du temps</a>
+                    <a href="habits.html">Habitudes</a>
+                    <a href="graphs-stats.html">Graphiques et Stats</a>
+                </nav>
+            </label>
+
+            <div class="header__menu">
+                <nav class="header__nav">
+                    <ul>
+                        <li>
+                            <a class="header__menu__link" href="../../index.html">Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="schedule.html">Emploi du temps</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="habits.html">Habitudes</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="graphs-stats.html">Graphiques & stats</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__day-Box">
+                <div class="header__day-Box__text">
+                    
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            
+            <div class="habitManagerBox">
+
+                <div class="habitManagerMenu">
+                    
+                    <ul class="habitManagerMenu__icons">
+                        <li id="habitManagerMenu__icons--settings">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+                        </li>
+                        <li id="habitManagerMenu__icons--filter">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel-icon lucide-funnel"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></svg>                        </li>
+                        <li id="habitManagerMenu__icons--search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                        </li>
+                    </ul>
+                    <div class="habitManagerMenu__menu">
+                        <p class="habitManagerMenu__menu__text">
+                            Nouveau
+                        </p>
+
+                        <span class="habitManagerMenu__menu__line">
+
+                        </span>
+
+                        <div class="habitManagerMenu__menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="habitManager">
+                    <div>
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th class="large">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-type-icon lucide-type"><path d="M12 4v16"/><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"/><path d="M9 20h6"/></svg>
+                                        Nom/Description
+                                    </th>
+                                    <th class="narrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-icon lucide-list"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>
+                                        Type
+                                    </th>
+                                    <th class="narrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-no-axes-column-increasing-icon lucide-chart-no-axes-column-increasing"><path d="M5 21v-6"/><path d="M12 21V9"/><path d="M19 21V3"/></svg>
+                                        Fréquence
+                                    </th>
+                                    <th class="narrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-icon lucide-clock"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                        Durée
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="habitCellZone">
+                                
+
+                            </tbody>
+                        </table>
+
+                        <div class="habitManager__table__button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                            Nouvelle habitude
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="habitPopupOverlay "><!--hidden-->
+
+                <div class="habitPopup">
+                    <h2>Ajouter une habitude</h2>
+                    <form>
+                        <div>
+                            <label>Nom</label>
+                            <input type="text" id="inputName">
+                        </div>
+
+                        <div class="tabs">
+                            <label>Fréquence :</label>
+                            <div class="tab-buttons">
+                                <div class="tab activeTabs" data-tab="tab1">Tous les X jours</div>
+                                <div class="tab" data-tab="tab2">Jours de la semaine</div>
+                                <div class="tab" data-tab="tab3">Jour du mois</div>
+                            </div>
+
+                            <div class="tab-contents">
+
+                                <div class="tab-content activeTabs" id="tab1">
+                                    <div class="frequency-interval">
+
+                                        <p class="frequency-interval__text">
+                                            Votre habitude se répète tous les
+                                        </p>
+
+                                        <div class="frequency-interval__row">
+
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                step="1"
+                                                placeholder="2"
+                                                class="frequency-interval__input"
+                                            />
+
+                                            <span class="frequency-interval__label">
+                                                jour(s)
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-content" id="tab2">
+                                    <div class="frequency-weekly">
+
+                                        <p class="frequency-weekly__text">
+                                            Sélectionne les jours :
+                                        </p>
+
+                                        <div class="frequency-weekly__grid">
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="monday" type="checkbox" value="0">
+                                                <label class="cbx" for="monday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Lundi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="tuesday" type="checkbox" value="1">
+                                                <label class="cbx" for="tuesday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Mardi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="wednesday" type="checkbox" value="2">
+                                                <label class="cbx" for="wednesday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Mercredi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="thursday" type="checkbox" value="3">
+                                                <label class="cbx" for="thursday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Jeudi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="friday" type="checkbox" value="4">
+                                                <label class="cbx" for="friday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Vendredi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="saturday" type="checkbox" value="5">
+                                                <label class="cbx" for="saturday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Samedi</span>
+                                                </label>
+                                            </div>
+
+
+                                            <div class="checkbox-wrapper-4">
+                                                <input class="inp-cbx" id="sunday" type="checkbox" value="6">
+                                                <label class="cbx" for="sunday">
+                                                    <span>
+                                                        <svg width="12px" height="10px">
+                                                            <use href="#check-4"></use>
+                                                        </svg>
+                                                    </span>
+                                                    <span>Dimanche</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-content" id="tab3">
+                                        <div class="frequency-monthly">
+
+                                            <p class="frequency-monthly__text">
+                                                Sélectionnez les jours du mois :
+                                            </p>
+
+                                            <div class="frequency-monthly__days">
+
+                                            <!-- Généré en JS -->
+
+                                            </div>
+
+                                        </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+
+                        <div class="habitPopup__type">
+                            <label>Type</label>
+                            <input type="text" id="inputType">
+
+                            <div id="typeProposition" >
+                            
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="duration-picker">
+                            <p class="duration-picker__title">
+                                Durée prévue :
+                            </p>
+                            <div class="duration-picker__input">
+                                <input
+                                    id="durationInput"
+                                    type="number"
+                                    min="0"
+                                    placeholder="30"
+                                >
+                                <select id="durationUnit">
+                                    <option value="60">minutes</option>
+                                    <option value="3600">heures</option>
+                                </select>
+                            </div>
+                            <div class="duration-picker__options">
+                                <div class="duration-option" data-duration="300">
+                                    5 min
+                                </div>
+                                <div class="duration-option" data-duration="600">
+                                    10 min
+                                </div>
+                                <div class="duration-option" data-duration="900">
+                                    15 min
+                                </div>
+                                <div class="duration-option" data-duration="1800">
+                                    30 min
+                                </div>
+                                <div class="duration-option" data-duration="3600">
+                                    1 h
+                                </div>
+                            </div>
+                        </div>
+                        <button id="habitFormButton">Créer l'habitude</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer__text">Morgan Davila - <span id="year"></span></div>
+        </footer>
+    </body>
+</html>

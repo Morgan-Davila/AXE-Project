@@ -1,0 +1,42 @@
+@use '../abstracts/_variables.scss' as v;
+
+@mixin day-hour-box-style {
+    text-align: center;
+    margin: auto;
+
+    font-family: v.$font-main;
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+@mixin border-section-dashboard {
+    border: 3px #0F52BA dashed;
+    border-radius: 35px;
+}
+
+@mixin title-section {
+    color: v.$font-color-main--lite-mode;
+    font-family: v.$font-main;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+@mixin text-habit-cell {
+    color: v.$font-color-main--lite-mode;
+    font-family: v.$font-main;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@mixin center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@mixin popupHabitFormBorder {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}

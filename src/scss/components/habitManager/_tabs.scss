@@ -1,0 +1,243 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+//menu tabs
+.tabs {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    margin: auto;
+
+
+}
+
+.tab {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    background: #ddd;
+    border-radius: 6px;
+    transition: 0.2s;
+
+    &-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 2px;
+        justify-content: space-evenly;
+    }
+
+    &:hover {
+        background: #bbb;
+    }
+
+    &.activeTabs {
+        background: v.$main-violet;
+        color: white;
+    }
+
+    &-content {
+        display: none !important;
+        padding: 15px;
+        @include m.popupHabitFormBorder;
+
+
+        &.activeTabs {
+            display: block !important;
+        }
+
+        #tab1 {
+            display: inline-flex;
+        }
+    }
+
+}
+
+.frequency-interval {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: inherit;
+
+    &__text {
+        font-size: 14px;
+        opacity: 0.8;
+        margin: 0;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__input {
+        width: 70px;
+        padding: 6px 8px;
+        font-size: 16px;
+
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        outline: none;
+
+        transition: border-color 0.15s ease;
+
+        &:focus {
+        border-color: #666;
+        }
+    }
+
+    &__label {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+}
+
+.frequency-weekly {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	&__text {
+		font-size: 14px;
+		opacity: 0.8;
+		margin: 0;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 10px;
+	}
+}
+
+/* From Uiverse.io by Shoh2008 */ 
+
+.checkbox-wrapper-4 {
+	* {
+		box-sizing: border-box;
+		color: v.$main-darkBlue;
+	}
+
+  	.cbx {
+		user-select: none;
+		cursor: pointer;
+		padding: 6px 8px;
+		border-radius: 6px;
+		overflow: hidden;
+		transition: all 0.2s ease;
+		display: inline-flex;
+
+		&:not(:last-child) {
+			margin-right: 6px;
+		}
+
+		&:hover {
+			background: rgba(0, 119, 255, 0.06);
+
+			span:first-child {
+				border-color: v.$main-blue;
+			}
+		}
+
+		span {
+			float: left;
+			vertical-align: middle;
+			transform: translate3d(0, 0, 0);
+
+			&:first-child {
+				position: relative;
+				width: 18px;
+				height: 18px;
+				border-radius: 4px;
+				transform: scale(1);
+				border: 1px solid #cccfdb;
+				transition: all 0.2s ease;
+				box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+
+				svg {
+					position: absolute;
+					top: 3px;
+					left: 2px;
+					fill: none;
+					stroke: #fff;
+					stroke-width: 2;
+					stroke-linecap: round;
+					stroke-linejoin: round;
+					stroke-dasharray: 16px;
+					stroke-dashoffset: 16px;
+					transition: all 0.3s ease;
+					transition-delay: 0.1s;
+					transform: translate3d(0, 0, 0);
+				}
+			}
+
+			&:last-child {
+				padding-left: 8px;
+				line-height: 18px;
+			}
+		}
+  	}
+
+  	.inp-cbx {
+		position: absolute;
+		visibility: hidden;
+
+		&:checked {
+			+ .cbx {
+				span:first-child {
+					background: v.$main-blue;
+					border-color: v.$main-blue;
+					animation: wave-4 0.4s ease;
+
+					svg {
+						stroke-dashoffset: 0;
+					}
+				}
+			}
+		}
+  	}
+
+	.inline-svg {
+		position: absolute;
+		width: 0;
+		height: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	@media screen and (max-width: 640px) {
+		.cbx {
+			width: 100%;
+			display: inline-block;
+		}
+	}
+}
+
+@keyframes wave-4 {
+	50% {
+		transform: scale(0.9);
+	}
+}
+
+
+.frequency-monthly {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+
+    &__text {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    &__days {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+}
+
+
+
+
+

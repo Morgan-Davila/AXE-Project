@@ -1,0 +1,40 @@
+@use '../../abstracts/_variables.scss' as v;
+@use '../../abstracts/_mixins.scss' as m;
+
+main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    max-width: 1500px;
+    width:90%;
+    margin: auto;
+
+    // @media (max-width: 1550px) {
+    //     width: 1200px;
+    // }
+
+    // @media (max-width: 1250px) {
+    //     width: 900px;
+    // }
+
+    @media (max-width: 950px) {
+        .top, .bottom {
+            display: block;
+            
+        }
+        width: 700px;
+    }
+
+    @media (max-width: 800px) {
+        width: 500px;
+    }
+}
+
+.top {
+    display: inline-flex;
+}
+.top, .bottom {
+    width: 100%;
+    margin: auto;
+}

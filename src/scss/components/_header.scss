@@ -1,0 +1,258 @@
+@use '../abstracts/_variables.scss' as v;
+@use '../abstracts/_mixins.scss' as m;
+
+
+
+.header {
+    margin: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    
+    &__hour-Box {
+        background-color: #000926;
+    
+        max-width: 190px;
+        min-width: 120px;
+        width: 17%;
+        height: 40px;
+
+        border-radius: 50px;
+        display: flex;
+
+        &__text {
+            @include m.day-hour-box-style;
+        }
+    }
+
+    // Hamburger menu, code from uiverse
+
+    &__burger {
+        display: none;
+        position: relative;
+        z-index: 100;
+
+        margin-right: 20px;
+
+        width: 40px;
+        height: 30px;
+
+        background: transparent;
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+
+        span {
+            display: block;
+            position: absolute;
+
+            width: 100%;
+            height: 4px;
+
+            background: #000926;
+            border-radius: 9px;
+
+            left: 0;
+            opacity: 1;
+
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        span:nth-of-type(1) {
+            top: 0;
+            transform-origin: left center;
+        }
+
+        span:nth-of-type(2) {
+            top: 50%;
+            transform: translateY(-50%);
+            transform-origin: left center;
+        }
+
+        span:nth-of-type(3) {
+            top: 100%;
+            transform: translateY(-100%);
+            transform-origin: left center;
+        }
+
+        input:checked ~ span:nth-of-type(1) {
+            transform: rotate(45deg);
+            top: 0;
+            left: 5px;
+        }
+
+        input:checked ~ span:nth-of-type(2) {
+            width: 0;
+            opacity: 0;
+        }
+
+        input:checked ~ span:nth-of-type(3) {
+            transform: rotate(-45deg);
+            top: 28px;
+            left: 5px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 280px;
+            height: 100vh;
+
+            padding: 100px 30px 30px;
+
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+
+            transform: translateX(-100%);
+            transition: transform .3s ease;
+
+            a {
+                color: #000926;
+                text-decoration: none;
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+        }
+
+        input:checked ~ .mobile-menu {
+            transform: translateX(0);
+        }
+    }
+
+    &__menu {
+        margin: auto;
+
+        background: #002dbd;
+        background: linear-gradient(90deg, #002dbd 0%, #000926 80%);
+        background: -webkit-linear-gradient(0deg,#002dbd 0%, #000926 80%);
+        background: -moz-linear-gradient(0deg,#002dbd 0%, #000926 80%);
+
+        height: 40px;
+
+        width: 700px;
+        opacity: 0.80;
+
+        border-radius: 50px;
+
+        display: flex;              
+        align-items: center;        
+        justify-content: center; 
+        
+        transition: width ease-in-out 300ms, opacity ease-in-out 400ms;
+
+        & ul {
+            display: flex;
+            list-style: none;
+
+            gap: 30px;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+        }
+
+        &__link {
+            text-decoration: none;
+            color: white;
+
+            font-family: v.$font-main;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -3px;
+                width: 100%;
+                height: 2px;
+                background-color: white;
+
+                opacity: 0;
+                transition: opacity 200ms ease-in-out;
+            }
+
+            &:hover::after {
+                opacity: 1;
+            }
+        }
+    }
+    &__menu:hover {
+        width: 720px;
+        opacity: 0.90;
+    }
+
+
+    &__day-Box {
+        background-color: #000926;
+    
+        max-width: 190px;
+        min-width: 120px;
+        width: 17%;
+        height: 40px;
+
+        border-radius: 50px;
+        display: flex;
+
+        &__text {
+            @include m.day-hour-box-style;
+        }
+    }
+
+    @media (max-width: 1120px) {
+        &__hour-Box, &__day-Box {
+            display: none;
+        }
+    }
+
+    @media (max-width: 950px) {
+        &__menu {
+            width: 600px;
+        }
+        &__menu:hover {
+            width: 620px;
+        }
+    }
+
+    @media (max-width: 850px) {
+        height: 70px;
+
+        //animation
+        background: #f8f8f8;
+        transition: all ease-in-out 300ms;
+        &:hover {
+            background-color: #f2f3ff;
+        }
+        
+
+        border-bottom: 1px solid #b4b4b4;
+        margin: auto;
+        margin-bottom: 40px;
+
+        display: flex;
+
+        &__hour-Box {
+            display: flex;
+            margin-left: 20px;
+            margin-right: auto;
+        }
+
+        //faire disparaitre le menu
+        &__menu {
+            display: none;
+        }
+
+        &__burger {
+            display: block;
+        }
+    }
+ 
+}

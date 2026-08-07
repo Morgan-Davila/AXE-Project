@@ -1,0 +1,21 @@
+// Commande pour lancer sass : npm run sass:watch
+
+@use 'base/_reset.scss';
+@use 'base/_font.scss';
+
+@use 'components/_header.scss';
+@use 'components/_footer.scss';
+
+@use 'components/_calendar.scss';
+
+@use 'components/habitManager/_table.scss';
+@use 'components/habitManager/_popup.scss';
+@use 'components/habitManager/tabs.scss';
+
+@use 'components/dashboard/_habit.scss';
+@use 'components/dashboard/_dashboard.scss';
+@use 'components/dashboard/_schedule.scss';
+@use 'components/dashboard/_graph.scss';
+
+@use 'abstracts/_variables.scss';
+@use 'abstracts/_mixins.scss';

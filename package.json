@@ -1,0 +1,20 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Mon app pour gérer ma productivité",
+  "license": "ISC",
+  "author": "Morgan Davila",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass src/scss/main.scss public/css/style.css",
+    "sass:watch": "sass --watch src/scss/main.scss public/css/style.css"
+  },
+  "devDependencies": {
+    "sass": "^1.100.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1"
+  }
+}

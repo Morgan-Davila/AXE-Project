@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Votre emploi du temps</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/style.css">
+
+        <!-- JS -->
+        <script type="module" src="../../src/js/main.js" defer></script>
+
+        <!-- Lib -->
+        <script src="../../node_modules/chart.js/dist/chart.umd.min.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__hour-Box">
+                <div class="header__hour-Box__text">
+
+                </div>
+            </div>
+            
+            <label class="header__burger">
+                <input type="checkbox">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <nav class="mobile-menu">
+                    <a href="../../index.html">Dashboard</a>
+                    <a href="schedule.html">Emploi du temps</a>
+                    <a href="habits.html">Habitudes</a>
+                    <a href="graphs-stats.html">Graphiques et Stats</a>
+                </nav>
+            </label>
+
+            <div class="header__menu">
+                <nav class="header__nav">
+                    <ul>
+                        <li>
+                            <a class="header__menu__link" href="../../index.html">Dashboard</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="schedule.html">Emploi du temps</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="habits.html">Habitudes</a>
+                        </li>
+                        <li>
+                            <a class="header__menu__link" href="graphs-stats.html">Graphiques & stats</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header__day-Box">
+                <div class="header__day-Box__text">
+                    
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+
+        </main>
+
+        <footer class="footer">
+            <div class="footer__text">Morgan Davila - <span id="year"></span></div>
+        </footer>
+    </body>
+</html>
