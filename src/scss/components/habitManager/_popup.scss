@@ -76,7 +76,7 @@
         select:focus,
         textarea:focus {
             outline: none;
-            border-color: #4f46e5;
+            border-color: v.$main-violet;
 
             box-shadow: 0 0 0 4px rgba(79, 70, 229, .1);
         }
@@ -94,7 +94,7 @@
             border: none;
             border-radius: 12px;
 
-            background: #4f46e5;
+            background: v.$main-violet;
             color: white;
 
             font-size: 1rem;
@@ -108,7 +108,7 @@
         button:hover {
             transform: translateY(-2px);
 
-            background: #4338ca;
+            background: v.$main-violet;
         }
     }
 
@@ -126,10 +126,15 @@
 
     top: 75px;
 
-    @include m.popupHabitFormBorder;
+    border: 1px solid v.$main-violet;
+    border-radius: 12px;
 }
 
-.hidden {
+.hiddenTypeProposition {
+    display: none;
+}
+
+.hiddenPopup {
     opacity: 0;
     pointer-events: none;
 

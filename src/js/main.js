@@ -19,12 +19,14 @@ getFrequency();
 import { 
     setupHabitsPopup,
     setupHabitsForm,
-    setupDurationPicker
+    setupDurationPicker,
+    setupPopupTypePicker
 } from "./components/habits/habitsEvents.js";
 
 setupHabitsPopup();
 setupHabitsForm();
 setupDurationPicker();
+setupPopupTypePicker();
 
 
 // global/habitsUI.js 

@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement habitsEvents.js");
 
@@ -23,6 +23,7 @@ import {
     habitsFormInput,
     habitsFormButton,
     habitsCommandButton,
+    typeProposition,
 
     // functions
     habitsPopupOverlay,
@@ -119,4 +120,19 @@ export function setupDurationPicker() {
 
     });
 
+}
+
+
+export function setupPopupTypePicker () {
+    habitsFormInput.type.addEventListener("focus", () =>{
+        debug(LOCAL_DEBUG, "Entré");
+
+        typeProposition.classList.toggle("hiddenTypeProposition")
+    });
+
+    habitsFormInput.type.addEventListener("blur", () =>{
+        debug(LOCAL_DEBUG, "Sortie");
+
+        typeProposition.classList.toggle("hiddenTypeProposition")
+    });
 }

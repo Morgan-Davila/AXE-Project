@@ -526,7 +526,7 @@ table .narrow {
 .habitPopup form select:focus,
 .habitPopup form textarea:focus {
   outline: none;
-  border-color: #4f46e5;
+  border-color: #4338ca;
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
 }
 .habitPopup form input[type=range] {
@@ -538,7 +538,7 @@ table .narrow {
   padding: 15px;
   border: none;
   border-radius: 12px;
-  background: #4f46e5;
+  background: #4338ca;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -559,15 +559,19 @@ table .narrow {
   width: 486px;
   height: 48px;
   top: 75px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #4338ca;
   border-radius: 12px;
 }
 
-.hidden {
+.hiddenTypeProposition {
+  display: none;
+}
+
+.hiddenPopup {
   opacity: 0;
   pointer-events: none;
 }
-.hidden .popup {
+.hiddenPopup .popup {
   transform: scale(0.95);
 }
 

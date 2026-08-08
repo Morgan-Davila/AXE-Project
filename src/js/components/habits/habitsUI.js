@@ -52,6 +52,7 @@ export const habitsFormInput = {
     type : safeId("inputType")
 }
 
+export const typeProposition = safeId("typeProposition");
 
 export const habitsFormButton = safeId("habitFormButton");
 
@@ -104,14 +105,14 @@ export function renderHabits () {
 // ouvrir et fermer la popup
 export function openHabitsPopup () {
     if (!habitsPopupOverlay) return;
-    habitsPopupOverlay.classList.remove("hidden");
+    habitsPopupOverlay.classList.remove("hiddenPopup");
 }
 
 
 
 export function closeHabitsPopup () {
     if (!habitsPopupOverlay) return;
-    habitsPopupOverlay.classList.add("hidden");
+    habitsPopupOverlay.classList.add("hiddenPopup");
 }
 
 
