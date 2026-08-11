@@ -561,10 +561,27 @@ table .narrow {
   top: 75px;
   border: 1px solid #4338ca;
   border-radius: 12px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
 }
 
 .hiddenTypeProposition {
-  display: none;
+  display: none !important;
+}
+
+.propositionCell {
+  border: 1px solid #4338ca;
+  border-radius: 6px;
+  background-color: #4338ca;
+  color: white;
+  padding: 8px;
+  transition: transform ease-in-out 200ms, background ease-in-out 300ms;
+}
+.propositionCell:hover {
+  transform: translateY(-2px);
+  background-color: white;
+  color: #111827;
 }
 
 .hiddenPopup {

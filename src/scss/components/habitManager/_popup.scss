@@ -128,12 +128,32 @@
 
     border: 1px solid v.$main-violet;
     border-radius: 12px;
+
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px;
 }
 
 .hiddenTypeProposition {
-    display: none;
+    display: none !important; 
 }
 
+.propositionCell {
+    border: 1px solid v.$main-violet;
+    border-radius: 6px;
+
+    background-color: v.$main-violet;
+
+    color: white;
+    padding: 8px;
+    transition: transform ease-in-out 200ms, background ease-in-out 300ms;
+    
+    &:hover {
+        transform: translateY(-2px);
+        background-color: white;
+        color : v.$font-color-main--lite-mode
+    }
+}
 .hiddenPopup {
     opacity: 0;
     pointer-events: none;
