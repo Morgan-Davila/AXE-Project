@@ -135,4 +135,14 @@ export function setupPopupTypePicker () {
 
         typeProposition.classList.toggle("hiddenTypeProposition")
     });
+
+
+    const elements = safeQueryAll(".propositionCell");
+    debug(LOCAL_DEBUG, elements)
+    for (let element of elements) {
+        element.addEventListener("mouseenter", () =>{
+            debug(LOCAL_DEBUG, element.textContent)
+            habitsFormInput.type.value = element.textContent;
+        })
+    }
 }
