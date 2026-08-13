@@ -145,4 +145,9 @@ export function setupPopupTypePicker () {
             habitsFormInput.type.value = element.textContent;
         })
     }
+
+    habitsFormInput.type.addEventListener("input", () => {
+        
+    })
+    
 }

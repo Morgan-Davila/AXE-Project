@@ -115,13 +115,33 @@ export function createHabit(data){
 
 export function setupTypePorpositionSelection () {
     document.addEventListener("DOMContentLoaded", () => {
-        let types = [];
+        let typesArray = [];
 
         for (let habit of habitArray) {
-            if (!types.includes(habit.type)) {
-                types.push(habit.type);
+            if (!typesArray.includes(habit.type)) {
+                typesArray.push(habit.type);
             }
         }
-        debug(LOCAL_DEBUG, types)
+        debug(LOCAL_DEBUG, typesArray)
     })
+}
+
+export function searchTypes(search) {
+    const input = search
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s]/g, ""); // normalisation et standardisation du texte
+
+    const results = typesArray.filter(type => {
+        const normalizedType = type
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s]/g, "");
+
+        return normalizedType.includes(input);
+    });
+
+    return results;
 }
