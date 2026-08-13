@@ -10,11 +10,12 @@ setInterval(updateHeader, 1000);
 updateFooter();
 
 import {
-    getFrequency
+    getFrequency,
+    setupTypePorpositionSelection
 } from "./components/habits/habits.js"
 
 getFrequency();
-
+setupTypePorpositionSelection();
 //from event.js
 import { 
     setupHabitsPopup,

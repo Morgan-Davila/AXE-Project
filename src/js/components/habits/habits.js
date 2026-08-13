@@ -2,6 +2,7 @@ const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement habits.js"); //test
 
+import { habitArray } from "../../services/storage.js";
 import {
     safeQuery,
     safeQueryAll,
@@ -110,4 +111,17 @@ export function createHabit(data){
 
         createdAt: Date.now()
     };
+}
+
+export function setupTypePorpositionSelection () {
+    document.addEventListener("DOMContentLoaded", () => {
+        let types = [];
+
+        for (let habit of habitArray) {
+            if (!types.includes(habit.type)) {
+                types.push(habit.type);
+            }
+        }
+        debug(LOCAL_DEBUG, types)
+    })
 }
