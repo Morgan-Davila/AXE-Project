@@ -3,6 +3,7 @@ const LOCAL_DEBUG = false;
 debug(LOCAL_DEBUG, "Chargement habitsUI.js");
 
 
+
 import { 
     formatDuration,
     joinFrench,
@@ -180,4 +181,16 @@ export function renderMonthlyDays() {
 
     }
 
+}
+
+
+
+export function renderTypesProposition (propositions) {
+    for (let proposition of propositions) {
+        const div = document.createElement("div");
+        div.classList.add("propositionCell");
+        div.textContent(proposition);
+
+        typeProposition.appendChild(div);
+    }
 }

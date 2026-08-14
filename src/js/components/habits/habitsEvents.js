@@ -10,7 +10,8 @@ import {
 } from "./../../utils/dom.js";
 
 import {
-    createHabit
+    createHabit,
+    searchTypes
 } from "./habits.js";
 
 import {
@@ -146,8 +147,8 @@ export function setupPopupTypePicker () {
         })
     }
 
-    habitsFormInput.type.addEventListener("input", () => {
+    // habitsFormInput.type.addEventListener("input", () => {
         
-    })
+    // })
     
 }
