@@ -9,6 +9,7 @@ import {
     safeId,
     exists
 } from "./../../utils/dom.js"
+import { renderTypesProposition } from "./habitsUI.js";
 
 
 
@@ -123,9 +124,11 @@ export function setupTypePropositionSelection () {
             }
         }
         debug(LOCAL_DEBUG, typesArray)
+
+
+        renderTypesProposition(typesArray); //initial rendering
     })
 }
-
 export function searchTypes(search) {
     const input = search
         .toLowerCase()
@@ -142,6 +145,6 @@ export function searchTypes(search) {
 
         return normalizedType.includes(input);
     });
-
+    
     return results;
 }

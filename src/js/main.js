@@ -16,6 +16,7 @@ import {
 
 getFrequency();
 setupTypePropositionSelection();
+
 //from event.js
 import { 
     setupHabitsPopup,

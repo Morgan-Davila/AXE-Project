@@ -139,20 +139,21 @@ export function setupPopupTypePicker () {
     });
 
 
-    const elements = safeQueryAll(".propositionCell");
-    debug(LOCAL_DEBUG, elements)
-    for (let element of elements) {
-        element.addEventListener("mouseenter", () =>{
-            debug(LOCAL_DEBUG, element.textContent)
-            habitsFormInput.type.value = element.textContent;
-        })
-    }
+    typeProposition.addEventListener("mouseover", (event) => {
+        const element = event.target.closest(".propositionCell");
+
+        if (!element) return;
+
+        debug(LOCAL_DEBUG, element.textContent);
+
+        habitsFormInput.type.value = element.textContent;
+    });
 
     habitsFormInput.type.addEventListener("input", () => {
         const value = habitsFormInput.type.value;
         debug(LOCAL_DEBUG, value)
         const types = searchTypes(value);
-        debug(LOCAL_DEBUG, types)
+        
         renderTypesProposition(types)
 
     })
