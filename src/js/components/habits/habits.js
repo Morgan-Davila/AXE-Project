@@ -136,15 +136,17 @@ export function searchTypes(search) {
         .replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9\s]/g, ""); // normalisation et standardisation du texte
 
-    const results = typesArray.filter(type => {
-        const normalizedType = type
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9\s]/g, "");
+    const results = typesArray
+        .filter(type => {
+            const normalizedType = type
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9\s]/g, "");
 
-        return normalizedType.includes(input);
-    });
-    
+            return normalizedType.includes(input);
+        })
+        .slice(0, 5);
+
     return results;
 }
