@@ -112,10 +112,10 @@ export function createHabit(data){
         createdAt: Date.now()
     };
 }
-
-export function setupTypePorpositionSelection () {
+let typesArray = [];
+export function setupTypePropositionSelection () {
     document.addEventListener("DOMContentLoaded", () => {
-        let typesArray = [];
+        
 
         for (let habit of habitArray) {
             if (!typesArray.includes(habit.type)) {

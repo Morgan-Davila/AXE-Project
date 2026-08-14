@@ -29,7 +29,8 @@ import {
     // functions
     habitsPopupOverlay,
     openHabitsPopup,
-    closeHabitsPopup
+    closeHabitsPopup,
+    renderTypesProposition
 } from "./habitsUI.js";
 
 // gestion du bouton submit du form de la popup
@@ -147,8 +148,13 @@ export function setupPopupTypePicker () {
         })
     }
 
-    // habitsFormInput.type.addEventListener("input", () => {
-        
-    // })
+    habitsFormInput.type.addEventListener("input", () => {
+        const value = habitsFormInput.type.value;
+        debug(LOCAL_DEBUG, value)
+        const types = searchTypes(value);
+        debug(LOCAL_DEBUG, types)
+        renderTypesProposition(types)
+
+    })
     
 }

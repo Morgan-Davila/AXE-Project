@@ -11,11 +11,11 @@ updateFooter();
 
 import {
     getFrequency,
-    setupTypePorpositionSelection
+    setupTypePropositionSelection
 } from "./components/habits/habits.js"
 
 getFrequency();
-setupTypePorpositionSelection();
+setupTypePropositionSelection();
 //from event.js
 import { 
     setupHabitsPopup,

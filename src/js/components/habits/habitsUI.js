@@ -186,10 +186,11 @@ export function renderMonthlyDays() {
 
 
 export function renderTypesProposition (propositions) {
+    typeProposition.innerHTML = " "
     for (let proposition of propositions) {
         const div = document.createElement("div");
         div.classList.add("propositionCell");
-        div.textContent(proposition);
+        div.textContent = proposition;
 
         typeProposition.appendChild(div);
     }
