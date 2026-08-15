@@ -396,7 +396,7 @@ body {
   color: #949494;
   text-align: end;
   font-size: 15px;
-  transition: all ease-in-out 100ms;
+  transition: all ease-in-out 200ms;
 }
 .habitManager__table__button:hover {
   background-color: #f3f3f3;
@@ -467,6 +467,34 @@ table .large {
 }
 table .narrow {
   width: 20%;
+}
+table .habitCell {
+  position: relative;
+}
+table .habitCell__duration {
+  position: relative;
+}
+table .habitCell__commands {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 4px;
+  display: flex;
+  align-items: center;
+}
+table .habitCell__commands__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: all ease-in-out 200ms;
+}
+table .habitCell__commands__button:hover {
+  border-radius: 10px;
+  background-color: #f3f3f3;
 }
 
 .habitPopupOverlay {

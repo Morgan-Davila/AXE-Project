@@ -46,7 +46,7 @@
             text-align: end;
             font-size: 15px;
 
-            transition: all ease-in-out 100ms;
+            transition: all ease-in-out 200ms;
         }
         &__button:hover {
             background-color: v.$secondary-liteGrey;
@@ -132,5 +132,42 @@ table {
     }
     .narrow {
         width: 20%;
+    }
+
+    .habitCell {
+        position: relative;
+        
+        &__duration {
+            position: relative;
+        }
+
+        &__commands {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            gap: 4px;
+
+            display: flex;
+            align-items: center;
+            
+
+            &__button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 32px;
+                height: 32px;
+                cursor: pointer;
+                transition: all ease-in-out 200ms;
+                &:hover {
+                    border-radius: 10px;
+                    background-color: v.$secondary-liteGrey;
+                }
+            }
+
+        }
     }
 }

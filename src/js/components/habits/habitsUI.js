@@ -72,6 +72,7 @@ export function renderHabits () {
         // création de l'habitCell
         let habitCell = document.createElement("tr");
         habitCell.classList.add("habitCell");
+        habitCell.dataset.habitId = habit.id
 
         let name = document.createElement("td");
         name.classList.add("habitCell__name");
@@ -88,6 +89,24 @@ export function renderHabits () {
         let duration = document.createElement("td");
         duration.classList.add("habitCell__duration");
         duration.textContent = formatDuration(habit.duration);
+
+        let commands = document.createElement("div");
+        commands.classList.add("habitCell__commands");
+
+        let edit = document.createElement("div");
+        edit.classList.add("habitCell__commands__button");
+        edit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class=""><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>`
+        edit.dataset.action = "edit";
+
+        let del = document.createElement("div");
+        del.classList.add("habitCell__commands__button");
+        del.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>`
+        del.dataset.action = "delete";
+
+        commands.appendChild(edit);
+        commands.appendChild(del);
+
+        duration.appendChild(commands);
 
         // rassemblement des td
         habitCell.appendChild(name);
