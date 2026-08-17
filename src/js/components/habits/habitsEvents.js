@@ -31,7 +31,8 @@ import {
     habitsPopupOverlay,
     openHabitsPopup,
     closeHabitsPopup,
-    renderTypesProposition
+    renderTypesProposition,
+    emptyPopup
 } from "./habitsUI.js";
 
 
@@ -83,6 +84,7 @@ export function setupHabitsForm() {
         renderHabits();
         closeHabitsPopup();
         setupHabitDeleteButton();
+        emptyPopup();
     });
 
 }

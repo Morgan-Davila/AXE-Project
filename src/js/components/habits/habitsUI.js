@@ -143,11 +143,83 @@ export function closeHabitsPopup () {
     habitsPopupOverlay.classList.add("hiddenPopup");
 }
 
-export function emptyPopup () {
+//AI maded
+export function emptyPopup() {
 
-    //code ici
+    // Reset des inputs texte
+    habitsFormInput.name.value = "";
+    habitsFormInput.type.value = "";
 
+    // Reset de la fréquence "tous les X jours"
+    const frequencyIntervalInput = safeQuery(".frequency-interval__input");
+
+    if (frequencyIntervalInput) {
+        frequencyIntervalInput.value = "";
+    }
+
+    // Reset de toutes les checkbox
+    const checkboxes = safeQueryAll(".inp-cbx", habitsPopupOverlay);
+
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Reset des propositions de type
+    if (typeProposition) {
+        typeProposition.innerHTML = "";
+    }
+
+    // Reset de la durée
+    const durationInput = safeId("durationInput");
+    const durationUnit = safeId("durationUnit");
+
+    if (durationInput) {
+        durationInput.value = "";
+    }
+
+    if (durationUnit) {
+        durationUnit.value = "60";
+    }
+
+    // Reset des boutons de durée
+    const durationOptions = safeQueryAll(
+        ".duration-option",
+        habitsPopupOverlay
+    );
+
+    durationOptions.forEach(option => {
+        option.classList.remove("durationActive");
+    });
+
+    // Reset des tabs
+    const tabs = safeQueryAll(".tab", habitsPopupOverlay);
+    const contents = safeQueryAll(".tab-content", habitsPopupOverlay);
+
+    tabs.forEach(tab => {
+        tab.classList.remove("activeTabs");
+    });
+
+    contents.forEach(content => {
+        content.classList.remove("activeTabs");
+    });
+
+    // Remettre le premier tab actif
+    const firstTab = tabs[0];
+
+    if (firstTab) {
+        firstTab.classList.add("activeTabs");
+
+        const target = safeQuery(
+            "#" + firstTab.dataset.tab,
+            habitsPopupOverlay
+        );
+
+        if (target) {
+            target.classList.add("activeTabs");
+        }
+    }
 }
+
 // gestion des tabs de fréquence
 export function initTabs(selector = ".tabs") {
 
