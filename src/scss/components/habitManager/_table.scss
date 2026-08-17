@@ -136,22 +136,36 @@ table {
 
     .habitCell {
         position: relative;
-        
+
+        &:hover {
+            .habitCell__commands {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+
         &__duration {
             position: relative;
         }
 
         &__commands {
-            
             position: absolute;
             right: 15px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateX(8px);
 
             gap: 4px;
-
             align-items: center;
             display: flex;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 150ms ease-in-out,
+                transform 150ms ease-in-out,
+                visibility 150ms ease-in-out;
 
             &__button {
                 display: flex;
@@ -161,13 +175,14 @@ table {
                 width: 32px;
                 height: 32px;
                 cursor: pointer;
-                transition: all ease-in-out 200ms;
+
+                transition: all 200ms ease-in-out;
+
                 &:hover {
                     border-radius: 10px;
                     background-color: v.$secondary-liteGrey;
                 }
             }
         }
-
     }
 }

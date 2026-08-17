@@ -471,6 +471,11 @@ table .narrow {
 table .habitCell {
   position: relative;
 }
+table .habitCell:hover .habitCell__commands {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
 table .habitCell__duration {
   position: relative;
 }
@@ -478,10 +483,13 @@ table .habitCell__commands {
   position: absolute;
   right: 15px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(8px);
   gap: 4px;
   align-items: center;
   display: flex;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, visibility 150ms ease-in-out;
 }
 table .habitCell__commands__button {
   display: flex;
@@ -490,7 +498,7 @@ table .habitCell__commands__button {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  transition: all ease-in-out 200ms;
+  transition: all 200ms ease-in-out;
 }
 table .habitCell__commands__button:hover {
   border-radius: 10px;
