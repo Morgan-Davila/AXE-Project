@@ -15,7 +15,8 @@ import {
 } from "./habits.js";
 
 import {
-    addHabit
+    addHabit,
+    deleteHabit
 } from "./../../services/storage.js";
 
 import {
@@ -32,6 +33,27 @@ import {
     closeHabitsPopup,
     renderTypesProposition
 } from "./habitsUI.js";
+
+
+export function setupHabitDeleteButton () {
+
+    const buttons = safeQueryAll(".habitCell__commands__button--delete");
+
+
+    for (let button of buttons) {
+        button.addEventListener("click", (event) => {
+            const parent = event.target.closest("tr")
+            
+            const habitID = Number(parent.dataset.habitId)
+            
+            deleteHabit(habitID);
+            
+            parent.remove();
+        });
+    }
+    
+    
+}
 
 // gestion du bouton submit du form de la popup
 export function setupHabitsForm() {
@@ -60,6 +82,7 @@ export function setupHabitsForm() {
         addHabit(habit);
         renderHabits();
         closeHabitsPopup();
+        setupHabitDeleteButton();
     });
 
 }
@@ -162,6 +185,3 @@ export function setupPopupTypePicker () {
 
 
 
-export function setupHabitDeleteButton () {
-    debug(LOCAL_DEBUG, "setupHabitDeleteButton opérationel")
-}

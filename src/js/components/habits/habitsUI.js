@@ -23,6 +23,8 @@ import {
 } from "./../../utils/dom.js"
 
 
+
+
 // données du gestionnaire d'habitudes
 export const habitsCommandIcons = {
     settings : safeId("habitManagerMenu__icons--settings"),
@@ -56,6 +58,7 @@ export const habitsFormInput = {
 export const typeProposition = safeId("typeProposition");
 
 export const habitsFormButton = safeId("habitFormButton");
+
 
 
 // création des habitCell
@@ -117,6 +120,9 @@ export function renderHabits () {
         habitCell.appendChild(duration);
 
         habitCellZone.appendChild(habitCell);
+
+
+
     }
 }
 
@@ -215,3 +221,14 @@ export function renderTypesProposition (propositions) {
         typeProposition.appendChild(div);
     }
 }
+
+
+
+
+
+//bouton des habitCell pour suprimmer
+export const habitCellCommands = {
+    edit : safeQueryAll(".habitCell__commands__button--edit"),
+    delete : safeQueryAll(".habitCell__commands__button--delete")
+}
+

@@ -30,7 +30,7 @@ setupHabitsPopup();
 setupHabitsForm();
 setupDurationPicker();
 setupPopupTypePicker();
-setupHabitDeleteButton();
+
 
 
 // global/habitsUI.js 
@@ -44,3 +44,10 @@ import {
 renderHabits();
 initTabs();
 renderMonthlyDays();
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupHabitDeleteButton();
+});
