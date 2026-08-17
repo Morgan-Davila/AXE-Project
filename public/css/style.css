@@ -480,8 +480,8 @@ table .habitCell__commands {
   top: 50%;
   transform: translateY(-50%);
   gap: 4px;
-  display: flex;
   align-items: center;
+  display: flex;
 }
 table .habitCell__commands__button {
   display: flex;

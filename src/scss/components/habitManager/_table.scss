@@ -142,6 +142,7 @@ table {
         }
 
         &__commands {
+            
             position: absolute;
             right: 15px;
             top: 50%;
@@ -149,9 +150,8 @@ table {
 
             gap: 4px;
 
-            display: flex;
             align-items: center;
-            
+            display: flex;
 
             &__button {
                 display: flex;
@@ -167,7 +167,7 @@ table {
                     background-color: v.$secondary-liteGrey;
                 }
             }
-
         }
+
     }
 }
