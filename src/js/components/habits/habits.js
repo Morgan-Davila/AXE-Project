@@ -60,7 +60,9 @@ export function getFrequency() {
 
     switch (tab) {
         case tabs.interval.id : {
-            frequency.value = document.querySelector(".frequency-interval__input").value;
+            frequency.value = Number(
+                document.querySelector(".frequency-interval__input").value
+            );
             frequency.type = "interval"
             break;
         }

@@ -143,7 +143,11 @@ export function closeHabitsPopup () {
     habitsPopupOverlay.classList.add("hiddenPopup");
 }
 
+export function emptyPopup () {
 
+    //code ici
+
+}
 // gestion des tabs de fréquence
 export function initTabs(selector = ".tabs") {
 
@@ -220,15 +224,5 @@ export function renderTypesProposition (propositions) {
 
         typeProposition.appendChild(div);
     }
-}
-
-
-
-
-
-//bouton des habitCell pour suprimmer
-export const habitCellCommands = {
-    edit : safeQueryAll(".habitCell__commands__button--edit"),
-    delete : safeQueryAll(".habitCell__commands__button--delete")
 }
 
