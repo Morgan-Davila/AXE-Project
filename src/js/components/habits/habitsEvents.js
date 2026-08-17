@@ -159,3 +159,9 @@ export function setupPopupTypePicker () {
     })
     
 }
+
+
+
+export function setupHabitDeleteButton () {
+    debug(LOCAL_DEBUG, "setupHabitDeleteButton opérationel")
+}

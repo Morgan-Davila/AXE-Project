@@ -22,13 +22,15 @@ import {
     setupHabitsPopup,
     setupHabitsForm,
     setupDurationPicker,
-    setupPopupTypePicker
+    setupPopupTypePicker,
+    setupHabitDeleteButton
 } from "./components/habits/habitsEvents.js";
 
 setupHabitsPopup();
 setupHabitsForm();
 setupDurationPicker();
 setupPopupTypePicker();
+setupHabitDeleteButton();
 
 
 // global/habitsUI.js 
