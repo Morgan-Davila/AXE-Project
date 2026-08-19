@@ -21,6 +21,7 @@ export function getDuration() {
     const input = document.querySelector("#durationInput");
     const unit = document.querySelector("#durationUnit");
 
+    let duration = {};
 
     // Sécurité
     if (!input || !unit) return null;
@@ -33,8 +34,10 @@ export function getDuration() {
     // Vérification
     if (!value || value <= 0) return null;
 
+    duration.unit = multiplier;
+    duration.value = value * multiplier;
 
-    return value * multiplier;
+    return duration;
 
 }
 //cette fonction générique récupère tout les chceckbox:checked dans un espace donné (form) qui portent un selector précis (selector)
