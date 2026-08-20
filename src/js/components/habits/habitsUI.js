@@ -298,3 +298,87 @@ export function renderTypesProposition (propositions) {
     }
 }
 
+
+
+export function insertDataInHabitPopup (data) {
+
+    emptyPopup();    
+    const intervalTabInput = safeQuery(".frequency-interval__row input");
+
+
+    habitsFormInput.name.value = data.name;
+
+    const tabButtons = safeQueryAll(".tab");
+    const tabContents = safeQueryAll(".tab-content");
+
+    let tabButton
+    let tab
+
+    switch (data.frequency.type) {
+        case "interval" : 
+            tabButton = safeQuery(`.tab[data-tab="tab1"]`);
+            tab = safeId('tab1');
+        break
+
+        case "weekly" : 
+            tabButton = safeQuery(`.tab[data-tab="tab2"]`);
+            tab = safeId('tab2');
+        break
+
+        case "monthly" : 
+            tabButton = safeQuery(`.tab[data-tab="tab3"]`);
+            tab = safeId('tab3');
+        break
+    }
+    
+    for (let button of tabButtons) {
+        button.classList.remove("activeTabs")
+    }
+    for (let content of tabContents) {
+        content.classList.remove("activeTabs")
+    }
+
+    tabButton.classList.add("activeTabs");
+    tab.classList.add("activeTabs");
+
+    switch (data.frequency.type) {
+        case "interval" : {
+            intervalTabInput.value = Number(data.frequency.value);
+            break
+        }
+
+        case "weekly" : {
+            const checkboxes = safeQueryAll(".frequency-weekly__grid .inp-cbx");
+
+            for (let checkbox of checkboxes) {
+                for (let value of data.frequency.value) {
+                    if (Number(checkbox.value) === Number(value)) {
+                        checkbox.checked = true;
+                    }
+                }
+            }
+            break;
+        }
+
+        case "monthly" : {
+            const checkboxes = safeQueryAll(".frequency-monthly__days .inp-cbx");
+
+            for (let checkbox of checkboxes) {
+                for (let value of data.frequency.value) {
+                    if (Number(checkbox.value) === Number(value)) {
+                        checkbox.checked = true;
+                    }
+                }
+            }
+            break
+        }
+    }
+
+    habitsFormInput.type.value = data.type;
+
+    const durationInput = safeId("durationInput");
+    const durationValue = Number(data.duration.value);
+    const durationUnit = Number(data.duration.unit);
+
+    durationInput.value = durationValue / durationUnit;
+}
