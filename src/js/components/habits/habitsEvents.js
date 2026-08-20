@@ -56,13 +56,36 @@ export function setupHabitDeleteButton () {
     
 }
 
+export function setupHabitEditButton () {
+    const buttons = safeQueryAll(".habitCell__commands__button--edit");
+
+    for (let button of buttons) {
+        button.addEventListener("click", (event) => {
+            habitPopupMode = "edit" ;
+
+            const parent = event.target.closest("tr")
+            
+            const habitID = Number(parent.dataset.habitId)
+            
+            const habit = getHabit(habitID);
+
+            openHabitsPopup();
+            insertDataInHabitPopup(habit);
+            
+
+            habitsFormButton.textContent = "Modifier l'habitude";
+
+            habitsFormButton.dataset.actualId = habitID;
+        });
+    }
+}
+
 // gestion du bouton submit du form de la popup
 export function setupHabitsForm() {
 
     if (!habitsFormButton) return;
 
     habitsFormButton.addEventListener("click", (event) => {
-
         event.preventDefault();
 
         let data = {};
