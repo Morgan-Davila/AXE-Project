@@ -11,12 +11,15 @@ import {
 
 import {
     createHabit,
-    searchTypes
+    searchTypes,
+    editHabit
 } from "./habits.js";
 
 import {
     addHabit,
-    deleteHabit
+    deleteHabit,
+    getHabit,
+    updateHabit
 } from "./../../services/storage.js";
 
 import {
@@ -32,9 +35,12 @@ import {
     openHabitsPopup,
     closeHabitsPopup,
     renderTypesProposition,
-    emptyPopup
+    emptyPopup,
+    insertDataInHabitPopup
+
 } from "./habitsUI.js";
 
+let habitPopupMode = "create";
 
 export function setupHabitDeleteButton () {
 
@@ -98,16 +104,37 @@ export function setupHabitsForm() {
 
         }
 
-        debug(LOCAL_DEBUG, data);
+        switch (habitPopupMode) {
+            case "create" : {
+                debug(LOCAL_DEBUG, data);
 
-        const habit = createHabit(data);
+                const habit = createHabit(data);
 
-        debug(LOCAL_DEBUG, habit);
-        addHabit(habit);
-        renderHabits();
-        closeHabitsPopup();
-        setupHabitDeleteButton();
-        emptyPopup();
+                debug(LOCAL_DEBUG, habit);
+                addHabit(habit);
+                renderHabits();
+                closeHabitsPopup();
+                setupHabitDeleteButton();
+                emptyPopup();
+                break;
+            }
+
+            case "edit" : {
+                const actualId = Number(habitsFormButton.dataset.actualId);
+                const habit = editHabit(data);
+
+                updateHabit(actualId, habit);
+                renderHabits();
+                closeHabitsPopup();
+                setupHabitDeleteButton();
+                setupHabitEditButton();
+
+                habitsFormButton.dataset.actualId = null;
+                habitPopupMode = "create";
+                break;
+            }
+    
+        }
     });
 
 }
