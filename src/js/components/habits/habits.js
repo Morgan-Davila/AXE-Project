@@ -119,7 +119,22 @@ export function createHabit(data){
         createdAt: Date.now()
     };
 }
+
+export function editHabit (data) {
+    return {
+        name: data.name,
+
+        type: data.type,
+
+        frequency: getFrequency(),
+
+        duration: getDuration(),
+    };
+}
+
+
 let typesArray = [];
+
 export function setupTypePropositionSelection () {
     document.addEventListener("DOMContentLoaded", () => {
         
