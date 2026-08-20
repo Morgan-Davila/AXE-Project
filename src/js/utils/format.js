@@ -15,9 +15,9 @@ export function formatDuration(seconds) {
 
     if (Number.isNaN(seconds)) {
         debug(LOCAL_DEBUG, "formatDuration : valeur invalide", seconds);
-        return "0 s";
+        return "Aucune durée spécifiée";
     }
-
+    
     if (seconds < 60) {
         return `${seconds} s`;
     }
