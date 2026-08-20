@@ -126,23 +126,6 @@ export function renderHabits () {
     }
 }
 
-
-
-
-
-// ouvrir et fermer la popup
-export function openHabitsPopup () {
-    if (!habitsPopupOverlay) return;
-    habitsPopupOverlay.classList.remove("hiddenPopup");
-}
-
-
-
-export function closeHabitsPopup () {
-    if (!habitsPopupOverlay) return;
-    habitsPopupOverlay.classList.add("hiddenPopup");
-}
-
 //AI maded
 export function emptyPopup() {
 
@@ -165,8 +148,8 @@ export function emptyPopup() {
     });
 
     // Reset des propositions de type
-    if (typeProposition) {
-        typeProposition.innerHTML = "";
+    if (habitsFormInput.type) {
+        habitsFormInput.type.innerHTML = "";
     }
 
     // Reset de la durée
@@ -219,6 +202,23 @@ export function emptyPopup() {
         }
     }
 }
+
+
+// ouvrir et fermer la popup
+export function openHabitsPopup () {
+    if (!habitsPopupOverlay) return;
+    habitsFormButton.textContent = "Créer l'habitude";
+    emptyPopup();
+    habitsPopupOverlay.classList.remove("hiddenPopup");
+}
+
+
+
+export function closeHabitsPopup () {
+    if (!habitsPopupOverlay) return;
+    habitsPopupOverlay.classList.add("hiddenPopup");
+}
+
 
 // gestion des tabs de fréquence
 export function initTabs(selector = ".tabs") {
