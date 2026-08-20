@@ -21,18 +21,19 @@ export function getDuration() {
     const input = document.querySelector("#durationInput");
     const unit = document.querySelector("#durationUnit");
 
-    let duration = {};
+    let duration = {
+        unit: 0,
+        value: 0
+    };
 
     // Sécurité
-    if (!input || !unit) return null;
-
+    if (!input || !unit) return duration;
 
     const value = Number(input.value);
     const multiplier = Number(unit.value);
 
-
     // Vérification
-    if (!value || value <= 0) return null;
+    if (!value || value <= 0) return duration;
 
     duration.unit = multiplier;
     duration.value = value * multiplier;
