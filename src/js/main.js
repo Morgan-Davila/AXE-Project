@@ -23,7 +23,8 @@ import {
     setupHabitsForm,
     setupDurationPicker,
     setupPopupTypePicker,
-    setupHabitDeleteButton
+    setupHabitDeleteButton,
+    setupHabitEditButton
 } from "./components/habits/habitsEvents.js";
 
 setupHabitsPopup();
@@ -47,7 +48,7 @@ renderMonthlyDays();
 
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     setupHabitDeleteButton();
+    setupHabitEditButton();
 });

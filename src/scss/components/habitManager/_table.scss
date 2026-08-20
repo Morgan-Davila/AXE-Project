@@ -1,5 +1,6 @@
 @use '../../abstracts/_variables.scss' as v;
 @use '../../abstracts/_mixins.scss' as m;
+@use "sass:color";
 
 .habitManagerBox {
     margin: auto;
@@ -47,6 +48,8 @@
             font-size: 15px;
 
             transition: all ease-in-out 200ms;
+
+
         }
         &__button:hover {
             background-color: v.$secondary-liteGrey;
@@ -56,12 +59,35 @@
 
 .habitManagerMenu {
     display: flex;
+    align-items: center;
+    gap: 10px;
+
     margin-left: auto;
     margin-right: 5%;
     margin-bottom: -35px;
 
-    gap: 10px;
+    &__icons {
+        color: v.$main-darkBlue;
+        cursor: pointer;
 
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        width: 30px;
+        height: 30px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: all 200ms ease-in-out;
+
+        &:hover {
+            border-radius: 10px;
+            background-color: color.adjust(v.$secondary-liteGrey, $lightness: -5%);
+        }
+    }
     &__menu {
         cursor: pointer;
         background: v.$main-blue;
@@ -72,7 +98,7 @@
         align-items: center;
         padding-right: 5px;
         padding-left: 5px;
-
+        transition: all 200ms ease-in-out;
         &__line {
             height: 70%;
             background-color: white;
@@ -82,16 +108,10 @@
         &__icon {
             margin-top: 5px;
         }
-    }
 
-    &__icons {
-        color: v.$main-darkBlue;
-        cursor: pointer;
-        display: flex;
-        list-style: none;
-        gap: 10px;
-        justify-content: space-around;
-        align-items: center;
+        &:hover {
+            background-color: color.adjust(v.$main-blue, $lightness: -10%);
+        }
     }
 }
 

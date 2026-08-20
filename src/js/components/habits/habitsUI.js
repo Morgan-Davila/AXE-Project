@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement habitsUI.js");
 
@@ -43,12 +43,6 @@ export const habitsCommandButton = [
 // popup dans le habitManager
 export const habitsPopupOverlay = safeQuery(".habitPopupOverlay");
 
-
-// slider de fréquence
-export const frequencySlider = safeId("frequencySlider");
-export const frequencyValue = safeId("frequencyValue");
-
-
 // gestion du form de la popup
 export const habitsFormInput = {
     name : safeId("inputName"),
@@ -91,7 +85,7 @@ export function renderHabits () {
 
         let duration = document.createElement("td");
         duration.classList.add("habitCell__duration");
-        duration.textContent = formatDuration(habit.duration);
+        duration.textContent = formatDuration(habit.duration.value);
 
         let commands = document.createElement("div");
         commands.classList.add("habitCell__commands");
@@ -251,6 +245,8 @@ export function initTabs(selector = ".tabs") {
         });
     });
 }
+
+
 
 export const frequencyMonthlyDays = safeQuery(".frequency-monthly__days");
 
