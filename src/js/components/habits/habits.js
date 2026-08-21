@@ -135,6 +135,10 @@ export function editHabit (data) {
 
 let typesArray = [];
 
+export function getAllTypes() {
+    return typesArray;
+}
+
 export function setupTypePropositionSelection () {
     document.addEventListener("DOMContentLoaded", () => {
         
