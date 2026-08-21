@@ -18,7 +18,7 @@ getFrequency();
 setupTypePropositionSelection();
 
 //from event.js
-import { 
+import {
     setupHabitsPopup,
     setupHabitsForm,
     setupDurationPicker,
@@ -27,10 +27,17 @@ import {
     setupHabitEditButton
 } from "./components/habits/habitsEvents.js";
 
+import {
+    setupSearchDateInput,
+    setupSearchTypeDropdown
+} from "./components/habits/habitsSearchEvents.js";
+
 setupHabitsPopup();
 setupHabitsForm();
 setupDurationPicker();
 setupPopupTypePicker();
+setupSearchDateInput();
+setupSearchTypeDropdown();
 
 
 

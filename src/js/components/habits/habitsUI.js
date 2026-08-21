@@ -49,11 +49,22 @@ export const habitsFormInput = {
     type : safeId("inputType")
 }
 
+
+
 export const typeProposition = safeId("typeProposition");
 
 export const habitsFormButton = safeId("habitFormButton");
 
+// recherche d'habitudes
+export const searchDateInput = safeId("searchDateInput");
 
+export const searchResultsZone = safeId("searchResultsZone");
+
+export const searchTypeSelect = safeId("searchTypeSelect");
+
+export const searchTypeOptions = safeId("searchTypeOptions");
+
+export const searchHabitsPopupOverlay = safeQuery(".searchHabitPopupOverlay");
 
 // création des habitCell
 export function renderHabits () {
@@ -291,6 +302,24 @@ export function renderTypesProposition (propositions) {
         div.textContent = proposition;
 
         typeProposition.appendChild(div);
+    }
+}
+
+
+// remplit la liste déroulante custom de recherche par type
+export function renderSearchTypeOptions (types) {
+
+    if (!searchTypeOptions) return;
+
+    searchTypeOptions.innerHTML = "";
+
+    for (let type of types) {
+        const item = document.createElement("div");
+        item.classList.add("searchTypeOptions__item");
+        item.setAttribute("role", "option");
+        item.textContent = type;
+
+        searchTypeOptions.appendChild(item);
     }
 }
 

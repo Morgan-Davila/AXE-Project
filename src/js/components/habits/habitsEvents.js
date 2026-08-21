@@ -29,6 +29,7 @@ import {
     habitsFormButton,
     habitsCommandButton,
     typeProposition,
+    habitsCommandIcons,
 
     // functions
     habitsPopupOverlay,
@@ -236,4 +237,7 @@ export function setupPopupTypePicker () {
 }
 
 
-
+// export function setupHabitManagerSearchButton () {
+//     habitsCommandIcons.search
+// }
+// a faire
