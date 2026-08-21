@@ -352,6 +352,38 @@
                     </form>
                 </div>
             </div>
+
+
+            <div class="searchHabitPopupOverlay">
+                <div class="searchHabitPopup">
+                    <div class="searchBar">
+                        <svg class="searchBar__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+                        <input type="text" id="searchHabitInput" class="searchBar__input" placeholder="Rechercher une habitude..." autocomplete="off">
+                    </div>
+
+                    <div class="searchFilters">
+                        <div class="searchFilters__type">
+                            <button type="button" id="searchTypeSelect" class="searchFilters__select" aria-haspopup="listbox" aria-expanded="false">
+                                Rechercher par type...
+                            </button>
+                            <svg class="searchFilters__select-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+
+                            <div id="searchTypeOptions" class="searchTypeOptions hiddenTypeProposition" role="listbox">
+
+                            </div>
+                        </div>
+
+                        <div class="searchFilters__date">
+                            <svg class="searchFilters__date-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                            <input type="text" id="searchDateInput" class="searchFilters__date-input" placeholder="Rechercher par date" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="searchResults" id="searchResultsZone">
+
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer class="footer">
