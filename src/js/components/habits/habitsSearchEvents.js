@@ -11,7 +11,12 @@ import {
     searchDateInput,
     searchTypeSelect,
     searchTypeOptions,
-    renderSearchTypeOptions
+    renderSearchTypeOptions,
+    openSearchHabitsPopup,
+    closeSearchHabitsPopup,
+    habitsCommandIcons,
+    habitsPopupOverlay,
+    searchHabitsPopupOverlay
 } from "./habitsUI.js";
 
 
@@ -77,21 +82,19 @@ export function setupSearchTypeDropdown () {
 
 
 export function setupPopupOverlay () {
+    debug(LOCAL_DEBUG, habitsCommandIcons.search)
+    debug(LOCAL_DEBUG, habitsPopupOverlay)
+    
+    habitsCommandIcons.search.addEventListener("click", () =>{
+        debug(LOCAL_DEBUG, "open");
+        openSearchHabitsPopup();
+    });
 
-}
+    searchHabitsPopupOverlay.addEventListener("click", (event) =>{
+        debug(LOCAL_DEBUG, "close");
 
-
-// ouvrir et fermer la popup
-export function openSearchHabitsPopup () {
-    if (!habitsPopupOverlay) return;
-    habitsFormButton.textContent = "Créer l'habitude";
-    emptyPopup();
-    habitsPopupOverlay.classList.remove("hiddenPopup");
-}
-
-
-
-export function closeSearchHabitsPopup () {
-    if (!habitsPopupOverlay) return;
-    habitsPopupOverlay.classList.add("hiddenPopup");
+        if (event.target === searchHabitsPopupOverlay) {
+            closeSearchHabitsPopup();
+        }
+    });
 }

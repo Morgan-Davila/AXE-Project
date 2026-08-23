@@ -55,16 +55,7 @@ export const typeProposition = safeId("typeProposition");
 
 export const habitsFormButton = safeId("habitFormButton");
 
-// recherche d'habitudes
-export const searchDateInput = safeId("searchDateInput");
 
-export const searchResultsZone = safeId("searchResultsZone");
-
-export const searchTypeSelect = safeId("searchTypeSelect");
-
-export const searchTypeOptions = safeId("searchTypeOptions");
-
-export const searchHabitsPopupOverlay = safeQuery(".searchHabitPopupOverlay");
 
 // création des habitCell
 export function renderHabits () {
@@ -406,4 +397,32 @@ export function insertDataInHabitPopup (data) {
     const durationUnit = Number(data.duration.unit);
 
     durationInput.value = durationValue / durationUnit;
+}
+
+// recherche d'habitudes
+export const searchDateInput = safeId("searchDateInput");
+
+export const searchResultsZone = safeId("searchResultsZone");
+
+export const searchTypeSelect = safeId("searchTypeSelect");
+
+export const searchTypeOptions = safeId("searchTypeOptions");
+
+export const searchHabitsPopupOverlay = safeQuery(".searchHabitPopupOverlay");
+
+//search habit Popup
+
+// ouvrir et fermer la popup
+export function openSearchHabitsPopup () {
+    
+    if (!searchHabitsPopupOverlay) return;
+    searchHabitsPopupOverlay.classList.remove("hiddenSearchPopup");
+}
+
+
+
+export function closeSearchHabitsPopup () {
+    
+    if (!searchHabitsPopupOverlay) return;
+    searchHabitsPopupOverlay.classList.add("hiddenSearchPopup");
 }
