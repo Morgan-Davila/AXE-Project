@@ -27,17 +27,21 @@ import {
     setupHabitEditButton
 } from "./components/habits/habitsEvents.js";
 
-import {
-    setupSearchDateInput,
-    setupSearchTypeDropdown
-} from "./components/habits/habitsSearchEvents.js";
-
 setupHabitsPopup();
 setupHabitsForm();
 setupDurationPicker();
 setupPopupTypePicker();
+
+import {
+    setupSearchDateInput,
+    setupSearchTypeDropdown,
+    setupPopupOverlay
+} from "./components/habits/habitsSearchEvents.js";
+
+
 setupSearchDateInput();
 setupSearchTypeDropdown();
+setupPopupOverlay();
 
 
 
