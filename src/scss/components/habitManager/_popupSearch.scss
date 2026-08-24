@@ -1,5 +1,6 @@
 @use '../../abstracts/_variables.scss' as v;
 @use '../../abstracts/_mixins.scss' as m;
+@use "sass:color";
 
 
 
@@ -84,7 +85,7 @@
     margin-top: 16px;
 
     &__type,
-    &__date {
+    &__launch {
         position: relative;
         flex: 1;
 
@@ -237,38 +238,40 @@
     font-style: italic;
 }
 
-.searchFilters__date-icon {
-    position: absolute;
-    left: 16px;
-
-    color: v.$main-grey;
-    pointer-events: none;
-}
-
-.searchFilters__date-input {
+.searchFilters__launch {
     width: 100%;
 
-    padding: 14px 16px 14px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-    @include m.popupHabitFormBorder;
+    padding: 14px 16px;
+
+    border: none;
+    border-radius: 12px;
+    background: v.$main-blue;
 
     font-size: .95rem;
     font-family: v.$font-main;
-    color: v.$main-darkBlue;
+    font-weight: 600;
+    color: white;
 
     cursor: pointer;
-    transition: .2s;
+    transition: background .2s;
 
-    &::placeholder {
-        color: v.$main-grey;
+    &:hover {
+        background: color.adjust(v.$main-blue, $lightness: -8%);
     }
 
     &:focus {
         outline: none;
-        border-color: v.$main-violet;
-
-        box-shadow: 0 0 0 4px rgba(79, 70, 229, .1);
+        box-shadow: 0 0 0 4px rgba(15, 82, 186, .2);
     }
+}
+
+.searchFilters__launch-icon {
+    flex-shrink: 0;
 }
 
 .searchResults {

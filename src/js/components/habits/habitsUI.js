@@ -380,7 +380,7 @@ export function insertDataInHabitPopup (data) {
 }
 
 // recherche d'habitudes
-export const searchDateInput = safeId("searchDateInput");
+export const searchLaunchButton = safeId("searchLaunchButton");
 
 export const searchResultsZone = safeId("searchResultsZone");
 

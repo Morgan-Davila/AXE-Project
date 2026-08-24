@@ -8,7 +8,6 @@ import {
 } from "./habits.js";
 
 import {
-    searchDateInput,
     searchTypeSelect,
     searchTypeSelectLabel,
     searchTypeSearch,
@@ -21,24 +20,6 @@ import {
     habitsPopupOverlay,
     searchHabitsPopupOverlay
 } from "./habitsUI.js";
-
-
-// bascule le champ de recherche par date entre texte ("Rechercher par date") et input date natif (jj/mm/aaaa) selon le focus
-export function setupSearchDateInput () {
-
-    if (!searchDateInput) return;
-
-    searchDateInput.addEventListener("focus", () => {
-        searchDateInput.type = "date";
-    });
-
-    searchDateInput.addEventListener("blur", () => {
-        if (!searchDateInput.value) {
-            searchDateInput.type = "text";
-        }
-    });
-
-}
 
 
 // menu déroulant custom pour la recherche par type

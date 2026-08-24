@@ -750,7 +750,7 @@ table .habitCell__commands__button:hover {
   gap: 16px;
   margin-top: 16px;
 }
-.searchFilters__type, .searchFilters__date {
+.searchFilters__type, .searchFilters__launch {
   position: relative;
   flex: 1;
   display: flex;
@@ -869,31 +869,33 @@ table .habitCell__commands__button:hover {
   font-style: italic;
 }
 
-.searchFilters__date-icon {
-  position: absolute;
-  left: 16px;
-  color: #949494;
-  pointer-events: none;
-}
-
-.searchFilters__date-input {
+.searchFilters__launch {
   width: 100%;
-  padding: 14px 16px 14px 48px;
-  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border: none;
   border-radius: 12px;
+  background: #0F52BA;
   font-size: 0.95rem;
   font-family: "Inter", sans-serif;
-  color: #000926;
+  font-weight: 600;
+  color: white;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background 0.2s;
 }
-.searchFilters__date-input::placeholder {
-  color: #949494;
+.searchFilters__launch:hover {
+  background: rgb(11.9552238806, 65.3552238806, 148.2447761194);
 }
-.searchFilters__date-input:focus {
+.searchFilters__launch:focus {
   outline: none;
-  border-color: #4338ca;
-  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+  box-shadow: 0 0 0 4px rgba(15, 82, 186, 0.2);
+}
+
+.searchFilters__launch-icon {
+  flex-shrink: 0;
 }
 
 .searchResults {

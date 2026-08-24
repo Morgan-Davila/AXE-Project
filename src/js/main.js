@@ -33,13 +33,11 @@ setupDurationPicker();
 setupPopupTypePicker();
 
 import {
-    setupSearchDateInput,
     setupSearchTypeDropdown,
     setupPopupOverlay
 } from "./components/habits/habitsSearchEvents.js";
 
 
-setupSearchDateInput();
 setupSearchTypeDropdown();
 setupPopupOverlay();
 
