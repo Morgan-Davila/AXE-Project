@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement habitsUI.js");
 
@@ -296,26 +296,6 @@ export function renderTypesProposition (propositions) {
     }
 }
 
-
-// remplit la liste déroulante custom de recherche par type
-export function renderSearchTypeOptions (types) {
-
-    if (!searchTypeOptions) return;
-
-    searchTypeOptions.innerHTML = "";
-
-    for (let type of types) {
-        const item = document.createElement("div");
-        item.classList.add("searchTypeOptions__item");
-        item.setAttribute("role", "option");
-        item.textContent = type;
-
-        searchTypeOptions.appendChild(item);
-    }
-}
-
-
-
 export function insertDataInHabitPopup (data) {
 
     emptyPopup();    
@@ -425,4 +405,23 @@ export function closeSearchHabitsPopup () {
     
     if (!searchHabitsPopupOverlay) return;
     searchHabitsPopupOverlay.classList.add("hiddenSearchPopup");
+}
+
+
+
+// remplit la liste déroulante custom de recherche par type
+export function renderSearchTypeOptions (types) {
+
+    if (!searchTypeOptions) return;
+
+    searchTypeOptions.innerHTML = "";
+
+    for (let type of types) {
+        const item = document.createElement("div");
+        item.classList.add("searchTypeOptions__item");
+        item.setAttribute("role", "option");
+        item.textContent = type;
+
+        searchTypeOptions.appendChild(item);
+    }
 }

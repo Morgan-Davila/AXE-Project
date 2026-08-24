@@ -700,7 +700,7 @@ table .habitCell__commands__button:hover {
   background: rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(6px);
   opacity: 1;
-  transition: opacity 0.2s;
+  transition: all ease-in-out 200ms;
 }
 
 .searchHabitPopup {
@@ -860,6 +860,11 @@ table .habitCell__commands__button:hover {
   overflow-y: auto;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
+}
+
+.hiddenSearchPopup {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .tabs {

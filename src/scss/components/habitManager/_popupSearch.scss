@@ -15,7 +15,8 @@
     backdrop-filter: blur(6px);
 
     opacity: 1;
-    transition: opacity .2s;
+    transition: all ease-in-out 200ms;
+
 }
 
 .searchHabitPopup {
@@ -225,4 +226,10 @@
     overflow-y: auto;
 
     @include m.popupHabitFormBorder;
+}
+
+
+.hiddenSearchPopup {
+    opacity: 0;
+    pointer-events: none;
 }

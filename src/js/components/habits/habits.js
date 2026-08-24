@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement habits.js"); //test
 
@@ -12,7 +12,7 @@ import {
 import { renderTypesProposition } from "./habitsUI.js";
 
 
-
+let typesArray = [];
 
 
 //cette fonction se charge de récuperer la durée dans l'input et de transformer cette valeur en nombre utilisable
@@ -103,6 +103,7 @@ export function getFrequency() {
 
 //cette fonction de charge de créer une habit
 export function createHabit(data){
+    typesArray.push(data.type);
     return {
         id: Date.now(),
 
@@ -118,6 +119,7 @@ export function createHabit(data){
 
         createdAt: Date.now()
     };
+    
 }
 
 export function editHabit (data) {
@@ -133,11 +135,9 @@ export function editHabit (data) {
 }
 
 
-let typesArray = [];
 
-export function getAllTypes() {
-    return typesArray;
-}
+
+
 
 export function setupTypePropositionSelection () {
     document.addEventListener("DOMContentLoaded", () => {
@@ -154,6 +154,12 @@ export function setupTypePropositionSelection () {
         renderTypesProposition(typesArray); //initial rendering
     })
 }
+
+export function getAllTypes() {
+    debug(LOCAL_DEBUG, typesArray)
+    return typesArray;
+}
+
 export function searchTypes(search) {
     const input = search
         .toLowerCase()

@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
 
@@ -69,6 +69,7 @@ export function setupSearchTypeDropdown () {
 
         searchTypeOptions.classList.add("hiddenTypeProposition");
         searchTypeSelect.setAttribute("aria-expanded", "false");
+        renderSearchTypeOptions(getAllTypes());
     });
 
     document.addEventListener("click", (event) => {
@@ -86,12 +87,10 @@ export function setupPopupOverlay () {
     debug(LOCAL_DEBUG, habitsPopupOverlay)
     
     habitsCommandIcons.search.addEventListener("click", () =>{
-        debug(LOCAL_DEBUG, "open");
         openSearchHabitsPopup();
     });
 
     searchHabitsPopupOverlay.addEventListener("click", (event) =>{
-        debug(LOCAL_DEBUG, "close");
 
         if (event.target === searchHabitsPopupOverlay) {
             closeSearchHabitsPopup();
