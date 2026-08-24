@@ -160,6 +160,7 @@ export function getAllTypes() {
     return typesArray;
 }
 
+//AI made
 // normalisation et standardisation du texte pour une recherche insensible aux accents/casse
 function normalizeSearchText(text) {
     return text
@@ -169,6 +170,7 @@ function normalizeSearchText(text) {
         .replace(/[^a-z0-9\s]/g, "");
 }
 
+//AI made
 export function searchTypes(search) {
     const input = normalizeSearchText(search);
 
@@ -179,6 +181,7 @@ export function searchTypes(search) {
     return results;
 }
 
+//AI made
 // recherche d'habitudes par nom (texte libre) et par type (correspondance exacte, optionnelle)
 export function searchHabits(name, type) {
     const input = normalizeSearchText(name || "");

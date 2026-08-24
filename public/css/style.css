@@ -959,6 +959,11 @@ table .habitCell__commands__button:hover {
   color: #949494;
   font-size: 0.85rem;
 }
+.searchResults__item-date {
+  flex-shrink: 0;
+  color: #949494;
+  font-size: 0.8rem;
+}
 
 .hiddenSearchPopup {
   opacity: 0;

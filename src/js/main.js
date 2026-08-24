@@ -40,6 +40,7 @@ import {
 
 
 setupSearchTypeDropdown();
+//AI made
 setupSearchLaunch();
 setupPopupOverlay();
 

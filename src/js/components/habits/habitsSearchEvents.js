@@ -27,6 +27,7 @@ import {
 
 
 // menu déroulant custom pour la recherche par type
+//AI made
 // bascule le bouton "Rechercher par type..." en barre de recherche dynamique tant que le menu est ouvert
 function openSearchTypeDropdown () {
     searchTypeSelectLabel.classList.add("hiddenTypeSearch");
@@ -40,6 +41,7 @@ function openSearchTypeDropdown () {
     searchTypeSelect.setAttribute("aria-expanded", "true");
 }
 
+//AI made
 function closeSearchTypeDropdown () {
     searchTypeSearch.classList.add("hiddenTypeSearch");
     searchTypeSelectLabel.classList.remove("hiddenTypeSearch");
@@ -48,6 +50,7 @@ function closeSearchTypeDropdown () {
     searchTypeSelect.setAttribute("aria-expanded", "false");
 }
 
+//AI made
 export function setupSearchTypeDropdown () {
 
     if (!searchTypeSelect || !searchTypeOptions || !searchTypeInput) return;
@@ -96,6 +99,7 @@ export function setupSearchTypeDropdown () {
 }
 
 
+//AI made
 // exécute la recherche (nom + type) et affiche les résultats
 export function setupSearchLaunch () {
 

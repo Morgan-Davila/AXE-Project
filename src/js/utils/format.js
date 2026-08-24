@@ -43,6 +43,26 @@ export function formatDuration(seconds) {
 
 
 // ----------------------
+// Date
+// ----------------------
+
+//AI made
+export function formatDate(timestamp) {
+
+    const date = new Date(Number(timestamp));
+
+    if (Number.isNaN(date.getTime())) {
+        debug(LOCAL_DEBUG, "formatDate : valeur invalide", timestamp);
+        return "";
+    }
+
+    return date.toLocaleDateString("fr-FR");
+}
+
+
+
+
+// ----------------------
 // Fréquence
 // ----------------------
 

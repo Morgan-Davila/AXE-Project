@@ -1,5 +1,6 @@
 @use '../../abstracts/_variables.scss' as v;
 @use '../../abstracts/_mixins.scss' as m;
+//AI made
 @use "sass:color";
 
 
@@ -84,6 +85,7 @@
 
     margin-top: 16px;
 
+    //AI made (&__launch remplace l'ancien &__date)
     &__type,
     &__launch {
         position: relative;
@@ -97,6 +99,7 @@
 .searchFilters__select {
     width: 100%;
 
+    //AI made
     display: flex;
     align-items: center;
 
@@ -128,6 +131,7 @@
     }
 }
 
+//AI made
 .searchFilters__select-label {
     width: 100%;
 
@@ -136,6 +140,7 @@
     white-space: nowrap;
 }
 
+//AI made
 .searchFilters__select-search {
     width: 100%;
 
@@ -170,6 +175,7 @@
     }
 }
 
+//AI made
 .hiddenTypeSearch {
     display: none;
 }
@@ -230,6 +236,7 @@
     }
 }
 
+//AI made
 .searchTypeOptions__empty {
     padding: 8px 12px;
 
@@ -238,6 +245,7 @@
     font-style: italic;
 }
 
+//AI made
 .searchTypeOptions__reset {
     padding: 8px 12px;
     margin-bottom: 4px;
@@ -257,6 +265,7 @@
     }
 }
 
+//AI made
 .searchFilters__launch {
     width: 100%;
 
@@ -289,6 +298,7 @@
     }
 }
 
+//AI made
 .searchFilters__launch-icon {
     flex-shrink: 0;
 }
@@ -303,11 +313,13 @@
     min-height: 50px;
     max-height: 320px;
     overflow-y: auto;
+    //AI made
     padding: 8px;
 
     @include m.popupHabitFormBorder;
 }
 
+//AI made
 .searchResults__empty {
     padding: 12px;
 
@@ -317,6 +329,7 @@
     text-align: center;
 }
 
+//AI made
 .searchResults__item {
     display: flex;
     align-items: center;
@@ -347,6 +360,14 @@
     &-frequency {
         color: v.$main-grey;
         font-size: .85rem;
+    }
+
+    //AI made
+    &-date {
+        flex-shrink: 0;
+
+        color: v.$main-grey;
+        font-size: .8rem;
     }
 }
 
