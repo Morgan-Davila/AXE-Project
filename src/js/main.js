@@ -34,11 +34,13 @@ setupPopupTypePicker();
 
 import {
     setupSearchTypeDropdown,
+    setupSearchLaunch,
     setupPopupOverlay
 } from "./components/habits/habitsSearchEvents.js";
 
 
 setupSearchTypeDropdown();
+setupSearchLaunch();
 setupPopupOverlay();
 
 

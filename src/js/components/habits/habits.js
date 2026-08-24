@@ -160,24 +160,33 @@ export function getAllTypes() {
     return typesArray;
 }
 
-export function searchTypes(search) {
-    const input = search
+// normalisation et standardisation du texte pour une recherche insensible aux accents/casse
+function normalizeSearchText(text) {
+    return text
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s]/g, ""); // normalisation et standardisation du texte
+        .replace(/[^a-z0-9\s]/g, "");
+}
+
+export function searchTypes(search) {
+    const input = normalizeSearchText(search);
 
     const results = typesArray
-        .filter(type => {
-            const normalizedType = type
-                .toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9\s]/g, "");
-
-            return normalizedType.includes(input);
-        })
+        .filter(type => normalizeSearchText(type).includes(input))
         .slice(0, 5);
 
     return results;
+}
+
+// recherche d'habitudes par nom (texte libre) et par type (correspondance exacte, optionnelle)
+export function searchHabits(name, type) {
+    const input = normalizeSearchText(name || "");
+
+    return habitArray.filter(habit => {
+        const matchesName = normalizeSearchText(habit.name).includes(input);
+        const matchesType = !type || habit.type === type;
+
+        return matchesName && matchesType;
+    });
 }

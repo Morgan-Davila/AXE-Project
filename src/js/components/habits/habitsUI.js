@@ -380,6 +380,8 @@ export function insertDataInHabitPopup (data) {
 }
 
 // recherche d'habitudes
+export const searchHabitInput = safeId("searchHabitInput");
+
 export const searchLaunchButton = safeId("searchLaunchButton");
 
 export const searchResultsZone = safeId("searchResultsZone");
@@ -400,8 +402,15 @@ export const searchHabitsPopupOverlay = safeQuery(".searchHabitPopupOverlay");
 
 // ouvrir et fermer la popup
 export function openSearchHabitsPopup () {
-    
+
     if (!searchHabitsPopupOverlay) return;
+
+    // reset de l'état de recherche à chaque ouverture
+    if (searchHabitInput) searchHabitInput.value = "";
+    if (searchTypeSelectLabel) searchTypeSelectLabel.textContent = "Rechercher par type...";
+    if (searchTypeSelect) delete searchTypeSelect.dataset.value;
+    if (searchResultsZone) searchResultsZone.innerHTML = "";
+
     searchHabitsPopupOverlay.classList.remove("hiddenSearchPopup");
 }
 
@@ -422,6 +431,12 @@ export function renderSearchTypeOptions (types) {
 
     searchTypeOptions.innerHTML = "";
 
+    // permet toujours d'annuler le filtre par type en cours
+    const reset = document.createElement("div");
+    reset.classList.add("searchTypeOptions__reset");
+    reset.textContent = "Tous les types";
+    searchTypeOptions.appendChild(reset);
+
     if (types.length === 0) {
         const empty = document.createElement("div");
         empty.classList.add("searchTypeOptions__empty");
@@ -438,5 +453,46 @@ export function renderSearchTypeOptions (types) {
         item.textContent = type;
 
         searchTypeOptions.appendChild(item);
+    }
+}
+
+// affiche les habitudes trouvées dans le popup de recherche
+export function renderSearchResults (habits) {
+
+    if (!searchResultsZone) return;
+
+    searchResultsZone.innerHTML = "";
+
+    if (habits.length === 0) {
+        const empty = document.createElement("div");
+        empty.classList.add("searchResults__empty");
+        empty.textContent = "Aucune habitude trouvée";
+
+        searchResultsZone.appendChild(empty);
+        return;
+    }
+
+    for (let habit of habits) {
+        const item = document.createElement("div");
+        item.classList.add("searchResults__item");
+        item.dataset.habitId = habit.id;
+
+        const name = document.createElement("span");
+        name.classList.add("searchResults__item-name");
+        name.textContent = habit.name;
+
+        const type = document.createElement("span");
+        type.classList.add("searchResults__item-type");
+        type.textContent = habit.type;
+
+        const frequency = document.createElement("span");
+        frequency.classList.add("searchResults__item-frequency");
+        frequency.textContent = translateFrequency(habit);
+
+        item.appendChild(name);
+        item.appendChild(type);
+        item.appendChild(frequency);
+
+        searchResultsZone.appendChild(item);
     }
 }

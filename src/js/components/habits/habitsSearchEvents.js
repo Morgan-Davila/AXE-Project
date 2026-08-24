@@ -4,16 +4,20 @@ debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
 
 
 import {
-    searchTypes
+    searchTypes,
+    searchHabits
 } from "./habits.js";
 
 import {
+    searchHabitInput,
+    searchLaunchButton,
     searchTypeSelect,
     searchTypeSelectLabel,
     searchTypeSearch,
     searchTypeInput,
     searchTypeOptions,
     renderSearchTypeOptions,
+    renderSearchResults,
     openSearchHabitsPopup,
     closeSearchHabitsPopup,
     habitsCommandIcons,
@@ -63,6 +67,16 @@ export function setupSearchTypeDropdown () {
     });
 
     searchTypeOptions.addEventListener("click", (event) => {
+        const reset = event.target.closest(".searchTypeOptions__reset");
+
+        if (reset) {
+            searchTypeSelectLabel.textContent = "Rechercher par type...";
+            delete searchTypeSelect.dataset.value;
+
+            closeSearchTypeDropdown();
+            return;
+        }
+
         const item = event.target.closest(".searchTypeOptions__item");
 
         if (!item) return;
@@ -79,6 +93,27 @@ export function setupSearchTypeDropdown () {
         closeSearchTypeDropdown();
     });
 
+}
+
+
+// exécute la recherche (nom + type) et affiche les résultats
+export function setupSearchLaunch () {
+
+    if (!searchLaunchButton || !searchHabitInput) return;
+
+    const runSearch = () => {
+        const results = searchHabits(searchHabitInput.value, searchTypeSelect.dataset.value);
+        renderSearchResults(results);
+    };
+
+    searchLaunchButton.addEventListener("click", runSearch);
+
+    searchHabitInput.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+
+        event.preventDefault();
+        runSearch();
+    });
 }
 
 
