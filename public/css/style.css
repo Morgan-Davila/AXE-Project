@@ -759,6 +759,8 @@ table .habitCell__commands__button:hover {
 
 .searchFilters__select {
   width: 100%;
+  display: flex;
+  align-items: center;
   padding: 14px 40px 14px 16px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
@@ -778,6 +780,43 @@ table .habitCell__commands__button:hover {
 }
 .searchFilters__select option[disabled] {
   color: #949494;
+}
+
+.searchFilters__select-label {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.searchFilters__select-search {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.searchFilters__select-search-icon {
+  flex-shrink: 0;
+  color: #949494;
+  pointer-events: none;
+}
+.searchFilters__select-search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.95rem;
+  font-family: "Inter", sans-serif;
+  color: #000926;
+  cursor: text;
+}
+.searchFilters__select-search-input::placeholder {
+  color: #949494;
+}
+
+.hiddenTypeSearch {
+  display: none;
 }
 
 .searchFilters__select-icon {
@@ -821,6 +860,13 @@ table .habitCell__commands__button:hover {
 .searchTypeOptions__item:hover, .searchTypeOptions__item.searchTypeOptions__item--active {
   background-color: #4338ca;
   color: white;
+}
+
+.searchTypeOptions__empty {
+  padding: 8px 12px;
+  color: #949494;
+  font-size: 0.95rem;
+  font-style: italic;
 }
 
 .searchFilters__date-icon {

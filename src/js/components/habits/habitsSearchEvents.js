@@ -4,12 +4,15 @@ debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
 
 
 import {
-    getAllTypes
+    searchTypes
 } from "./habits.js";
 
 import {
     searchDateInput,
     searchTypeSelect,
+    searchTypeSelectLabel,
+    searchTypeSearch,
+    searchTypeInput,
     searchTypeOptions,
     renderSearchTypeOptions,
     openSearchHabitsPopup,
@@ -39,24 +42,43 @@ export function setupSearchDateInput () {
 
 
 // menu déroulant custom pour la recherche par type
+// bascule le bouton "Rechercher par type..." en barre de recherche dynamique tant que le menu est ouvert
+function openSearchTypeDropdown () {
+    searchTypeSelectLabel.classList.add("hiddenTypeSearch");
+    searchTypeSearch.classList.remove("hiddenTypeSearch");
+
+    searchTypeInput.value = "";
+    searchTypeInput.focus();
+
+    renderSearchTypeOptions(searchTypes(""));
+    searchTypeOptions.classList.remove("hiddenTypeProposition");
+    searchTypeSelect.setAttribute("aria-expanded", "true");
+}
+
+function closeSearchTypeDropdown () {
+    searchTypeSearch.classList.add("hiddenTypeSearch");
+    searchTypeSelectLabel.classList.remove("hiddenTypeSearch");
+
+    searchTypeOptions.classList.add("hiddenTypeProposition");
+    searchTypeSelect.setAttribute("aria-expanded", "false");
+}
+
 export function setupSearchTypeDropdown () {
 
-    if (!searchTypeSelect || !searchTypeOptions) return;
+    if (!searchTypeSelect || !searchTypeOptions || !searchTypeInput) return;
 
     searchTypeSelect.addEventListener("click", (event) => {
         event.stopPropagation();
 
         const isOpen = !searchTypeOptions.classList.contains("hiddenTypeProposition");
 
-        if (isOpen) {
-            searchTypeOptions.classList.add("hiddenTypeProposition");
-            searchTypeSelect.setAttribute("aria-expanded", "false");
-            return;
-        }
+        if (isOpen) return; // le champ de recherche est déjà actif, on laisse l'utilisateur taper
 
-        renderSearchTypeOptions(getAllTypes());
-        searchTypeOptions.classList.remove("hiddenTypeProposition");
-        searchTypeSelect.setAttribute("aria-expanded", "true");
+        openSearchTypeDropdown();
+    });
+
+    searchTypeInput.addEventListener("input", () => {
+        renderSearchTypeOptions(searchTypes(searchTypeInput.value));
     });
 
     searchTypeOptions.addEventListener("click", (event) => {
@@ -64,19 +86,16 @@ export function setupSearchTypeDropdown () {
 
         if (!item) return;
 
-        searchTypeSelect.textContent = item.textContent;
+        searchTypeSelectLabel.textContent = item.textContent;
         searchTypeSelect.dataset.value = item.textContent;
 
-        searchTypeOptions.classList.add("hiddenTypeProposition");
-        searchTypeSelect.setAttribute("aria-expanded", "false");
-        renderSearchTypeOptions(getAllTypes());
+        closeSearchTypeDropdown();
     });
 
     document.addEventListener("click", (event) => {
         if (searchTypeSelect.contains(event.target) || searchTypeOptions.contains(event.target)) return;
 
-        searchTypeOptions.classList.add("hiddenTypeProposition");
-        searchTypeSelect.setAttribute("aria-expanded", "false");
+        closeSearchTypeDropdown();
     });
 
 }

@@ -386,6 +386,12 @@ export const searchResultsZone = safeId("searchResultsZone");
 
 export const searchTypeSelect = safeId("searchTypeSelect");
 
+export const searchTypeSelectLabel = safeId("searchTypeSelectLabel");
+
+export const searchTypeSearch = safeId("searchTypeSearch");
+
+export const searchTypeInput = safeId("searchTypeInput");
+
 export const searchTypeOptions = safeId("searchTypeOptions");
 
 export const searchHabitsPopupOverlay = safeQuery(".searchHabitPopupOverlay");
@@ -416,7 +422,16 @@ export function renderSearchTypeOptions (types) {
 
     searchTypeOptions.innerHTML = "";
 
-    for (let type of types) {
+    if (types.length === 0) {
+        const empty = document.createElement("div");
+        empty.classList.add("searchTypeOptions__empty");
+        empty.textContent = "Aucun type correspondant";
+
+        searchTypeOptions.appendChild(empty);
+        return;
+    }
+
+    for (let type of types.slice(0, 4)) { // jamais plus de 4 types proposés
         const item = document.createElement("div");
         item.classList.add("searchTypeOptions__item");
         item.setAttribute("role", "option");

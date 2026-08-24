@@ -96,6 +96,9 @@
 .searchFilters__select {
     width: 100%;
 
+    display: flex;
+    align-items: center;
+
     padding: 14px 40px 14px 16px;
 
     @include m.popupHabitFormBorder;
@@ -122,6 +125,52 @@
     option[disabled] {
         color: v.$main-grey;
     }
+}
+
+.searchFilters__select-label {
+    width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.searchFilters__select-search {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &-icon {
+        flex-shrink: 0;
+
+        color: v.$main-grey;
+        pointer-events: none;
+    }
+
+    &-input {
+        width: 100%;
+
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 0;
+
+        font-size: .95rem;
+        font-family: v.$font-main;
+        color: v.$main-darkBlue;
+
+        cursor: text;
+
+        &::placeholder {
+            color: v.$main-grey;
+        }
+    }
+}
+
+.hiddenTypeSearch {
+    display: none;
 }
 
 .searchFilters__select-icon {
@@ -178,6 +227,14 @@
         background-color: v.$main-violet;
         color: white;
     }
+}
+
+.searchTypeOptions__empty {
+    padding: 8px 12px;
+
+    color: v.$main-grey;
+    font-size: .95rem;
+    font-style: italic;
 }
 
 .searchFilters__date-icon {
