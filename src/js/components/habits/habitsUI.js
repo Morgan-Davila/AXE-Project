@@ -8,7 +8,8 @@ import {
     formatDuration,
     joinFrench,
     translateFrequency,
-    formatDate
+    formatDate,
+    formatTime
 } from "../../utils/format.js";
 
 import {
@@ -501,7 +502,7 @@ export function renderSearchResults (habits) {
         //AI made
         const createdAt = document.createElement("span");
         createdAt.classList.add("searchResults__item-date");
-        createdAt.textContent = formatDate(habit.createdAt);
+        createdAt.textContent = `${formatDate(habit.createdAt)} ${formatTime(habit.createdAt)}`;
 
         item.appendChild(name);
         item.appendChild(type);

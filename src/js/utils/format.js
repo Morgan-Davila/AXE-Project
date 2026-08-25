@@ -59,6 +59,22 @@ export function formatDate(timestamp) {
     return date.toLocaleDateString("fr-FR");
 }
 
+//AI made
+export function formatTime(timestamp) {
+
+    const date = new Date(Number(timestamp));
+
+    if (Number.isNaN(date.getTime())) {
+        debug(LOCAL_DEBUG, "formatTime : valeur invalide", timestamp);
+        return "";
+    }
+
+    return date.toLocaleTimeString("fr-FR", {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
 
 
 
