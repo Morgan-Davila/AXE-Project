@@ -7,18 +7,21 @@
     margin-top: 20px;
     margin-bottom: 40px;
     // background-color: red;
-    height: 1000px;
+    min-height: 1000px;
     width: 95%;
 
     display: flex;
     flex-direction: column;
+    //AI made (espacement explicite, robuste quel que soit le nombre d'habitudes)
+    gap: 12px;
 }
 
 .habitManager {
     background-color: white;
     @include m.border-section-dashboard;
-    margin: auto;
-    height: 900px;
+    margin: 0 auto;
+    min-height: 900px;
+    padding-bottom: 20px;
     width: 90%;
 
     color: v.$main-darkBlue;
@@ -69,7 +72,6 @@
 
     margin-left: auto;
     margin-right: 5%;
-    margin-bottom: -35px;
 
     &__icons {
         color: v.$main-darkBlue;

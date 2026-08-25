@@ -34,14 +34,32 @@
         color: white;
     }
 
+    //AI made (transition de hauteur fluide entre les tabs, technique grid-template-rows)
     &-content {
-        display: none !important;
-        padding: 15px;
+        display: grid;
+        grid-template-rows: 0fr;
+
+        overflow: hidden;
+
+        padding: 0 15px;
         @include m.popupHabitFormBorder;
 
+        opacity: 0;
+
+        transition:
+            grid-template-rows 300ms ease-in-out,
+            padding 300ms ease-in-out,
+            opacity 200ms ease-in-out;
+
+        > * {
+            min-height: 0;
+            overflow: hidden;
+        }
 
         &.activeTabs {
-            display: block !important;
+            grid-template-rows: 1fr;
+            padding: 15px;
+            opacity: 1;
         }
 
         #tab1 {

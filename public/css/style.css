@@ -363,18 +363,20 @@ body {
   margin: auto;
   margin-top: 20px;
   margin-bottom: 40px;
-  height: 1000px;
+  min-height: 1000px;
   width: 95%;
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 .habitManager {
   background-color: white;
   border: 3px #0F52BA dashed;
   border-radius: 35px;
-  margin: auto;
-  height: 900px;
+  margin: 0 auto;
+  min-height: 900px;
+  padding-bottom: 20px;
   width: 90%;
   color: #000926;
 }
@@ -412,7 +414,6 @@ body {
   gap: 10px;
   margin-left: auto;
   margin-right: 5%;
-  margin-bottom: -35px;
 }
 .habitManagerMenu__icons {
   color: #000926;
@@ -965,13 +966,23 @@ table .habitCell__commands__button:hover {
   color: white;
 }
 .tab-content {
-  display: none !important;
-  padding: 15px;
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  padding: 0 15px;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
+  opacity: 0;
+  transition: grid-template-rows 300ms ease-in-out, padding 300ms ease-in-out, opacity 200ms ease-in-out;
+}
+.tab-content > * {
+  min-height: 0;
+  overflow: hidden;
 }
 .tab-content.activeTabs {
-  display: block !important;
+  grid-template-rows: 1fr;
+  padding: 15px;
+  opacity: 1;
 }
 .tab-content #tab1 {
   display: inline-flex;
