@@ -36,7 +36,7 @@ import {
     setupSearchTypeDropdown,
     setupSearchLaunch,
     setupPopupOverlay
-} from "./components/habits/habitsSearchEvents.js";
+} from "./components/habits/popupSearch/habitsSearchEvents.js";
 
 
 setupSearchTypeDropdown();

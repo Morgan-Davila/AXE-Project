@@ -6,7 +6,12 @@ debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
 import {
     searchTypes,
     searchHabits
-} from "./habits.js";
+} from "../habits.js";
+
+import {
+    habitsCommandIcons,
+    habitsPopupOverlay
+} from "../habitsUI.js";
 
 import {
     searchHabitInput,
@@ -20,10 +25,8 @@ import {
     renderSearchResults,
     openSearchHabitsPopup,
     closeSearchHabitsPopup,
-    habitsCommandIcons,
-    habitsPopupOverlay,
     searchHabitsPopupOverlay
-} from "./habitsUI.js";
+} from "./habitsSearchUI.js";
 
 
 // menu déroulant custom pour la recherche par type
@@ -124,7 +127,7 @@ export function setupSearchLaunch () {
 export function setupPopupOverlay () {
     debug(LOCAL_DEBUG, habitsCommandIcons.search)
     debug(LOCAL_DEBUG, habitsPopupOverlay)
-    
+
     habitsCommandIcons.search.addEventListener("click", () =>{
         openSearchHabitsPopup();
     });
