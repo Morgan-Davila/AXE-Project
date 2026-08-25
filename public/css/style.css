@@ -402,6 +402,10 @@ body {
   background-color: #f3f3f3;
 }
 
+.hiddenCloseSearch {
+  display: none;
+}
+
 .habitManagerMenu {
   display: flex;
   align-items: center;
@@ -426,6 +430,21 @@ body {
 .habitManagerMenu__icons:hover {
   border-radius: 10px;
   background-color: rgb(230.25, 230.25, 230.25);
+}
+.habitManagerMenu__closeSearch {
+  cursor: pointer;
+  padding: 6px 16px;
+  border: none;
+  border-radius: 45px;
+  background: #0F52BA;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 200ms ease-in-out;
+}
+.habitManagerMenu__closeSearch:hover {
+  background-color: rgb(11.1940298507, 61.1940298507, 138.8059701493);
 }
 .habitManagerMenu__menu {
   cursor: pointer;
@@ -911,58 +930,6 @@ table .habitCell__commands__button:hover {
 
 .searchFilters__launch-icon {
   flex-shrink: 0;
-}
-
-.searchResults {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-height: 50px;
-  max-height: 320px;
-  overflow-y: auto;
-  padding: 8px;
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-}
-
-.searchResults__empty {
-  padding: 12px;
-  color: #949494;
-  font-size: 0.95rem;
-  font-style: italic;
-  text-align: center;
-}
-
-.searchResults__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: #f3f3f3;
-}
-.searchResults__item-name {
-  flex: 1;
-  color: #000926;
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.searchResults__item-type {
-  color: #4338ca;
-  font-size: 0.85rem;
-}
-.searchResults__item-frequency {
-  color: #949494;
-  font-size: 0.85rem;
-}
-.searchResults__item-date {
-  flex-shrink: 0;
-  color: #949494;
-  font-size: 0.8rem;
 }
 
 .hiddenSearchPopup {

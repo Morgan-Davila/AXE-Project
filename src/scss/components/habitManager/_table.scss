@@ -57,6 +57,11 @@
     }
 }
 
+//AI made
+.hiddenCloseSearch {
+    display: none;
+}
+
 .habitManagerMenu {
     display: flex;
     align-items: center;
@@ -88,6 +93,28 @@
             background-color: color.adjust(v.$secondary-liteGrey, $lightness: -5%);
         }
     }
+    //AI made
+    &__closeSearch {
+        cursor: pointer;
+
+        padding: 6px 16px;
+
+        border: none;
+        border-radius: 45px;
+        background: v.$main-blue;
+
+        color: white;
+        font-family: v.$font-main;
+        font-size: 13px;
+        font-weight: 600;
+
+        transition: background 200ms ease-in-out;
+
+        &:hover {
+            background-color: color.adjust(v.$main-blue, $lightness: -10%);
+        }
+    }
+
     &__menu {
         cursor: pointer;
         background: v.$main-blue;

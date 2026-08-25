@@ -4,12 +4,6 @@ debug(LOCAL_DEBUG, "Chargement habitsSearchUI.js");
 
 
 import {
-    translateFrequency,
-    formatDate,
-    formatTime
-} from "../../../utils/format.js";
-
-import {
     safeQuery,
     safeId
 } from "../../../utils/dom.js";
@@ -22,7 +16,8 @@ export const searchHabitInput = safeId("searchHabitInput");
 //AI made
 export const searchLaunchButton = safeId("searchLaunchButton");
 
-export const searchResultsZone = safeId("searchResultsZone");
+//AI made
+export const closeSearchButton = safeId("closeSearchButton");
 
 export const searchTypeSelect = safeId("searchTypeSelect");
 
@@ -51,7 +46,6 @@ export function openSearchHabitsPopup () {
     if (searchHabitInput) searchHabitInput.value = "";
     if (searchTypeSelectLabel) searchTypeSelectLabel.textContent = "Rechercher par type...";
     if (searchTypeSelect) delete searchTypeSelect.dataset.value;
-    if (searchResultsZone) searchResultsZone.innerHTML = "";
 
     searchHabitsPopupOverlay.classList.remove("hiddenSearchPopup");
 }
@@ -96,53 +90,5 @@ export function renderSearchTypeOptions (types) {
         item.textContent = type;
 
         searchTypeOptions.appendChild(item);
-    }
-}
-
-//AI made
-// affiche les habitudes trouvées dans le popup de recherche
-export function renderSearchResults (habits) {
-
-    if (!searchResultsZone) return;
-
-    searchResultsZone.innerHTML = "";
-
-    if (habits.length === 0) {
-        const empty = document.createElement("div");
-        empty.classList.add("searchResults__empty");
-        empty.textContent = "Aucune habitude trouvée";
-
-        searchResultsZone.appendChild(empty);
-        return;
-    }
-
-    for (let habit of habits) {
-        const item = document.createElement("div");
-        item.classList.add("searchResults__item");
-        item.dataset.habitId = habit.id;
-
-        const name = document.createElement("span");
-        name.classList.add("searchResults__item-name");
-        name.textContent = habit.name;
-
-        const type = document.createElement("span");
-        type.classList.add("searchResults__item-type");
-        type.textContent = habit.type;
-
-        const frequency = document.createElement("span");
-        frequency.classList.add("searchResults__item-frequency");
-        frequency.textContent = translateFrequency(habit);
-
-        //AI made
-        const createdAt = document.createElement("span");
-        createdAt.classList.add("searchResults__item-date");
-        createdAt.textContent = `${formatDate(habit.createdAt)} ${formatTime(habit.createdAt)}`;
-
-        item.appendChild(name);
-        item.appendChild(type);
-        item.appendChild(frequency);
-        item.appendChild(createdAt);
-
-        searchResultsZone.appendChild(item);
     }
 }

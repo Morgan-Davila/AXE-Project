@@ -10,23 +10,33 @@ import {
 
 import {
     habitsCommandIcons,
-    habitsPopupOverlay
+    habitsPopupOverlay,
+    renderHabits
 } from "../habitsUI.js";
+
+import {
+    setupHabitDeleteButton,
+    setupHabitEditButton
+} from "../habitsEvents.js";
 
 import {
     searchHabitInput,
     searchLaunchButton,
+    closeSearchButton,
     searchTypeSelect,
     searchTypeSelectLabel,
     searchTypeSearch,
     searchTypeInput,
     searchTypeOptions,
     renderSearchTypeOptions,
-    renderSearchResults,
     openSearchHabitsPopup,
     closeSearchHabitsPopup,
     searchHabitsPopupOverlay
 } from "./habitsSearchUI.js";
+
+//AI made
+// vrai si les résultats affichés dans la table proviennent d'une recherche
+let searchActive = false;
 
 
 // menu déroulant custom pour la recherche par type
@@ -103,14 +113,29 @@ export function setupSearchTypeDropdown () {
 
 
 //AI made
-// exécute la recherche (nom + type) et affiche les résultats
+// ferme le popup de recherche et, si une recherche est en cours, propose de revenir à la liste complète
+function closeSearchPopup () {
+    closeSearchHabitsPopup();
+
+    if (searchActive && closeSearchButton) {
+        closeSearchButton.classList.remove("hiddenCloseSearch");
+    }
+}
+
+//AI made
+// exécute la recherche (nom + type), affiche les résultats dans la table principale puis ferme le popup
 export function setupSearchLaunch () {
 
     if (!searchLaunchButton || !searchHabitInput) return;
 
     const runSearch = () => {
         const results = searchHabits(searchHabitInput.value, searchTypeSelect.dataset.value);
-        renderSearchResults(results);
+
+        searchActive = true;
+        renderHabits(results);
+        setupHabitDeleteButton();
+        setupHabitEditButton();
+        closeSearchPopup();
     };
 
     searchLaunchButton.addEventListener("click", runSearch);
@@ -121,6 +146,25 @@ export function setupSearchLaunch () {
         event.preventDefault();
         runSearch();
     });
+}
+
+//AI made
+// remet la table à l'état normal (habitArray complet) et masque le bouton
+function clearSearch () {
+    searchActive = false;
+
+    renderHabits();
+    setupHabitDeleteButton();
+    setupHabitEditButton();
+
+    if (closeSearchButton) closeSearchButton.classList.add("hiddenCloseSearch");
+}
+
+//AI made
+export function setupCloseSearchButton () {
+    if (!closeSearchButton) return;
+
+    closeSearchButton.addEventListener("click", clearSearch);
 }
 
 
@@ -135,7 +179,7 @@ export function setupPopupOverlay () {
     searchHabitsPopupOverlay.addEventListener("click", (event) =>{
 
         if (event.target === searchHabitsPopupOverlay) {
-            closeSearchHabitsPopup();
+            closeSearchPopup();
         }
     });
 }

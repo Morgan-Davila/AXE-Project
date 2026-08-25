@@ -35,6 +35,7 @@ setupPopupTypePicker();
 import {
     setupSearchTypeDropdown,
     setupSearchLaunch,
+    setupCloseSearchButton,
     setupPopupOverlay
 } from "./components/habits/popupSearch/habitsSearchEvents.js";
 
@@ -42,6 +43,8 @@ import {
 setupSearchTypeDropdown();
 //AI made
 setupSearchLaunch();
+//AI made
+setupCloseSearchButton();
 setupPopupOverlay();
 
 

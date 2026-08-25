@@ -58,7 +58,8 @@ export const habitsFormButton = safeId("habitFormButton");
 
 
 // création des habitCell
-export function renderHabits () {
+//AI made (accepte un tableau optionnel pour afficher un sous-ensemble filtré, ex. résultats de recherche)
+export function renderHabits (habits = habitArray) {
 
     const habitCellZone = safeId("habitCellZone");
 
@@ -66,7 +67,7 @@ export function renderHabits () {
 
     habitCellZone.innerHTML = ""; // reset
 
-    for (let habit of habitArray) {
+    for (let habit of habits) {
 
         // création de l'habitCell
         let habitCell = document.createElement("tr");
