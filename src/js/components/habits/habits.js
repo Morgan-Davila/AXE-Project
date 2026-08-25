@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = true;
+const LOCAL_DEBUG = false;
 
 debug(LOCAL_DEBUG, "Chargement habits.js"); //test
 
@@ -56,11 +56,17 @@ export function getFrequency() {
         monthly : safeId("tab3")
     }
 
-    const tab = safeQuery(".tab.activeTabs").dataset.tab;
+    let frequency = {
+        value: null,
+        type: null
+    };
+
+    // Sécurité : pas de tabs de fréquence sur cette page
+    if (!tabs.interval || !tabs.weekly || !tabs.monthly) return frequency;
+
+    const tab = safeQuery(".tab.activeTabs")?.dataset.tab;
 
     debug(LOCAL_DEBUG, tab);
-
-    let frequency = {}
 
     switch (tab) {
         case tabs.interval.id : {
@@ -83,11 +89,6 @@ export function getFrequency() {
             frequency.value = getCheckedCheckboxValues(form, ".inp-cbx");
             frequency.type = "monthly";
             break;
-        }
-
-        default : {
-            frequency.value = null;
-            frequency.type = null;
         }
     }
 

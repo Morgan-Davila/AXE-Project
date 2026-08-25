@@ -202,6 +202,9 @@ export function setupDurationPicker() {
 
 
 export function setupPopupTypePicker () {
+
+    if (!habitsFormInput.type || !typeProposition) return;
+
     habitsFormInput.type.addEventListener("focus", () =>{
         debug(LOCAL_DEBUG, "Entré");
 

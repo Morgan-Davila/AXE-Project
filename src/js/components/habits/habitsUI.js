@@ -286,6 +286,9 @@ export function renderMonthlyDays() {
 }
 
 export function renderTypesProposition (propositions) {
+
+    if (!typeProposition) return;
+
     typeProposition.innerHTML = " "
 
     for (let proposition of propositions) {

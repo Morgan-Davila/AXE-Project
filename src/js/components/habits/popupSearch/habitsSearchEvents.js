@@ -169,6 +169,9 @@ export function setupCloseSearchButton () {
 
 
 export function setupPopupOverlay () {
+
+    if (!habitsCommandIcons.search || !searchHabitsPopupOverlay) return;
+
     debug(LOCAL_DEBUG, habitsCommandIcons.search)
     debug(LOCAL_DEBUG, habitsPopupOverlay)
 
