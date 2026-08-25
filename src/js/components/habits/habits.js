@@ -18,8 +18,8 @@ let typesArray = [];
 //cette fonction se charge de récuperer la durée dans l'input et de transformer cette valeur en nombre utilisable
 export function getDuration() {
 
-    const input = document.querySelector("#durationInput");
-    const unit = document.querySelector("#durationUnit");
+    const input = safeId("durationInput");
+    const unit = safeId("durationUnit");
 
     let duration = {
         unit: 0,
@@ -44,19 +44,19 @@ export function getDuration() {
 //cette fonction générique récupère tout les chceckbox:checked dans un espace donné (form) qui portent un selector précis (selector)
 //Cette fonction doit etre mise dans un autre endroit a l'avenir
 function getCheckedCheckboxValues(form, selector) {
-    return [...form.querySelectorAll(selector + ":checked")]
+    return [...safeQueryAll(selector + ":checked", form)]
         .map(checkbox => Number(checkbox.value));
 }
 
 
 export function getFrequency() {
     const tabs = {
-        interval : document.getElementById("tab1"),
-        weekly : document.getElementById("tab2"),
-        monthly : document.getElementById("tab3")
+        interval : safeId("tab1"),
+        weekly : safeId("tab2"),
+        monthly : safeId("tab3")
     }
 
-    const tab = document.querySelector(".tab.activeTabs").dataset.tab;
+    const tab = safeQuery(".tab.activeTabs").dataset.tab;
 
     debug(LOCAL_DEBUG, tab);
 
@@ -65,7 +65,7 @@ export function getFrequency() {
     switch (tab) {
         case tabs.interval.id : {
             frequency.value = Number(
-                document.querySelector(".frequency-interval__input").value
+                safeQuery(".frequency-interval__input").value
             );
             frequency.type = "interval"
             break;
