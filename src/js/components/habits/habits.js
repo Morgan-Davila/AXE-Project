@@ -118,7 +118,9 @@ export function createHabit(data){
 
         streak: 0,
 
-        createdAt: Date.now()
+        createdAt: Date.now(),
+
+        executions : []
     };
     
 }
