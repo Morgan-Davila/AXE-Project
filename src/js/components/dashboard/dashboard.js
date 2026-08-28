@@ -19,7 +19,7 @@ export function reactHabit (habitArray) {
     for (let habit of habitArray) {
         let type = habit.frequency.type;
 
-        const lastExecution = new Date(Number(habit.executions.at(-1) ?? habit.createdAt)); //si l'habit viens d'étre créé et qu'il n'y a pas encore d'éexecution, alors on utilise la date de création
+        const lastExecution = new Date(Number(habit.executions?.at(-1) ?? habit.createdAt)); //si l'habit viens d'étre créé et qu'il n'y a pas encore d'éexecution, alors on utilise la date de création
         const now = new Date();
 
         if (!isSameDay(lastExecution, now)) {
