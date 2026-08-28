@@ -49,16 +49,20 @@ export function reactHabit (habitArray) {
                 }
 
                 case "weekly" : {
-                    const actualDay = new Date().getDay();
+                    const dayOfWeek = new Date().getDay();
 
-                    if (habit.frequency.value.map(Number).includes(actualDay)) {
+                    if (habit.frequency.value.map(Number).includes(dayOfWeek)) {
                         renderRecalls(habit);
                     }
                     break;
                 }
 
                 case "monthly" : {
+                    const dayOfMonth = new Date().getDate();
 
+                    if (habit.frequency.value.map(Number).includes(dayOfMonth)) {
+                        renderRecalls(habit);
+                    }
                     break;
                 }
 
