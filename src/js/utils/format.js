@@ -122,13 +122,13 @@ export function translateFrequency(data) {
 
         case "weekly": {
             const days = [
+                "dimanche",
                 "lundi",
                 "mardi",
                 "mercredi",
                 "jeudi",
                 "vendredi",
-                "samedi",
-                "dimanche"
+                "samedi"
             ];
 
             if (!Array.isArray(value)) {
