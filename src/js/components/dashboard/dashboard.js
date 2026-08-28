@@ -24,11 +24,24 @@ export function reactHabit (habitArray) {
 
         if (!isSameDay(lastExecution, now)) {
             switch (type) {
-                case "interval" : {
+                //AI made
+                case "interval": {
                     const interval = Number(habit.frequency.value);
-                    const day = lastExecution.getDay();
 
-                    if (interval === day) {
+                    const today = new Date();
+                    const msParDay = 1000 * 60 * 60 * 24;
+
+                    // On neutralise les heures pour comparer des jours "propres"
+                    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    const lastExecMidnight = new Date(
+                        lastExecution.getFullYear(),
+                        lastExecution.getMonth(),
+                        lastExecution.getDate()
+                    );
+
+                    const diffJours = Math.round((todayMidnight - lastExecMidnight) / msParDay);
+
+                    if (diffJours === interval) {
                         renderRecalls(habit);
                     }
 
