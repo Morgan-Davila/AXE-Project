@@ -57,6 +57,7 @@ import {
     frequencyMonthlyDays
 } from "./components/habits/habitsUI.js"
 
+
 renderHabits();
 initTabs();
 renderMonthlyDays();
@@ -67,3 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHabitDeleteButton();
     setupHabitEditButton();
 });
+
+import { loadDeletedHabits } from "./services/storage.js";
+loadDeletedHabits();

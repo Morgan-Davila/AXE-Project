@@ -6,6 +6,7 @@ debug(LOCAL_DEBUG, "Chargement storage.js");
 // services/storage.js
 
 const STORAGE_KEY = "habitArray";
+const DELETED_STORAGE_KEY = "deletedHabitsArray";
 
 
 
@@ -22,6 +23,24 @@ export function saveHabits() {
     localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(habitArray)
+    );
+}
+
+
+
+// Charger les habitudes supprimées
+export function loadDeletedHabits() {
+    return JSON.parse(localStorage.getItem(DELETED_STORAGE_KEY)) || [];
+}
+
+// Chargement initial
+export let deletedHabitsArray = loadDeletedHabits();
+
+// Sauvegarder les habitudes supprimées
+export function saveDeletedHabits() {
+    localStorage.setItem(
+        DELETED_STORAGE_KEY,
+        JSON.stringify(deletedHabitsArray)
     );
 }
 

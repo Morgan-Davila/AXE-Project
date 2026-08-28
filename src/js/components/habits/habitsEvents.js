@@ -19,7 +19,9 @@ import {
     addHabit,
     deleteHabit,
     getHabit,
-    updateHabit
+    updateHabit,
+    deletedHabitsArray,
+    saveDeletedHabits
 } from "./../../services/storage.js";
 
 import {
@@ -52,10 +54,13 @@ export function setupHabitDeleteButton () {
         button.addEventListener("click", (event) => {
             const parent = event.target.closest("tr")
             
-            const habitID = Number(parent.dataset.habitId)
+            const habitID = Number(parent.dataset.habitId);
             
+            const deletedHabit = getHabit(habitID);
+            deletedHabitsArray.push(deletedHabit);
+            saveDeletedHabits();
+
             deleteHabit(habitID);
-            
             parent.remove();
         });
     }
