@@ -1218,6 +1218,13 @@ table .habitCell__commands__button:hover {
   display: flex;
   align-items: center;
 }
+.habits__cell--done .habits__cell__title {
+  text-decoration: line-through;
+  color: #949494;
+}
+.habits__cell--done::before {
+  background-color: #34A853;
+}
 .habits__cell:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(15, 82, 186, 0.1), 0 10px 24px rgba(15, 82, 186, 0.1);

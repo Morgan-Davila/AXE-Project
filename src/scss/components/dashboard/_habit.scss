@@ -85,6 +85,16 @@
 		}
 
 
+		&--done {
+			.habits__cell__title {
+				text-decoration: line-through;
+				color: v.$main-grey;
+			}
+
+			&::before {
+				background-color: #34A853;
+			}
+		}
     }
 
 	&__cell:hover {
