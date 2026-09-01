@@ -64,10 +64,15 @@ renderMonthlyDays();
 
 
 
+
+
+import { loadDeletedHabits, habitArray } from "./services/storage.js";
+loadDeletedHabits();
+
+import { reactHabit } from "./components/dashboard/dashboard.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     setupHabitDeleteButton();
     setupHabitEditButton();
+    reactHabit(habitArray);
 });
-
-import { loadDeletedHabits } from "./services/storage.js";
-loadDeletedHabits();
