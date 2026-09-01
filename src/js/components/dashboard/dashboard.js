@@ -22,7 +22,10 @@ export function reactHabit (habitArray) {
         const lastExecution = new Date(Number(habit.executions?.at(-1) ?? habit.createdAt)); //si l'habit viens d'étre créé et qu'il n'y a pas encore d'éexecution, alors on utilise la date de création
         const now = new Date();
 
-        if (!isSameDay(lastExecution, now)) {
+        // on ne veut sauter l'habit que si elle a une exécution reelle aujourd'hui, pas juste une date de création du jour
+        const doneToday = habit.executions?.some(execution => isSameDay(Number(execution), now)) ?? false;
+
+        if (!doneToday) {
             switch (type) {
                 //AI made
                 case "interval": {
