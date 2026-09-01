@@ -1155,28 +1155,45 @@ table .habitCell__commands__button:hover {
 .habits {
   height: 600px;
   margin: 40px;
-  background-color: white;
+  background-color: #F4F5FA;
   border: 3px #0F52BA dashed;
   border-radius: 35px;
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 .habits__cell {
-  margin: auto;
-  margin-bottom: 20px;
-  background-color: #F8F8F8;
-  padding: 10px;
+  position: relative;
+  margin-bottom: 14px;
+  background-color: #fff;
+  padding: 14px 20px 14px 18px;
   min-height: 60px;
   width: 90%;
-  border-radius: 50px;
-  display: flex;
+  border-radius: 18px;
+  border: 1px solid #ECEDF3;
+  box-shadow: 0 1px 2px rgba(15, 82, 186, 0.06), 0 6px 16px rgba(15, 82, 186, 0.06);
+  display: inline-flex;
   align-items: center;
-  transition: transform ease-in-out 200ms, background ease-in-out 350ms;
+  transition: transform ease-in-out 200ms, box-shadow ease-in-out 220ms, border-color ease-in-out 220ms;
+}
+.habits__cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: 4px;
+  background-color: #0F52BA;
 }
 .habits__cell--right {
   margin-left: auto;
   margin-right: 40px;
   display: flex;
   align-items: center;
+  gap: 14px;
 }
 .habits__cell__title {
   color: #111827;
@@ -1186,33 +1203,25 @@ table .habitCell__commands__button:hover {
   margin-left: 20px;
 }
 .habits__cell__streak {
-  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin-right: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background-color: #949494;
 }
 .habits__cell__checkmark {
   display: flex;
   align-items: center;
 }
-@media (max-width: 1200px) {
-  .habits__cell {
-    display: block;
-  }
-  .habits__cell--right {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-  }
-  .habits__cell__streak {
-    margin-right: 0px;
-    margin-left: 20px;
-  }
-}
 .habits__cell:hover {
-  transform: translateY(-1px);
-  background-color: #f2f3ff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(15, 82, 186, 0.1), 0 10px 24px rgba(15, 82, 186, 0.1);
+  border-color: #DCE1F5;
 }
 
 .container {
