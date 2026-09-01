@@ -39,4 +39,6 @@ export function renderRecalls (data) {
 
     recall.appendChild(title);
     recall.appendChild(right);
+
+    recall.dataset.habitId = data.id ;
 }
