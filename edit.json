@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1787929139423,
+    "name": "courir 5k",
+    "type": "sport",
+    "frequency": {
+      "value": [
+        1,
+        6
+      ],
+      "type": "weekly"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 1800
+    },
+    "streak": 0,
+    "createdAt": 1787929139423,
+    "executions": []
+  },
+  {
+    "id": 1787929150413,
+    "name": "courir 10k",
+    "type": "sport",
+    "frequency": {
+      "value": [
+        3
+      ],
+      "type": "weekly"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 3600
+    },
+    "streak": 0,
+    "createdAt": 1787929150413,
+    "executions": []
+  },
+  {
+    "id": 1787929174849,
+    "name": "Faire tout mes devoirs en 1h",
+    "type": "études",
+    "frequency": {
+      "value": 1,
+      "type": "interval"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 3600
+    },
+    "streak": 0,
+    "createdAt": 1787929174849,
+    "executions": []
+  },
+  {
+    "id": 1788279488418,
+    "name": "bfdv",
+    "type": "sport",
+    "frequency": {
+      "value": [
+        2
+      ],
+      "type": "weekly"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 900
+    },
+    "streak": 0,
+    "createdAt": 1788279488419,
+    "executions": []
+  },
+  {
+    "id": 1788282129013,
+    "name": "Nettoyer ma chambre",
+    "type": "Corvées",
+    "frequency": {
+      "value": [
+        2
+      ],
+      "type": "weekly"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 1800
+    },
+    "streak": 0,
+    "createdAt": 1788282129013,
+    "executions": []
+  },
+  {
+    "id": 1789136838837,
+    "name": "Courir 15 min avec ines",
+    "type": "sport",
+    "frequency": {
+      "value": [
+        5
+      ],
+      "type": "weekly"
+    },
+    "duration": {
+      "unit": 60,
+      "value": 900
+    },
+    "streak": 0,
+    "createdAt": 1789136838837,
+    "executions": []
+  }
+]

@@ -4,7 +4,7 @@ import {
     safeId
 } from "./../../utils/dom.js"
 
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement dashboardUI.js");
 
@@ -30,7 +30,7 @@ export function renderRecalls (data) {
 
         <div class="habits__cell__checkmark">
             <label class="container">
-                <input checked="checked" type="checkbox">
+                <input type="checkbox">
                 <div class="checkmark"></div>
             </label>
         </div>
@@ -44,3 +44,7 @@ export function renderRecalls (data) {
 
     recallPlace?.appendChild(recall);
 }
+
+
+// export const checkboxRecalls = safeQueryAll(".habits__cell__checkmark");
+// debug(LOCAL_DEBUG, checkboxRecalls);

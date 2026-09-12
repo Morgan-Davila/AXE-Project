@@ -86,6 +86,8 @@
 
 
 		&--done {
+			background-color: #F0F1F5;
+
 			.habits__cell__title {
 				text-decoration: line-through;
 				color: v.$main-grey;
@@ -93,6 +95,10 @@
 
 			&::before {
 				background-color: #34A853;
+			}
+
+			.container input:checked ~ .checkmark {
+				background-color: v.$main-grey;
 			}
 		}
     }
