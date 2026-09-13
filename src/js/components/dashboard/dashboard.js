@@ -16,6 +16,9 @@ import {
 import { renderRecalls, recallPlace } from "./dashboardUI.js";
 
 export function reactHabit (habitArray) {
+    const dueHabits = [];
+    const doneHabits = [];
+
     for (let habit of habitArray) {
         let type = habit.frequency.type;
 
@@ -24,6 +27,11 @@ export function reactHabit (habitArray) {
 
         // on ne veut sauter l'habit que si elle a une exécution reelle aujourd'hui, pas juste une date de création du jour
         const doneToday = habit.executions?.some(execution => isSameDay(Number(execution), now)) ?? false;
+        if (doneToday) {
+            doneHabits.push(habit);
+            
+            continue;
+        } 
 
         let isDueToday = false;
 
@@ -66,15 +74,21 @@ export function reactHabit (habitArray) {
         }
 
         if (!isDueToday) continue;
-
-        //AI made
-        // on retrouve la carte déja rendue pour cet habit (s'il y en a une) au lieu d'en recréer une à chaque appel
-        const existingCard = recallPlace?.querySelector(`[data-habit-id="${habit.id}"]`);
-
-        if (doneToday) {
-            existingCard?.classList.add("habits__cell--done");
-        } else if (!existingCard) {
-            renderRecalls(habit);
-        }
+        dueHabits.push(habit);
+        //continue veut dire passer a l'iteration suivante dans le for
     }
+
+    if (doneHabits.length !== 0) {
+        const recallClass = "habit__cell--done";
+
+        renderRecalls(doneHabits, recallClass);
+
+        
+    }
+    if (dueHabits.length !== 0 ) {
+        const recallClass = "habit__cell";
+
+        renderRecalls(dueHabits, recallClass);
+    }
+
 }
