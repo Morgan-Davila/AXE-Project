@@ -78,17 +78,13 @@ export function reactHabit (habitArray) {
         //continue veut dire passer a l'iteration suivante dans le for
     }
 
+    recallPlace.innerHTML = ""; //je vide avant de tout re-render
+
     if (doneHabits.length !== 0) {
-        const recallClass = "habit__cell--done";
-
-        renderRecalls(doneHabits, recallClass);
-
-        
+        renderRecalls(doneHabits, true);
     }
     if (dueHabits.length !== 0 ) {
-        const recallClass = "habit__cell";
-
-        renderRecalls(dueHabits, recallClass);
+        renderRecalls(dueHabits, false);
     }
 
 }

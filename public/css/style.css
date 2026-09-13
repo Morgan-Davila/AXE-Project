@@ -1219,6 +1219,7 @@ table .habitCell__commands__button:hover {
   align-items: center;
 }
 .habits__cell--done {
+  position: relative;
   background-color: #F0F1F5;
 }
 .habits__cell--done .habits__cell__title {

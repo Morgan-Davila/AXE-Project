@@ -11,17 +11,14 @@ debug(LOCAL_DEBUG, "Chargement dashboardUI.js");
 export const recallPlace = safeQuery(".habits");
 
 
-export function renderRecalls (dataArray, recallClass) {
-    recallPlace.innerHTML = ""; //je vide
-
-    const isDone = recallClass === "habit__cell--done";
-
+export function renderRecalls (dataArray, isDone) {
     for (let data of dataArray) {
         const name = data.name;
         const streak = Number(data.streak);
 
         const recall = document.createElement("article");
-        recall.classList.add(recallClass);
+        recall.classList.add("habits__cell");
+        if (isDone) recall.classList.add("habits__cell--done");
 
         const title = document.createElement("p");
         title.classList.add("habits__cell__title");
