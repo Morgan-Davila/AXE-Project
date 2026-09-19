@@ -1,0 +1,217 @@
+@charset "UTF-8";
+/* ==========================================================================
+   AXE — Redesign — Gestionnaire d'habitudes (table)
+   Classes conservées : .habitManagerBox, .habitManagerMenu(__icons...),
+   .habitManager(__table__button), table/thead/tbody, .large/.narrow,
+   .habitCell(__name/__type/__frequency/__duration/__commands...)
+   Popup (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir components.css,
+   zone protégée — non modifiée ici.
+   ========================================================================== */
+.habitManagerBox {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.habitManagerMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.habitManager {
+  min-height: 640px;
+  padding-bottom: var(--space-5);
+  color: var(--ink);
+}
+.habitManager > div {
+  margin: 0 auto;
+  margin-top: var(--space-5);
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+.habitManager__table__button {
+  margin-top: var(--space-4);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-4);
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--border-strong);
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: all var(--dur-fast) var(--ease);
+}
+.habitManager__table__button:hover {
+  background-color: var(--bg-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.habitManager__empty {
+  /* état "aucune habitude" injecté en JS (voir habits.js) plutôt qu'en CSS pur,
+     un tbody vide ne supporte pas un ::after lisible. */
+  padding: var(--space-7) var(--space-3);
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Table                                                                    */
+/* ---------------------------------------------------------------------- */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  width: 100%;
+}
+
+th, td {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) var(--space-3);
+}
+
+thead th {
+  text-align: start;
+  vertical-align: middle;
+  display: table-cell;
+  gap: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border-strong);
+}
+thead th svg {
+  display: inline-block;
+  vertical-align: -6px;
+  margin-right: var(--space-2);
+  color: var(--ink-faint);
+}
+
+tbody tr {
+  height: 56px;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+tbody tr:hover {
+  background-color: var(--bg-soft);
+}
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td:first-child {
+  border-left: none;
+  padding-left: var(--space-2);
+}
+
+td:last-child {
+  border-right: none;
+  padding-right: var(--space-2);
+}
+
+.large {
+  width: 40%;
+}
+
+.narrow {
+  width: 20%;
+}
+
+/* ---- Lignes d'habitude générées par renderHabits() ---- */
+.habitCell {
+  position: relative;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+.habitCell--removing {
+  opacity: 0;
+  transform: translateX(12px) scale(0.98);
+}
+.habitCell:hover .habitCell__commands {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+.habitCell__name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.habitCell__type {
+  color: var(--accent-violet);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.habitCell__type::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: middle;
+}
+.habitCell__frequency {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+.habitCell__duration {
+  position: relative;
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.habitCell__commands {
+  position: absolute;
+  right: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  gap: 4px;
+  align-items: center;
+  display: flex;
+  padding: 4px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, visibility 150ms ease-in-out;
+}
+.habitCell__commands__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.habitCell__commands__button--edit:hover {
+  background-color: var(--bg-soft);
+  color: var(--accent);
+}
+.habitCell__commands__button--delete:hover {
+  background-color: color-mix(in srgb, #ef4444 12%, transparent);
+  color: #ef4444;
+}
+
+@media (max-width: 700px) {
+  .narrow {
+    display: none;
+  }
+  thead .narrow {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=habits.css.map */

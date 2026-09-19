@@ -1,0 +1,168 @@
+@charset "UTF-8";
+/* ==========================================================================
+   AXE — Redesign — Emploi du temps
+   Classes conservées : .calendarBox, .calendarMenu(__icons/__menu...), .calendar
+   Le contenu de .calendar est entièrement nouveau : en production, ce bloc
+   est vide (calendar.js ne fait aujourd'hui que récupérer des références
+   DOM). Aperçu illustratif de ce que pourrait devenir AXE 3.
+   ========================================================================== */
+.calendarBox {
+  margin: 0;
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.calendarMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.calendar {
+  height: auto;
+  min-height: 720px;
+  width: 100%;
+  margin: 0;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  /* ---- Grille semaine (AJOUT) — .calendar__* ---- */
+}
+.calendar__grid {
+  display: grid;
+  grid-template-columns: 56px repeat(7, 1fr);
+  position: relative;
+}
+.calendar__corner {
+  grid-column: 1;
+}
+.calendar__day-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.calendar__day-label span {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.calendar__day-label--today {
+  color: var(--accent);
+}
+.calendar__day-label--today span {
+  color: var(--accent);
+  position: relative;
+}
+.calendar__day-label--today span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+.calendar__body {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 56px repeat(7, 1fr);
+  position: relative;
+}
+.calendar__hours {
+  display: grid;
+  grid-auto-rows: 64px;
+}
+.calendar__hour {
+  position: relative;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  transform: translateY(-8px);
+  text-align: right;
+  padding-right: var(--space-2);
+}
+.calendar__day-col {
+  position: relative;
+  border-left: 1px solid var(--border);
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 63px, var(--border) 63px, var(--border) 64px);
+}
+.calendar__day-col--today {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.calendar__event {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-violet);
+  background: color-mix(in srgb, var(--accent-violet) 12%, var(--surface));
+  font-size: var(--text-xs);
+  line-height: 1.25;
+  color: var(--ink);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.calendar__event:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+}
+.calendar__event strong {
+  display: block;
+  font-weight: 700;
+}
+.calendar__event--habit {
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+}
+.calendar__now-line {
+  position: absolute;
+  left: 56px;
+  right: 0;
+  height: 2px;
+  background: #ef4444;
+  z-index: 6;
+  pointer-events: none;
+}
+.calendar__now-line::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  transform: translateY(-50%);
+}
+@media (max-width: 800px) {
+  .calendar {
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .calendar__grid, .calendar__body {
+    grid-template-columns: 40px repeat(7, minmax(64px, 1fr));
+  }
+}
+
+/*# sourceMappingURL=schedule.css.map */
