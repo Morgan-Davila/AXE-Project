@@ -1,0 +1,18 @@
+/* ==========================================================================
+   AXE — Redesign — Motif signature : le cadre en tirets bleus
+   (.habits, .schedule, .graph, .calendar, .habitManager)
+   ========================================================================== */
+
+//AI made
+
+.habits, .schedule, .graph, .calendar, .habitManager {
+    border: 2px dashed var(--accent);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
+}
+
+.habits { background: var(--bg-frame); }
+.schedule, .graph, .calendar, .habitManager { background: var(--surface); }

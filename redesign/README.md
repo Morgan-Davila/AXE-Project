@@ -8,13 +8,13 @@ dans le vrai code.
 ## Aperçu
 
 Aucune étape de build pour **consulter** les pages : elles chargent le CSS
-déjà compilé dans `assets/css/`. Ouvrez les fichiers via Live Server (ou
-équivalent), comme le reste du projet :
+déjà compilé dans `public/css/style.css`. Ouvrez les fichiers via Live
+Server (ou équivalent), comme le reste du projet :
 
 - `redesign/index.html` — Dashboard
-- `redesign/habits.html` — Gestionnaire d'habitudes
-- `redesign/schedule.html` — Emploi du temps
-- `redesign/graphs-stats.html` — Graphiques & stats
+- `redesign/public/pages/habits.html` — Gestionnaire d'habitudes
+- `redesign/public/pages/schedule.html` — Emploi du temps
+- `redesign/public/pages/graphs-stats.html` — Graphiques & stats
 
 Si vous ouvrez ces pages **depuis le même serveur/port** que l'app réelle
 (ex. Live Server sur `5501`), le dashboard, le tableau d'habitudes et les
@@ -26,23 +26,43 @@ chaque page indique dans quel cas vous êtes.
 **Aucune action ici n'écrit dans le localStorage réel.** Cocher une
 habitude, supprimer une ligne, etc. ne modifient qu'une copie en mémoire de
 la page ouverte ; un rechargement retrouve l'état d'origine. Voir
-`assets/js/data.js`.
+`src/js/data.js`.
 
 //AI made
+## Structure
+
+Réorganisé pour suivre exactement la même structure que le vrai projet :
+
+```
+redesign/
+├── index.html              # comme le index.html réel, à la racine
+├── src/
+│   ├── js/                  # comme src/js/ réel
+│   └── scss/                # comme src/scss/ réel — main.scss + partials _*.scss
+└── public/
+    ├── css/
+    │   └── style.css         # comme public/css/style.css réel — généré, ne pas éditer à la main
+    └── pages/                # comme public/pages/ réel
+        ├── habits.html
+        ├── schedule.html
+        └── graphs-stats.html
+```
+
 ## Styles (SCSS)
 
-Le CSS de `assets/css/` est désormais généré depuis `assets/scss/` (un
-fichier `.scss` par fichier `.css`, même nom, pas de manifeste commun — comme
-les fichiers CSS d'origine, chacun est indépendant et ne dépend que des
-custom properties définies dans `tokens.css`). Pour modifier un style,
-éditez le `.scss` correspondant puis recompilez :
+Comme dans le vrai projet, tout le SCSS part d'un manifeste unique,
+`src/scss/main.scss`, qui `@use` chaque partial (`_tokens.scss`, `_base.scss`,
+`_layout.scss`, `_components.scss`, `_dashboard.scss`, `_habits.scss`,
+`_schedule.scss`, `_graphs.scss`, `_effects.scss`) et compile en un seul
+fichier, `public/css/style.css`, chargé par les 4 pages. Pour modifier un
+style, éditez le partial correspondant puis recompilez :
 
 ```bash
 npm run sass:redesign          # compile une fois
 npm run sass:redesign:watch    # recompile à chaque modification
 ```
 
-Ne modifiez jamais les `.css` de ce dossier à la main : ils sont écrasés au
+Ne modifiez jamais `public/css/style.css` à la main : il est écrasé au
 prochain `npm run sass:redesign`.
 
 ## Direction
@@ -56,7 +76,7 @@ prochain `npm run sass:redesign`.
   `_variables.scss` mais jamais utilisé jusqu'ici — accessible uniquement via
   le bouton en haut à droite, préférence mémorisée d'une visite à l'autre.
 - Fond de page très sobre : un seul fondu diagonal très léger sur `body`
-  (`assets/css/base.css`), fond ambiant animé (halos flous en JS) retiré.
+  (`src/scss/_base.scss`), fond ambiant animé (halos flous en JS) retiré.
   Les dégradés de boutons ont été aplatis en couleurs unies (boutons
   "Nouveau", remplissage du graphique, barres du classement) — seule la
   pilule de nav du header (`.header__menu`) garde son dégradé bleu → marine,
@@ -66,7 +86,7 @@ prochain `npm run sass:redesign`.
   plus identifiables de l'app actuelle.
 - Grands nombres (streaks, stats) en `Frick Condensed`, une police déjà
   présente dans `src/font/Frick/` mais jamais reliée à un `font-family` CSS.
-- Effets dynamiques (JS, dans `assets/js/`) : anneau de progression du jour,
+- Effets dynamiques (JS, dans `src/js/`) : anneau de progression du jour,
   confettis + pulsation à la validation d'une habitude, graphiques Chart.js
   (déjà une dépendance du projet), heatmap de régularité façon
   "contributions" GitHub, ligne "maintenant" dans l'agenda, révélation au
@@ -75,13 +95,13 @@ prochain `npm run sass:redesign`.
 
 ## Ce qui n'a pas été touché
 
-- **Checkmark** (`.container` / `.checkmark`, dans `assets/css/components.css`,
+- **Checkmark** (`.container` / `.checkmark`, dans `src/scss/_components.scss`,
   zone "ZONE PROTÉGÉE") : copié à l'identique de
   `src/scss/components/dashboard/_habit.scss`. Même structure DOM
   (`label.container > input + div.checkmark`), mêmes couleurs, même ombre
   portée dure. Vérifié à l'écran en zoomant dessus (capture jointe pendant
   les tests), coché et décoché.
-- **Popups** (création/édition d'habitude + recherche, dans `habits.html`) :
+- **Popups** (création/édition d'habitude + recherche, dans `public/pages/habits.html`) :
   markup et CSS copiés à l'identique de `public/pages/habits.html` et du
   `public/css/style.css` compilé. Elles s'ouvrent/se ferment comme
   aujourd'hui (mêmes classes `hiddenPopup`/`hiddenSearchPopup`), mais leur
@@ -113,25 +133,25 @@ partie visuelle qui n'existait pas déjà (nouveaux éléments, ou pages qui
 | `.graph__summary`, `.graph__stat*`, `.graph__canvas-wrap`, `#dashboardWeeklyChart`, `#statDoneToday`, `#statWeekTotal` | Mini graphique Chart.js + chiffres clés dans `.graph` |
 | `data-tier` sur `.habits__cell__streak` | Attribut pour colorer le badge streak selon sa valeur (froid/tiède/chaud) |
 
-### Gestionnaire d'habitudes (`habits.html`)
+### Gestionnaire d'habitudes (`public/pages/habits.html`)
 | Ajout | Où / pourquoi |
 |---|---|
 | `.habitCell--removing` | Animation de suppression (en mémoire uniquement) |
 | `.habitManager__empty` | État "aucune habitude" |
 
-### Emploi du temps (`schedule.html`)
+### Emploi du temps (`public/pages/schedule.html`)
 | Ajout | Où / pourquoi |
 |---|---|
 | `.calendar__*` (grid, corner, day-label, body, hours, hour, day-col, event, now-line...) | Tout le contenu de `.calendar` — ce conteneur est **vide dans l'app actuelle** (`calendar.js` ne fait que récupérer des références DOM, AXE 3 n'est pas commencé). Illustration conceptuelle, évènements fictifs. |
 
-### Graphiques & stats (`graphs-stats.html`)
+### Graphiques & stats (`public/pages/graphs-stats.html`)
 | Ajout | Où / pourquoi |
 |---|---|
 | `.stats-*` (grid, tile, panel, heatmap, leaderboard...) | Toute la page — le `<main>` réel est **entièrement vide aujourd'hui** (AXE 2 n'a pas commencé). Calculs réels (complétions, séries, heatmap) à partir des vraies habitudes quand elles sont disponibles. |
 
 ### Une correction CSS hors zone protégée
 `.habitPopupOverlay, .searchHabitPopupOverlay { z-index: 60; }` a été ajouté
-dans `layout.css` (pas dans la zone protégée de `components.css`). Le header
+dans `_layout.scss` (pas dans la zone protégée de `_components.scss`). Le header
 réel n'est pas *sticky* et n'a donc jamais eu besoin de rivaliser avec les
 popups pour l'empilement ; comme ce redesign rend le header sticky avec un
 z-index, sans cette ligne les popups s'ouvriraient partiellement sous le

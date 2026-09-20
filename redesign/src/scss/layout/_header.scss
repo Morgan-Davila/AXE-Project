@@ -1,19 +1,10 @@
 /* ==========================================================================
-   AXE — Redesign — Layout (header, burger, footer, structure de page)
+   AXE — Redesign — Header
    Classes conservées à l'identique : .header, .header__hour-Box(__text),
-   .header__burger, .mobile-menu, .header__menu(__link), .header__day-Box(__text),
-   .footer(__text), main
+   .header__burger, .mobile-menu, .header__menu(__link), .header__day-Box(__text)
    ========================================================================== */
 
-.page-shell {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ---------------------------------------------------------------------- */
-/* Header                                                                  */
-/* ---------------------------------------------------------------------- */
+//AI made
 
 .header {
     position: sticky;
@@ -292,10 +283,10 @@
 }
 
 /* AI made — le header d'origine n'était pas sticky et n'avait donc jamais
-   besoin de rivaliser avec les popups (protégées, cf. components.css) pour
-   l'empilement. Comme ce redesign le rend sticky avec un z-index, on
-   s'assure ici qu'il reste sous les popups quand elles s'ouvrent — sans
-   toucher à une seule déclaration de leur zone protégée. */
+   besoin de rivaliser avec les popups (protégées) pour l'empilement. Comme
+   ce redesign le rend sticky avec un z-index, on s'assure ici qu'il reste
+   sous les popups quand elles s'ouvrent — sans toucher à une seule
+   déclaration de leur zone protégée. */
 .habitPopupOverlay, .searchHabitPopupOverlay {
     z-index: 60;
 }
@@ -344,84 +335,5 @@
         &:hover {
             color: var(--accent);
         }
-    }
-}
-
-/* ---------------------------------------------------------------------- */
-/* Footer                                                                   */
-/* ---------------------------------------------------------------------- */
-
-.footer {
-    margin-top: auto;
-    width: 100%;
-    height: 90px;
-
-    background: var(--brand-blue-ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-
-    &__text {
-        color: rgba(255, 255, 255, .8);
-        font-size: var(--text-sm);
-        font-weight: 500;
-        letter-spacing: .01em;
-
-        span {
-            color: #fff;
-            font-weight: 700;
-        }
-    }
-}
-
-/* ---------------------------------------------------------------------- */
-/* Structure générale des pages                                            */
-/* ---------------------------------------------------------------------- */
-
-main {
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-
-    max-width: 1400px;
-    width: 92%;
-    margin: 0 auto;
-    padding: var(--space-7) 0 var(--space-8);
-}
-
-.page-header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: var(--space-4);
-    margin-bottom: var(--space-6);
-
-    &__eyebrow {
-        display: block;
-        margin-bottom: var(--space-2);
-
-        color: var(--accent);
-        font-size: var(--text-xs);
-        font-weight: 700;
-        letter-spacing: .12em;
-        text-transform: uppercase;
-    }
-
-    &__title {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 4vw, var(--text-2xl));
-        font-weight: 400;
-        letter-spacing: -.01em;
-        color: var(--ink);
-    }
-
-    &__subtitle {
-        margin-top: var(--space-2);
-        color: var(--ink-soft);
-        font-size: var(--text-md);
-        max-width: 46ch;
     }
 }

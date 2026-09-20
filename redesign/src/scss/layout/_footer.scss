@@ -1,0 +1,30 @@
+/* ==========================================================================
+   AXE — Redesign — Footer
+   Classes conservées à l'identique : .footer(__text)
+   ========================================================================== */
+
+//AI made
+
+.footer {
+    margin-top: auto;
+    width: 100%;
+    height: 90px;
+
+    background: var(--brand-blue-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+
+    &__text {
+        color: rgba(255, 255, 255, .8);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        letter-spacing: .01em;
+
+        span {
+            color: #fff;
+            font-weight: 700;
+        }
+    }
+}
