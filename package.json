@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass": "sass src/scss/main.scss public/css/style.css",
-    "sass:watch": "sass --watch src/scss/main.scss public/css/style.css"
+    "sass:watch": "sass --watch src/scss/main.scss public/css/style.css",
+    "sass:redesign": "sass redesign/src/scss/main.scss redesign/public/css/style.css",
+    "sass:redesign:watch": "sass --watch redesign/src/scss/main.scss redesign/public/css/style.css"
   },
   "devDependencies": {
     "sass": "^1.100.0"

@@ -10,6 +10,7 @@ node_modules/
 # ==========================
 
 public/css/*.map
+redesign/public/css/*.map
 
 dist/
 build/
