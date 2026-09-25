@@ -58,7 +58,9 @@ export function reactHabit (habitArray) {
 
                 const diffJours = Math.round((todayMidnight - lastExecMidnight) / msParDay);
 
-                isDueToday = diffJours === interval;
+                //AI made — ">=" et non "===" : une habitude en retard reste due jusqu'à ce qu'elle soit faite
+                // (avec "===", une échéance manquée la faisait disparaître du dashboard pour toujours)
+                isDueToday = diffJours >= interval;
 
                 break;
             }
