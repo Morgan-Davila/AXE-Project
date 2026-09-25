@@ -1,7 +1,143 @@
-* {
+@charset "UTF-8";
+/* ==========================================================================
+   AXE — Redesign — Design tokens
+   Palette étendue à partir des variables déjà existantes dans
+   src/scss/abstracts/_variables.scss (main-blue, main-darkBlue, main-violet,
+   main-grey...). Le mode sombre active enfin $font-color-main--dark-mode,
+   défini dans le projet mais jamais utilisé jusqu'ici.
+   ========================================================================== */
+@font-face {
+  font-family: "Inter";
+  src: url("../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype-variations"), url("../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype-variations"), url("../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+/* Police condensée déjà présente dans src/font/Frick, jamais reliée à un
+   font-family CSS : utilisée ici pour les grands nombres (streaks, stats). */
+@font-face {
+  font-family: "Frick Condensed";
+  src: url("../../src/font/Frick/Frick0.3-Condensed.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  color-scheme: light;
+  /* ---- Typographie ---- */
+  --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Frick Condensed", var(--font-ui);
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.5rem;
+  /* ---- Espacements ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  /* ---- Rayons ---- */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 30px;
+  --radius-pill: 999px;
+  /* ---- Ombres (teintées bleu marque, comme les cartes d'habitudes actuelles) ---- */
+  --shadow-sm: 0 1px 2px rgba(15, 82, 186, 0.06), 0 1px 1px rgba(11, 18, 32, 0.04);
+  --shadow-md: 0 8px 20px rgba(15, 82, 186, 0.10), 0 2px 6px rgba(11, 18, 32, 0.05);
+  --shadow-lg: 0 20px 45px rgba(15, 82, 186, 0.16), 0 6px 16px rgba(11, 18, 32, 0.08);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  /* ---- Mouvement ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur-base: 280ms;
+  --dur-slow: 520ms;
+  /* ---- Couleurs de marque (reprises telles quelles) ---- */
+  --brand-blue: #0F52BA;
+  --brand-blue-ink: #000926;
+  --brand-violet: #4338ca;
+  --brand-success: #34A853;
+  --grey-500: #949494;
+  --grey-300: #CBCBCB;
+  --grey-100: #f3f3f3;
+  /* ---- Thème clair (défaut) ---- */
+  --bg: #F6F7FC;
+  --bg-elevated: #FFFFFF;
+  --bg-soft: #EEF1FB;
+  --bg-frame: #F4F5FA;
+  --surface: #FFFFFF;
+  --surface-2: #FBFBFE;
+  --border: #E4E7F2;
+  --border-strong: var(--grey-300);
+  --ink: #111827;
+  --ink-soft: #5B6472;
+  --ink-faint: #8A93A6;
+  --on-brand: #FFFFFF;
+  --accent: var(--brand-blue);
+  --accent-violet: var(--brand-violet);
+  --success: var(--brand-success);
+  --flame-cold: #94A3B8;
+  --flame-low: #F59E0B;
+  --flame-high: #FB5607;
+  --header-bg: rgba(255, 255, 255, 0.72);
+  --scrollbar-thumb: rgba(15, 82, 186, 0.25);
+}
+
+/* AI made — le mode clair est désormais privilégié par défaut : plus de
+   bascule automatique via prefers-color-scheme, uniquement le bouton
+   #themeToggle (data-theme="dark" ci-dessous). */
+/* ---- ...ou suit le choix explicite de l'utilisateur (bouton thème) ---- */
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --bg: #090C16;
+  --bg-elevated: #121729;
+  --bg-soft: #161C33;
+  --bg-frame: #10152680;
+  --surface: #121729;
+  --surface-2: #161C33;
+  --border: #232B45;
+  --border-strong: #2E3757;
+  --ink: #E5E7EB;
+  --ink-soft: #9AA3BC;
+  --ink-faint: #6B7593;
+  --on-brand: #FFFFFF;
+  --accent: #4C86E6;
+  --accent-violet: #6D63E8;
+  --success: #3DDC84;
+  --flame-cold: #4B5875;
+  --flame-low: #F5A524;
+  --flame-high: #FF6B4A;
+  --header-bg: rgba(18, 23, 41, 0.72);
+  --scrollbar-thumb: rgba(76, 134, 230, 0.35);
+}
+
+/* ==========================================================================
+   AXE — Redesign — Base
+   ========================================================================== */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html, body {
@@ -9,112 +145,316 @@ html, body {
 }
 
 body {
-  font-family: sans-serif;
-  color: white;
-  background: linear-gradient(135deg, #ffffff 0%, #f6f6f6 50%, #eff0ff 100%);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--dur-base) var(--ease), color var(--dur-base) var(--ease);
+  /* AI made — un seul dégradé, très léger, sur toute la page (plus d'ambiance colorée en JS) */
+  background-image: linear-gradient(135deg, color-mix(in srgb, var(--accent) 5%, var(--bg)) 0%, var(--bg) 45%, color-mix(in srgb, var(--accent-violet) 5%, var(--bg)) 100%);
+  background-attachment: fixed;
 }
 
-/* Font Definitions */
-@font-face {
-  font-family: "Bodoni classic";
-  src: url("../../src/font/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf");
-}
-.Bodoni-Classic {
-  font-family: "Bodoni classic";
+img, svg {
+  display: block;
+  max-width: 100%;
 }
 
-@font-face {
-  font-family: "DM_Serif_Text";
-  src: url("../../src/font/DM_Serif_Text/DMSerifText-Regular.ttf");
-}
-.DM-Serif-Text {
-  font-family: "DM_Serif_Text";
+a {
+  color: inherit;
 }
 
-@font-face {
-  font-family: "Gotham Black";
-  src: url("../../src/font/Gotham Fonts Family/GOTHAM-BOLD.TTF");
-}
-.Gotham-Black {
-  font-family: "Gotham Black";
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
 }
 
-@font-face {
-  font-family: "Gotham Medium";
-  src: url("../../src/font/Gotham Fonts Family/Gotham-Medium.otf");
-}
-.Gotham-Medium {
-  font-family: "Gotham Medium";
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-@font-face {
-  font-family: "Frick Regular";
-  src: url("../../src/font/Frick/Frick0.3-Regular.otf");
-}
-.Frick-Regular {
-  font-family: "Frick Regular";
+ul {
+  list-style: none;
 }
 
-@font-face {
-  font-family: "OpeningHours";
-  src: url("../../src/font/OpeningHours/OpeningHoursSans-Regular.otf");
-}
-.OpeningHours {
-  font-family: "OpeningHours";
-}
-
-@font-face {
-  font-family: "Stardom Regular";
-  src: url("../../src/font/Stardom/Stardom-Regular.otf");
-}
-.Stardom-Regular {
-  font-family: "Stardom Regular";
+/* ---- Focus visible, cohérent sur toute l'app ---- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url("../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf");
-}
-.Inter {
-  font-family: "Inter";
+/* ---- Scrollbar (webkit) discrète et sur-mesure ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
-@font-face {
-  font-family: "Orbitron";
-  src: url("../../src/font/Orbitron/Orbitron-VariableFont_wght.ttf");
-}
-.Orbitron {
-  font-family: "Orbitron";
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ---- Sélection ---- */
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--ink);
+}
+
+/* ---- Utilitaires ---- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.preview-note {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  margin: 0 auto var(--space-5);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+.preview-note svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+/* ---- Respect des préférences de mouvement réduit ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ==========================================================================
+   AXE — Redesign — Structure générale des pages
+   (.page-shell, main, .page-header) — header et footer sont dans
+   components/_header.scss et components/_footer.scss.
+   ========================================================================== */
+.page-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  width: 92%;
+  margin: 0 auto;
+  padding: var(--space-7) 0 var(--space-8);
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.page-header__eyebrow {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.page-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, var(--text-2xl));
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.page-header__subtitle {
+  margin-top: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-md);
+  max-width: 46ch;
+}
+
+/* ==========================================================================
+   AXE — Redesign — Header
+   Classes conservées à l'identique : .header, .header__hour-Box(__text),
+   .header__burger, .mobile-menu, .header__menu(__link), .header__day-Box(__text)
+   ========================================================================== */
 .header {
-  margin: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  margin: 0;
+  padding: var(--space-4) var(--space-6);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-4);
+  background: var(--header-bg);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
 }
-.header__hour-Box {
-  background-color: #000926;
+.header__hour-Box, .header__day-Box {
   max-width: 190px;
-  min-width: 120px;
+  min-width: 108px;
   width: 17%;
-  height: 40px;
-  border-radius: 50px;
+  height: 44px;
+  background: var(--brand-blue-ink);
+  border-radius: var(--radius-pill);
   display: flex;
+  box-shadow: var(--shadow-sm);
 }
-.header__hour-Box__text {
-  text-align: center;
+.header__hour-Box__text, .header__day-Box__text {
   margin: auto;
-  font-family: "Inter", sans-serif;
-  font-size: 30px;
-  letter-spacing: 3px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
   font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.header__day-Box__text {
+  font-size: var(--text-sm);
+  text-transform: capitalize;
+}
+.header {
+  /* ---- Nav centrale ---- */
+}
+.header__menu {
+  margin: auto;
+  background: var(--brand-blue-ink);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--brand-blue-ink) 85%);
+  height: 46px;
+  width: min(46vw, 620px);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+.header__menu ul {
+  display: flex;
+  gap: var(--space-6);
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.header__menu__link {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: color var(--dur-fast) var(--ease);
+}
+.header__menu__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+.header__menu__link:hover {
+  color: #fff;
+}
+.header__menu__link:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+.header__menu__link[aria-current=page] {
+  color: #fff;
+}
+.header__menu__link[aria-current=page]::after {
+  transform: scaleX(1);
+  opacity: 0.85;
+}
+.header__menu:hover {
+  width: min(48vw, 650px);
+  box-shadow: var(--shadow-lg);
+}
+.header {
+  /* ---- Bascule de thème (AJOUT) — #themeToggle ---- */
+}
+.header__theme-toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-spring), background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.header__theme-toggle:hover {
+  transform: translateY(-2px) rotate(-8deg);
+}
+.header__theme-toggle svg {
+  position: absolute;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-slow) var(--ease-spring);
+}
+.header__theme-toggle .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+.header__theme-toggle .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.4);
+}
+.header {
+  /* ---- Burger (mobile) — logique conservée à l'identique ---- */
 }
 .header__burger {
   display: none;
   position: relative;
   z-index: 100;
-  margin-right: 20px;
   width: 40px;
   height: 30px;
   background: transparent;
@@ -127,13 +467,13 @@ body {
   display: block;
   position: absolute;
   width: 100%;
-  height: 4px;
-  background: #000926;
-  border-radius: 9px;
+  height: 3px;
+  background: var(--ink);
+  border-radius: var(--radius-pill);
   left: 0;
   opacity: 1;
   transform: rotate(0deg);
-  transition: 0.25s ease-in-out;
+  transition: 0.25s var(--ease);
 }
 .header__burger span:nth-of-type(1) {
   top: 0;
@@ -153,6 +493,7 @@ body {
   transform: rotate(45deg);
   top: 0;
   left: 5px;
+  background: var(--accent);
 }
 .header__burger input:checked ~ span:nth-of-type(2) {
   width: 0;
@@ -162,94 +503,10 @@ body {
   transform: rotate(-45deg);
   top: 28px;
   left: 5px;
-}
-.header__burger .mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 100vh;
-  padding: 100px 30px 30px;
-  background: white;
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
-.header__burger .mobile-menu a {
-  color: #000926;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 500;
+  background: var(--accent);
 }
 .header__burger input:checked ~ .mobile-menu {
   transform: translateX(0);
-}
-.header__menu {
-  margin: auto;
-  background: #002dbd;
-  background: linear-gradient(90deg, #002dbd 0%, #000926 80%);
-  background: -webkit-linear-gradient(0deg, #002dbd 0%, #000926 80%);
-  background: -moz-linear-gradient(0deg, #002dbd 0%, #000926 80%);
-  height: 40px;
-  width: 700px;
-  opacity: 0.8;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: width ease-in-out 300ms, opacity ease-in-out 400ms;
-}
-.header__menu ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
-  justify-content: space-around;
-  align-items: center;
-  height: 100%;
-}
-.header__menu__link {
-  text-decoration: none;
-  color: white;
-  font-family: "Inter", sans-serif;
-  position: relative;
-}
-.header__menu__link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background-color: white;
-  opacity: 0;
-  transition: opacity 200ms ease-in-out;
-}
-.header__menu__link:hover::after {
-  opacity: 1;
-}
-.header__menu:hover {
-  width: 720px;
-  opacity: 0.9;
-}
-.header__day-Box {
-  background-color: #000926;
-  max-width: 190px;
-  min-width: 120px;
-  width: 17%;
-  height: 40px;
-  border-radius: 50px;
-  display: flex;
-}
-.header__day-Box__text {
-  text-align: center;
-  margin: auto;
-  font-family: "Inter", sans-serif;
-  font-size: 30px;
-  letter-spacing: 3px;
-  font-weight: 700;
 }
 @media (max-width: 1120px) {
   .header__hour-Box, .header__day-Box {
@@ -258,30 +515,18 @@ body {
 }
 @media (max-width: 950px) {
   .header__menu {
-    width: 600px;
+    width: min(60vw, 600px);
   }
   .header__menu:hover {
-    width: 620px;
+    width: min(62vw, 620px);
   }
 }
 @media (max-width: 850px) {
   .header {
     height: 70px;
-    background: #f8f8f8;
-    transition: all ease-in-out 300ms;
-  }
-  .header:hover {
-    background-color: #f2f3ff;
-  }
-  .header {
-    border-bottom: 1px solid #b4b4b4;
-    margin: auto;
-    margin-bottom: 40px;
-    display: flex;
   }
   .header__hour-Box {
     display: flex;
-    margin-left: 20px;
     margin-right: auto;
   }
   .header__menu {
@@ -292,252 +537,596 @@ body {
   }
 }
 
-.footer {
-  width: 100%;
-  height: 100px;
-  background-color: #000926;
+/* AI made — le header d'origine n'était pas sticky et n'avait donc jamais
+   besoin de rivaliser avec les popups (protégées) pour l'empilement. Comme
+   ce redesign le rend sticky avec un z-index, on s'assure ici qu'il reste
+   sous les popups quand elles s'ouvrent — sans toucher à une seule
+   déclaration de leur zone protégée. */
+.habitPopupOverlay, .searchHabitPopupOverlay {
+  z-index: 60;
+}
+
+:root[data-theme=dark] .header__theme-toggle .icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+:root[data-theme=dark] .header__theme-toggle .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  padding: 110px var(--space-6) var(--space-6);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  border-right: 1px solid var(--border);
   display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  transform: translateX(-100%);
+  transition: transform 0.35s var(--ease);
+}
+.mobile-menu a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.mobile-menu a:hover {
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   AXE — Redesign — Footer
+   Classes conservées à l'identique : .footer(__text)
+   ========================================================================== */
+.footer {
+  margin-top: auto;
+  width: 100%;
+  height: 90px;
+  background: var(--brand-blue-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
 }
 .footer__text {
-  margin: auto;
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.footer__text span {
+  color: #fff;
+  font-weight: 700;
 }
 
-.calendarBox {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  height: 1000px;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
+/* ==========================================================================
+   AXE — Redesign — Motif signature : le cadre en tirets bleus
+   (.habits, .schedule, .graph, .calendar, .habitManager)
+   ========================================================================== */
+.habits, .schedule, .graph, .calendar, .habitManager {
+  border: 2px dashed var(--accent);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease), background var(--dur-base) var(--ease);
 }
 
-.calendar {
-  background-color: white;
-  border: 3px #0F52BA dashed;
-  border-radius: 35px;
-  margin: auto;
-  height: 900px;
-  width: 90%;
+.habits {
+  background: var(--bg-frame);
 }
 
-.calendarMenu {
-  display: flex;
-  margin-left: auto;
-  margin-right: 5%;
-  margin-bottom: -35px;
-  gap: 10px;
+.schedule, .graph, .calendar, .habitManager {
+  background: var(--surface);
 }
+
+/* ==========================================================================
+   AXE — Redesign — Boutons pilules partagés
+   (.habitManagerMenu__menu, .calendarMenu__menu)
+   ========================================================================== */
+.habitManagerMenu__menu,
 .calendarMenu__menu {
-  background: #0F52BA;
-  width: 140px;
-  border-radius: 45px;
+  cursor: pointer;
+  background: var(--brand-blue-ink);
+  height: 40px;
+  min-width: 140px;
+  padding: 0 var(--space-2) 0 var(--space-4);
+  border-radius: var(--radius-pill);
   display: flex;
-  justify-content: space-around;
   align-items: center;
-  padding-right: 5px;
-  padding-left: 5px;
+  justify-content: space-between;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
+.habitManagerMenu__menu:hover,
+.calendarMenu__menu:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.habitManagerMenu__menu__text,
+.calendarMenu__menu__text {
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.calendarMenu__menu__text--state {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 500;
+}
+
+.habitManagerMenu__menu__line,
 .calendarMenu__menu__line {
-  height: 70%;
-  background-color: white;
+  height: 60%;
   width: 1px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
+
+.habitManagerMenu__menu__icon,
 .calendarMenu__menu__icon {
-  margin-top: 5px;
-}
-.calendarMenu__icons {
-  color: #000926;
-  cursor: pointer;
   display: flex;
-  list-style: none;
-  gap: 10px;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  color: #fff;
+  transition: background var(--dur-fast) var(--ease);
 }
 
-.habitManagerBox {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  min-height: 1000px;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.habitManagerMenu__menu:hover .habitManagerMenu__menu__icon,
+.calendarMenu__menu:hover .calendarMenu__menu__icon {
+  background: rgba(255, 255, 255, 0.16);
 }
 
-.habitManager {
-  background-color: white;
-  border: 3px #0F52BA dashed;
-  border-radius: 35px;
-  margin: 0 auto;
-  min-height: 900px;
-  padding-bottom: 20px;
-  width: 90%;
-  color: #000926;
-}
-.habitManager > div {
-  margin: auto;
-  margin-top: 20px;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-}
-.habitManager__table__button {
-  margin-top: 20px;
+.habitManagerMenu__icons,
+.calendarMenu__icons {
+  color: var(--ink);
   cursor: pointer;
-  padding: 5px;
-  width: 150px;
-  border-radius: 10px;
   display: flex;
-  justify-content: space-around;
-  color: #949494;
-  text-align: end;
-  font-size: 15px;
-  transition: all ease-in-out 200ms;
+  gap: var(--space-2);
 }
-.habitManager__table__button:hover {
-  background-color: #f3f3f3;
+.habitManagerMenu__icons li,
+.calendarMenu__icons li {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.habitManagerMenu__icons li:hover,
+.calendarMenu__icons li:hover {
+  background: var(--bg-soft);
+  color: var(--accent);
+}
+
+.habitManagerMenu__closeSearch {
+  cursor: pointer;
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+  transition: background var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.habitManagerMenu__closeSearch:hover {
+  background: color-mix(in srgb, var(--accent) 82%, black);
+  transform: translateY(-1px);
 }
 
 .hiddenCloseSearch {
   display: none;
 }
 
-.habitManagerMenu {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: auto;
-  margin-right: 5%;
-}
-.habitManagerMenu__icons {
-  color: #000926;
+/* ==========================================================================
+   ZONE PROTÉGÉE — NE PAS MODIFIER
+   Design du checkmark (.container / .checkmark) copié à l'identique de
+   src/scss/components/dashboard/_habit.scss (lignes 118-169) : c'est le
+   composant que la consigne demande de préserver pixel pour pixel.
+   ========================================================================== */
+.container {
+  --input-focus: #2d8cf0;
+  --input-out-of-focus: #ccc;
+  --bg-color: #fff;
+  --bg-color-alt: #666;
+  --main-color: #323232;
+  position: relative;
   cursor: pointer;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+}
+
+.container__input {
+  position: absolute;
+  opacity: 0;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+}
+
+.checkmark {
   width: 30px;
   height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 200ms ease-in-out;
-}
-.habitManagerMenu__icons:hover {
-  border-radius: 10px;
-  background-color: rgb(230.25, 230.25, 230.25);
-}
-.habitManagerMenu__closeSearch {
-  cursor: pointer;
-  padding: 6px 16px;
-  border: none;
-  border-radius: 45px;
-  background: #0F52BA;
-  color: white;
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  transition: background 200ms ease-in-out;
-}
-.habitManagerMenu__closeSearch:hover {
-  background-color: rgb(11.1940298507, 61.1940298507, 138.8059701493);
-}
-.habitManagerMenu__menu {
-  cursor: pointer;
-  background: #0F52BA;
-  width: 140px;
-  border-radius: 45px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-right: 5px;
-  padding-left: 5px;
-  transition: all 200ms ease-in-out;
-}
-.habitManagerMenu__menu__line {
-  height: 70%;
-  background-color: white;
-  width: 1px;
-}
-.habitManagerMenu__menu__icon {
-  margin-top: 5px;
-}
-.habitManagerMenu__menu:hover {
-  background-color: rgb(11.1940298507, 61.1940298507, 138.8059701493);
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--main-color);
+  border-radius: 5px;
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--input-out-of-focus);
+  transition: all 0.3s;
 }
 
-table {
-  border-collapse: collapse;
-  margin: auto;
+.container input:checked ~ .checkmark {
+  background-color: var(--input-focus);
+}
+
+.checkmark:after {
+  content: "";
+  width: 7px;
+  height: 15px;
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  display: none;
+  border: solid var(--bg-color);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.habits__cell--done .container input:checked ~ .checkmark {
+  background-color: #949494;
+}
+
+/* ==========================================================================
+   FIN DE LA ZONE PROTÉGÉE
+   ========================================================================== */
+/* ==========================================================================
+   AXE — Redesign — Dashboard
+   Classes conservées : .top, .bottom, .habits-box(__title), .habits(__cell...),
+   .schedule-box(__title), .schedule(__date), .graph-box(__title), .graph
+   (le sous-détail du .checkmark reste dans components.css, zone protégée)
+   ========================================================================== */
+.top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--space-6);
   width: 100%;
 }
-table th, table td {
-  border: 1px solid #CBCBCB;
-  padding: 5px;
+
+.bottom {
+  width: 100%;
+  margin-top: var(--space-6);
 }
-table thead th {
-  text-align: start;
-  border-right: none;
-  border-left: none;
-  border-top: none;
-}
-table tbody tr {
-  height: 50px;
-}
-table td:first-child {
-  border-left: none;
-}
-table td:last-child {
-  border-right: none;
-}
-table .large {
-  width: 40%;
-}
-table .narrow {
-  width: 20%;
-}
-table .habitCell {
-  position: relative;
-}
-table .habitCell:hover .habitCell__commands {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(0);
-}
-table .habitCell__duration {
-  position: relative;
-}
-table .habitCell__commands {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%) translateX(8px);
-  gap: 4px;
-  align-items: center;
+
+.habits-box, .schedule-box, .graph-box {
   display: flex;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, visibility 150ms ease-in-out;
+  flex-direction: column;
+  min-width: 0;
 }
-table .habitCell__commands__button {
+
+.habits-box__title, .schedule-box__title, .graph-box__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-4);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Habitudes du jour                                                       */
+/* ---------------------------------------------------------------------- */
+.habits {
+  flex: 1;
+  height: auto;
+  min-height: 560px;
+  margin: 0;
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+}
+.habits:empty::before {
+  content: "Aucune habitude pour le moment.";
+  margin: auto;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
+.habits__cell {
+  position: relative;
+  margin: 0;
+  padding: var(--space-4) var(--space-5) var(--space-4) var(--space-5);
+  width: 100%;
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease), background-color var(--dur-base) var(--ease);
+  animation: cell-in var(--dur-slow) var(--ease-spring) both;
+  animation-delay: calc(var(--cell-index, 0) * 55ms);
+}
+.habits__cell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+  width: 4px;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  transition: background-color var(--dur-base) var(--ease);
+}
+.habits__cell:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+.habits__cell__title {
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin-left: var(--space-3);
+  transition: color var(--dur-base) var(--ease);
+}
+.habits__cell--right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.habits__cell__streak {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  transition: all 200ms ease-in-out;
+  gap: 3px;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  padding: 5px 11px;
+  border-radius: var(--radius-pill);
+  background-color: var(--flame-cold);
+  transition: background-color var(--dur-base) var(--ease), transform var(--dur-fast) var(--ease-spring);
 }
-table .habitCell__commands__button:hover {
-  border-radius: 10px;
-  background-color: #f3f3f3;
+.habits__cell__streak[data-tier=low] {
+  background-color: var(--flame-low);
+}
+.habits__cell__streak[data-tier=high] {
+  background-color: var(--flame-high);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--flame-high) 18%, transparent);
+}
+.habits__cell__checkmark {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.habits__cell--done {
+  background-color: var(--bg-soft);
+}
+.habits__cell--done .habits__cell__title {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+}
+.habits__cell--done::before {
+  background-color: var(--success);
 }
 
+@keyframes cell-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ---- Anneau de progression du jour (AJOUT) — .habits-box__progress ---- */
+.habits-box__progress {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.habits-box__progress svg {
+  transform: rotate(-90deg);
+}
+.habits-box__progress circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+.habits-box__progress circle:first-child {
+  stroke: var(--border);
+}
+.habits-box__progress circle:last-child {
+  stroke: var(--success);
+  stroke-dasharray: 88;
+  stroke-dashoffset: 88;
+  transition: stroke-dashoffset var(--dur-slow) var(--ease-spring);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Aperçu de l'emploi du temps                                             */
+/* ---------------------------------------------------------------------- */
+.schedule {
+  flex: 1;
+  height: auto;
+  min-height: 560px;
+  margin: 0;
+  padding: var(--space-6) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+}
+.schedule__date {
+  color: #fff;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  background: var(--brand-blue-ink);
+  box-shadow: var(--shadow-sm);
+  height: 42px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-pill);
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+.schedule {
+  /* ---- Agenda du jour (AJOUT) — .schedule__agenda ---- */
+}
+.schedule__agenda {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.schedule__agenda-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+.schedule__agenda-item:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+.schedule__agenda-time {
+  flex-shrink: 0;
+  width: 54px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  color: var(--accent);
+}
+.schedule__agenda-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-violet);
+}
+.schedule__agenda-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.schedule__agenda-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+}
+.schedule__agenda-sub {
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+}
+.schedule__agenda-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+  padding: var(--space-6) 0;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Statistiques (aperçu)                                                   */
+/* ---------------------------------------------------------------------- */
+.graph {
+  height: 340px;
+  margin: 0;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* ---- Résumé chiffré + canvas Chart.js (AJOUT) ---- */
+}
+.graph__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+.graph__stat {
+  display: flex;
+  flex-direction: column;
+}
+.graph__stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1;
+  color: var(--ink);
+}
+.graph__stat-label {
+  margin-top: var(--space-1);
+  font-size: var(--text-xs);
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+.graph__canvas-wrap {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+@media (max-width: 950px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+  .habits, .schedule {
+    min-height: 420px;
+  }
+}
+/* ==========================================================================
+   ZONE PROTÉGÉE — NE PAS MODIFIER
+   Popup de création/édition d'habitude : CSS copiée à l'identique depuis
+   public/css/style.css (compilé depuis _popup.scss). La consigne demande de
+   ne pas retoucher son design pour l'instant — cette section garantit
+   qu'elle s'affiche ici exactement comme dans l'app actuelle, sans aucune
+   retouche visuelle.
+   ========================================================================== */
 .habitPopupOverlay {
   position: fixed;
   inset: 0;
@@ -711,6 +1300,17 @@ table .habitCell__commands__button:hover {
   border-color: #4338ca;
 }
 
+/* ==========================================================================
+   FIN DE LA ZONE PROTÉGÉE
+   ========================================================================== */
+/* ==========================================================================
+   ZONE PROTÉGÉE — NE PAS MODIFIER
+   Popup de recherche d'habitude : CSS copiée à l'identique depuis
+   public/css/style.css (compilé depuis _popupSearch.scss). La consigne
+   demande de ne pas retoucher son design pour l'instant — cette section
+   garantit qu'elle s'affiche ici exactement comme dans l'app actuelle, sans
+   aucune retouche visuelle.
+   ========================================================================== */
 .searchHabitPopupOverlay {
   position: fixed;
   inset: 0;
@@ -938,6 +1538,17 @@ table .habitCell__commands__button:hover {
   pointer-events: none;
 }
 
+/* ==========================================================================
+   FIN DE LA ZONE PROTÉGÉE
+   ========================================================================== */
+/* ==========================================================================
+   ZONE PROTÉGÉE — NE PAS MODIFIER
+   Onglets du popup d'habitude et sélecteurs de fréquence : CSS copiée à
+   l'identique depuis public/css/style.css (compilé depuis _tabs.scss). La
+   consigne demande de ne pas retoucher leur design pour l'instant — cette
+   section garantit qu'ils s'affichent ici exactement comme dans l'app
+   actuelle, sans aucune retouche visuelle.
+   ========================================================================== */
 .tabs {
   width: 100%;
   font-family: Arial, sans-serif;
@@ -1141,238 +1752,734 @@ table .habitCell__commands__button:hover {
   gap: 8px;
 }
 
-.habits-box {
-  margin: auto;
-  flex: 1.618;
-}
-.habits-box__title {
-  color: #111827;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.habits {
-  height: 600px;
-  margin: 40px;
-  background-color: #F4F5FA;
-  border: 3px #0F52BA dashed;
-  border-radius: 35px;
-  padding-top: 20px;
+/* ==========================================================================
+   FIN DE LA ZONE PROTÉGÉE
+   ========================================================================== */
+/* ==========================================================================
+   AXE — Redesign — Gestionnaire d'habitudes (table)
+   Classes conservées : .habitManagerBox, .habitManagerMenu(__icons...),
+   .habitManager(__table__button), table/thead/tbody, .large/.narrow,
+   .habitCell(__name/__type/__frequency/__duration/__commands...)
+   Popup (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir components.css,
+   zone protégée — non modifiée ici.
+   ========================================================================== */
+.habitManagerBox {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+  gap: var(--space-4);
 }
-.habits__cell {
-  position: relative;
-  margin-bottom: 14px;
-  background-color: #fff;
-  padding: 14px 20px 14px 18px;
-  min-height: 60px;
-  width: 90%;
-  border-radius: 18px;
-  border: 1px solid #ECEDF3;
-  box-shadow: 0 1px 2px rgba(15, 82, 186, 0.06), 0 6px 16px rgba(15, 82, 186, 0.06);
-  display: inline-flex;
-  align-items: center;
-  transition: transform ease-in-out 200ms, box-shadow ease-in-out 220ms, border-color ease-in-out 220ms;
-}
-.habits__cell::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 14px;
-  bottom: 14px;
-  width: 4px;
-  border-radius: 4px;
-  background-color: #0F52BA;
-}
-.habits__cell--right {
-  margin-left: auto;
-  margin-right: 40px;
+
+.habitManagerMenu {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: var(--space-3);
+  margin-left: auto;
 }
-.habits__cell__title {
-  color: #111827;
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  margin-left: 20px;
+
+.habitManager {
+  min-height: 640px;
+  padding-bottom: var(--space-5);
+  color: var(--ink);
 }
-.habits__cell__streak {
+.habitManager > div {
+  margin: 0 auto;
+  margin-top: var(--space-5);
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+}
+.habitManager__table__button {
+  margin-top: var(--space-4);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-4);
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px dashed var(--border-strong);
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: all var(--dur-fast) var(--ease);
+}
+.habitManager__table__button:hover {
+  background-color: var(--bg-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.habitManager__empty {
+  /* état "aucune habitude" injecté en JS (voir habits.js) plutôt qu'en CSS pur,
+     un tbody vide ne supporte pas un ::after lisible. */
+  padding: var(--space-7) var(--space-3);
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Table                                                                    */
+/* ---------------------------------------------------------------------- */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 0;
+  width: 100%;
+}
+
+th, td {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-3) var(--space-3);
+}
+
+thead th {
+  text-align: start;
+  vertical-align: middle;
+  display: table-cell;
+  gap: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border-strong);
+}
+thead th svg {
+  display: inline-block;
+  vertical-align: -6px;
+  margin-right: var(--space-2);
+  color: var(--ink-faint);
+}
+
+tbody tr {
+  height: 56px;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+tbody tr:hover {
+  background-color: var(--bg-soft);
+}
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+td:first-child {
+  border-left: none;
+  padding-left: var(--space-2);
+}
+
+td:last-child {
+  border-right: none;
+  padding-right: var(--space-2);
+}
+
+.large {
+  width: 40%;
+}
+
+.narrow {
+  width: 20%;
+}
+
+/* ---- Lignes d'habitude générées par renderHabits() ---- */
+.habitCell {
+  position: relative;
+  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+.habitCell--removing {
+  opacity: 0;
+  transform: translateX(12px) scale(0.98);
+}
+.habitCell:hover .habitCell__commands {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+.habitCell__name {
+  font-weight: 600;
+  color: var(--ink);
+}
+.habitCell__type {
+  color: var(--accent-violet);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+.habitCell__type::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: middle;
+}
+.habitCell__frequency {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+.habitCell__duration {
+  position: relative;
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.habitCell__commands {
+  position: absolute;
+  right: var(--space-2);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  gap: 4px;
+  align-items: center;
+  display: flex;
+  padding: 4px;
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease-in-out, transform 150ms ease-in-out, visibility 150ms ease-in-out;
+}
+.habitCell__commands__button {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background-color: #949494;
-}
-.habits__cell__checkmark {
-  display: flex;
-  align-items: center;
-}
-.habits__cell--done {
-  position: relative;
-  background-color: #F0F1F5;
-}
-.habits__cell--done .habits__cell__title {
-  text-decoration: line-through;
-  color: #949494;
-}
-.habits__cell--done::before {
-  background-color: #34A853;
-}
-.habits__cell--done .container input:checked ~ .checkmark {
-  background-color: #949494;
-}
-.habits__cell:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(15, 82, 186, 0.1), 0 10px 24px rgba(15, 82, 186, 0.1);
-  border-color: #DCE1F5;
-}
-
-.container {
-  --input-focus: #2d8cf0;
-  --input-out-of-focus: #ccc;
-  --bg-color: #fff;
-  --bg-color-alt: #666;
-  --main-color: #323232;
-  position: relative;
-  cursor: pointer;
-}
-.container__input {
-  position: absolute;
-  opacity: 0;
-}
-
-.container input {
-  position: absolute;
-  opacity: 0;
-}
-
-.checkmark {
   width: 30px;
   height: 30px;
-  position: relative;
-  top: 0;
-  left: 0;
-  border: 2px solid var(--main-color);
-  border-radius: 5px;
-  box-shadow: 4px 4px var(--main-color);
-  background-color: var(--input-out-of-focus);
-  transition: all 0.3s;
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease);
+}
+.habitCell__commands__button--edit:hover {
+  background-color: var(--bg-soft);
+  color: var(--accent);
+}
+.habitCell__commands__button--delete:hover {
+  background-color: color-mix(in srgb, #ef4444 12%, transparent);
+  color: #ef4444;
 }
 
-.container input:checked ~ .checkmark {
-  background-color: var(--input-focus);
+@media (max-width: 700px) {
+  .narrow {
+    display: none;
+  }
+  thead .narrow {
+    display: none;
+  }
 }
-
-.checkmark:after {
-  content: "";
-  width: 7px;
-  height: 15px;
-  position: absolute;
-  top: 2px;
-  left: 8px;
-  display: none;
-  border: solid var(--bg-color);
-  border-width: 0 2.5px 2.5px 0;
-  transform: rotate(45deg);
-}
-
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-main {
+/* ==========================================================================
+   AXE — Redesign — Emploi du temps
+   Classes conservées : .calendarBox, .calendarMenu(__icons/__menu...), .calendar
+   Le contenu de .calendar est entièrement nouveau : en production, ce bloc
+   est vide (calendar.js ne fait aujourd'hui que récupérer des références
+   DOM). Aperçu illustratif de ce que pourrait devenir AXE 3.
+   ========================================================================== */
+.calendarBox {
+  margin: 0;
+  height: auto;
+  width: 100%;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  max-width: 1500px;
-  width: 90%;
-  margin: auto;
+  gap: var(--space-4);
 }
-@media (max-width: 950px) {
-  main .top, main .bottom {
-    display: block;
-  }
-  main {
-    width: 700px;
-  }
+
+.calendarMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-left: auto;
+}
+
+.calendar {
+  height: auto;
+  min-height: 720px;
+  width: 100%;
+  margin: 0;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  /* ---- Grille semaine (AJOUT) — .calendar__* ---- */
+}
+.calendar__grid {
+  display: grid;
+  grid-template-columns: 56px repeat(7, 1fr);
+  position: relative;
+}
+.calendar__corner {
+  grid-column: 1;
+}
+.calendar__day-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.calendar__day-label span {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.calendar__day-label--today {
+  color: var(--accent);
+}
+.calendar__day-label--today span {
+  color: var(--accent);
+  position: relative;
+}
+.calendar__day-label--today span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  transform: translateX(-50%);
+}
+.calendar__body {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 56px repeat(7, 1fr);
+  position: relative;
+}
+.calendar__hours {
+  display: grid;
+  grid-auto-rows: 64px;
+}
+.calendar__hour {
+  position: relative;
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+  transform: translateY(-8px);
+  text-align: right;
+  padding-right: var(--space-2);
+}
+.calendar__day-col {
+  position: relative;
+  border-left: 1px solid var(--border);
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 63px, var(--border) 63px, var(--border) 64px);
+}
+.calendar__day-col--today {
+  background-color: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.calendar__event {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-violet);
+  background: color-mix(in srgb, var(--accent-violet) 12%, var(--surface));
+  font-size: var(--text-xs);
+  line-height: 1.25;
+  color: var(--ink);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.calendar__event:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+}
+.calendar__event strong {
+  display: block;
+  font-weight: 700;
+}
+.calendar__event--habit {
+  border-left-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+}
+.calendar__now-line {
+  position: absolute;
+  left: 56px;
+  right: 0;
+  height: 2px;
+  background: #ef4444;
+  z-index: 6;
+  pointer-events: none;
+}
+.calendar__now-line::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  transform: translateY(-50%);
 }
 @media (max-width: 800px) {
-  main {
-    width: 500px;
+  .calendar {
+    overflow-x: auto;
   }
 }
 
-.top {
-  display: inline-flex;
+@media (max-width: 800px) {
+  .calendar__grid, .calendar__body {
+    grid-template-columns: 40px repeat(7, minmax(64px, 1fr));
+  }
+}
+/* ==========================================================================
+   AXE — Redesign — Graphiques & stats
+   La page graphs-stats.html est aujourd'hui un <main> vide (AXE 2 pas encore
+   commencé) : toutes les classes ci-dessous sont donc entièrement nouvelles,
+   namespacées .stats-* pour rester isolées du reste de l'app.
+   ========================================================================== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+@media (max-width: 1080px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.top, .bottom {
-  width: 100%;
-  margin: auto;
-}
-
-.schedule-box {
-  margin: auto;
-  flex: 1;
-}
-.schedule-box__title {
-  color: #111827;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.schedule {
-  height: 600px;
-  margin: 40px;
-  background-color: white;
-  border: 3px #0F52BA dashed;
-  border-radius: 35px;
+.stats-tile {
+  grid-column: span 1;
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--dur-base) var(--ease);
+  animation: tile-in var(--dur-slow) var(--ease-spring) both;
+  animation-delay: calc(var(--tile-index, 0) * 70ms);
 }
-.schedule__date {
-  color: #E5E7EB;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  background-color: #0F52BA;
-  height: 45px;
-  width: 180px;
-  border-radius: 60px;
-  margin-top: 20px;
+.stats-tile:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.stats-tile__icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  margin-bottom: var(--space-1);
 }
-
-.graph-box {
-  margin: auto;
-  width: 100%;
+.stats-tile__value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
-.graph-box__title {
-  color: #111827;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
+.stats-tile__label {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
   font-weight: 600;
 }
+.stats-tile__delta {
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+.stats-tile__delta[data-trend=up] {
+  color: var(--success);
+}
+.stats-tile__delta[data-trend=down] {
+  color: #ef4444;
+}
+.stats-tile__delta[data-trend=flat] {
+  color: var(--ink-faint);
+}
 
-.graph {
+.stats-panel {
+  padding: var(--space-5) var(--space-6);
+  margin-top: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+.stats-panel__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+.stats-panel__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--ink);
+}
+.stats-panel__hint {
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+.stats-panel__body {
+  position: relative;
   height: 300px;
-  margin: 40px;
-  background-color: white;
-  border: 3px #0F52BA dashed;
-  border-radius: 35px;
+}
+
+.stats-panels-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 1080px) {
+  .stats-panels-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Heatmap type "contributions" ---- */
+.stats-heatmap {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+.stats-heatmap__col {
+  display: grid;
+  grid-template-rows: repeat(7, 13px);
+  gap: 4px;
+}
+.stats-heatmap__cell {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.stats-heatmap__cell:hover {
+  transform: scale(1.35);
+}
+.stats-heatmap__cell[data-level="1"] {
+  background: color-mix(in srgb, var(--success) 30%, var(--border));
+}
+.stats-heatmap__cell[data-level="2"] {
+  background: color-mix(in srgb, var(--success) 55%, var(--border));
+}
+.stats-heatmap__cell[data-level="3"] {
+  background: color-mix(in srgb, var(--success) 80%, var(--border));
+}
+.stats-heatmap__cell[data-level="4"] {
+  background: var(--success);
+}
+.stats-heatmap__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+.stats-heatmap__legend .stats-heatmap__cell {
+  cursor: default;
+}
+
+/* ---- Classement des séries ---- */
+.stats-leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.stats-leaderboard__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.stats-leaderboard__rank {
+  width: 22px;
+  flex-shrink: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--ink-faint);
+}
+.stats-leaderboard__name {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stats-leaderboard__bar-track {
+  flex: 1.4;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+.stats-leaderboard__bar-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  width: 0%;
+  transition: width var(--dur-slow) var(--ease-spring);
+}
+.stats-leaderboard__value {
+  flex-shrink: 0;
+  width: 46px;
+  text-align: right;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-empty {
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: var(--text-sm);
+  padding: var(--space-7) 0;
+}
+
+/* ==========================================================================
+   AXE — Redesign — Effets & animations (src/js/effects.js)
+   ========================================================================== */
+/* ---- Révélation au scroll (IntersectionObserver, voir effects.js) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease-spring);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Pulsation d'anneau autour du checkmark quand une habitude est cochée ----
+   Élément ajouté À CÔTÉ du .checkmark (jamais dessus ni dedans) : le design
+   du checkmark protégé n'est ni modifié, ni recouvert. */
+.checkmark-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 8px;
+  border: 2px solid var(--success);
+  opacity: 0;
+  pointer-events: none;
+}
+.checkmark-pulse.is-active {
+  animation: pulse-ring var(--dur-slow) var(--ease) forwards;
+}
+
+@keyframes pulse-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+/* ---- Confettis (particules DOM générées par effects.js) ---- */
+.confetti-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  width: 7px;
+  height: 10px;
+  background: var(--piece-color, var(--accent));
+  border-radius: 2px;
+  opacity: 0;
+  animation: confetti-pop var(--piece-duration, 700ms) var(--ease) forwards;
+  animation-delay: var(--piece-delay, 0ms);
+}
+
+@keyframes confetti-pop {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--piece-dx, 40px)), calc(-50% + var(--piece-dy, -60px))) rotate(var(--piece-rot, 200deg)) scale(0.6);
+  }
+}
+/* ---- Toast (retour "aperçu uniquement" sur les actions non persistées) ---- */
+.toast-layer {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-6);
+  transform: translateX(-50%);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--brand-blue-ink);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  animation: toast-in-out 2400ms var(--ease) forwards;
+}
+
+@keyframes toast-in-out {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+}
+/* ---- Compteurs animés (juste pour garantir des chiffres bien alignés) ---- */
+[data-count-up] {
+  font-variant-numeric: tabular-nums;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -15,93 +15,126 @@
         <script src="node_modules/chart.js/dist/chart.umd.min.js"></script>
     </head>
     <body>
-        <header class="header">
-            <div class="header__hour-Box">
-                <div class="header__hour-Box__text">
-                    
+        <!-- AI made -->
+        <div class="page-shell">
+            <header class="header">
+                <div class="header__hour-Box">
+                    <div class="header__hour-Box__text"></div>
                 </div>
-            </div>
 
-            <label class="header__burger">
-                <input type="checkbox">
+                <label class="header__burger">
+                    <input type="checkbox">
 
-                <span></span>
-                <span></span>
-                <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
 
-                <nav class="mobile-menu">
-                    <a href="index.html">Dashboard</a>
-                    <a href="public/pages/schedule.html">Emploi du temps</a>
-                    <a href="public/pages/habits.html">Habitudes</a>
-                    <a href="public/pages/graphs-stats.html">Graphiques et Stats</a>
-                </nav>
-            </label>
+                    <nav class="mobile-menu">
+                        <a href="index.html" aria-current="page">Dashboard</a>
+                        <a href="public/pages/schedule.html">Emploi du temps</a>
+                        <a href="public/pages/habits.html">Habitudes</a>
+                        <a href="public/pages/graphs-stats.html">Graphiques et Stats</a>
+                    </nav>
+                </label>
 
-            <div class="header__menu">
-                <nav>
-                    <ul>
-                        <li>
-                            <a class="header__menu__link" href="index.html">Dashboard</a>
-                        </li>
-                        <li>
-                            <a class="header__menu__link" href="public/pages/schedule.html">Emploi du temps</a>
-                        </li>
-                        <li>
-                            <a class="header__menu__link" href="public/pages/habits.html">Habitudes</a>
-                        </li>
-                        <li>
-                            <a class="header__menu__link" href="public/pages/graphs-stats.html">Graphiques & stats</a>
-                        </li>
-                        <li>
-                            <a class="header__menu__link" href="redesign/index.html">redesign</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="header__day-Box">
-                <div class="header__day-Box__text">
-                    
+                <div class="header__menu">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a class="header__menu__link" href="index.html" aria-current="page">Dashboard</a>
+                            </li>
+                            <li>
+                                <a class="header__menu__link" href="public/pages/schedule.html">Emploi du temps</a>
+                            </li>
+                            <li>
+                                <a class="header__menu__link" href="public/pages/habits.html">Habitudes</a>
+                            </li>
+                            <li>
+                                <a class="header__menu__link" href="public/pages/graphs-stats.html">Graphiques & stats</a>
+                            </li>
+                            <!-- <li>
+                                <a class="header__menu__link" href="redesign/index.html">redesign</a>
+                            </li> -->
+                        </ul>
+                    </nav>
                 </div>
-            </div>
-        </header>
 
-        <main class="main">
+                <div class="header__day-Box">
+                    <div class="header__day-Box__text"></div>
+                </div>
 
-            <div class="top">
-                <div class="habits-box">
+                <!-- AI made -->
+                <button type="button" id="themeToggle" class="header__theme-toggle" aria-label="Basculer le thème clair/sombre">
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </header>
 
-                    <p class="habits-box__title">Tâches du jour :</p>
+            <main class="main">
 
-                    <div class="habits">
-                    
-                        
-
+                <!-- AI made -->
+                <div class="page-header">
+                    <div>
+                        <h1 class="page-header__title">Ta journée, en un coup d'œil</h1>
                     </div>
                 </div>
 
-                <div class="schedule-box">
-                    <p class="schedule-box__title">Emploi du temps du jour :</p>
+                <div class="top">
+                    <div class="habits-box">
 
-                    <div class="schedule">
-                        <div class="schedule__date">Lundi 20/04</div>
+                        <p class="habits-box__title">
+                            <span>Tâches du jour :</span>
+                            <!-- AI made -->
+                            <span class="habits-box__progress" id="todayProgress" aria-hidden="true">
+                                <svg width="34" height="34" viewBox="0 0 34 34">
+                                    <circle cx="17" cy="17" r="14"></circle>
+                                    <circle cx="17" cy="17" r="14"></circle>
+                                </svg>
+                                <span data-progress-label>0/0</span>
+                            </span>
+                        </p>
+
+                        <div class="habits">
+
+                        </div>
+                    </div>
+
+                    <div class="schedule-box">
+                        <p class="schedule-box__title">Emploi du temps du jour :</p>
+
+                        <div class="schedule">
+                            <div class="schedule__date">Lundi 20/04</div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="bottom">
-                <div class="graph-box">
-                    <p class="graph-box__title">Les stats :</p>
+                <div class="bottom">
+                    <div class="graph-box">
+                        <p class="graph-box__title">Les stats :</p>
 
-                    <div class="graph">
-
+                        <div class="graph">
+                            <!-- AI made -->
+                            <div class="graph__summary">
+                                <div class="graph__stat">
+                                    <span class="graph__stat-value" id="statDoneToday" data-count-up>0</span>
+                                    <span class="graph__stat-label">Fait aujourd'hui</span>
+                                </div>
+                                <div class="graph__stat">
+                                    <span class="graph__stat-value" id="statWeekTotal" data-count-up>0</span>
+                                    <span class="graph__stat-label">Complétions cette semaine</span>
+                                </div>
+                            </div>
+                            <div class="graph__canvas-wrap">
+                                <canvas id="dashboardWeeklyChart"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
 
-        <footer class="footer">
-            <div class="footer__text">© Morgan Davila - <span id="year"></span></div>
-        </footer>
+            <footer class="footer">
+                <div class="footer__text">© Morgan Davila - <span id="year"></span></div>
+            </footer>
+        </div>
     </body>
 </html>
