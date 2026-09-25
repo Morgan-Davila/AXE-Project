@@ -37,6 +37,8 @@ export function setupRecallsCheckmarks () {
 
             updateHabit(checkmarkId, habit);
             reactHabit(habitArray);
+            //AI made — les cartes viennent d'être re-rendues : on rebranche les nouvelles checkbox
+            setupRecallsCheckmarks();
         });
     }
 }
