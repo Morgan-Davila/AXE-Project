@@ -73,10 +73,14 @@ renderMonthlyDays();
 import { loadDeletedHabits, habitArray } from "./services/storage.js";
 loadDeletedHabits();
 
+//AI made — avant tout rendu : remet à 0 les streaks des habitudes dont une échéance a été manquée
+import { resetMissedStreaks } from "./components/dashboard/dashboard.js";
+resetMissedStreaks(habitArray);
+
 import { reactHabit } from "./components/dashboard/dashboard.js";
 import { setupRecallsCheckmarks } from "./components/dashboard/dashboardEvents.js";
 //AI made
-import { setupCheckEffects } from "./components/dashboard/dashboardEvents.js";
+import { setupCheckEffects, setupMidnightRefresh } from "./components/dashboard/dashboardEvents.js";
 setupCheckEffects();
 
 
@@ -85,4 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHabitEditButton();
     reactHabit(habitArray);
     setupRecallsCheckmarks();
+    //AI made
+    setupMidnightRefresh();
 });

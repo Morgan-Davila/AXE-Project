@@ -3,6 +3,8 @@ const LOCAL_DEBUG = true;
 debug(LOCAL_DEBUG, "Chargement dashboard.js");
 
 import { habitArray } from "../../services/storage.js";
+//AI made
+import { updateHabit } from "../../services/storage.js";
 import {
     safeQuery,
     safeQueryAll,
@@ -58,7 +60,9 @@ export function reactHabit (habitArray) {
 
                 const diffJours = Math.round((todayMidnight - lastExecMidnight) / msParDay);
 
-                isDueToday = diffJours === interval;
+                //AI made — ">=" et non "===" : une habitude en retard reste due jusqu'à ce qu'elle soit faite
+                // (avec "===", une échéance manquée la faisait disparaître du dashboard pour toujours)
+                isDueToday = diffJours >= interval;
 
                 break;
             }
@@ -125,4 +129,90 @@ export function computeDailyCompletions (habitArray, days) {
     }
 
     return counts;
+}
+
+
+
+// ---- Remise à zéro des streaks ----
+
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+//AI made
+function startOfDay (timestamp) {
+    const date = new Date(timestamp);
+
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+//AI made
+// nombre de jours calendaires entre deux dates (Math.round absorbe les changements d'heure)
+function diffInDays (from, to) {
+    return Math.round((startOfDay(to) - startOfDay(from)) / MS_PER_DAY);
+}
+
+
+//AI made
+// vrai si une échéance de l'habitude tombait sur un jour DÉJÀ TERMINÉ sans avoir été faite.
+// Référence : la dernière exécution (ou la création si l'habitude n'a jamais été faite).
+// Aujourd'hui ne compte pas : la journée n'est pas finie.
+export function hasMissedOccurrence (habit, now = Date.now()) {
+    const reference = Number(habit.executions?.at(-1) ?? habit.createdAt);
+    const gap = diffInDays(reference, now);
+
+    // aucun jour complet entre la référence et aujourd'hui
+    if (gap <= 1) return false;
+
+    const { type, value } = habit.frequency;
+
+    switch (type) {
+        case "interval": {
+            // échéance à référence + intervalle : manquée si ce jour est passé
+            return gap > Number(value);
+        }
+
+        case "weekly":
+        case "monthly": {
+            const days = (value ?? []).map(Number);
+            if (days.length === 0) return false;
+
+            // au-delà d'un an, une échéance a forcément été manquée
+            if (gap > 366) return true;
+
+            // on passe en revue chaque jour strictement entre la référence et aujourd'hui
+            for (let offset = 1; offset < gap; offset++) {
+                const day = startOfDay(reference);
+                day.setDate(day.getDate() + offset);
+
+                const isDue = type === "weekly"
+                    ? days.includes(day.getDay())
+                    : days.includes(day.getDate());
+
+                if (isDue) return true;
+            }
+
+            return false;
+        }
+
+        default:
+            return false;
+    }
+}
+
+
+//AI made
+// remet à 0 (et sauvegarde) le streak des habitudes dont une échéance a été manquée
+export function resetMissedStreaks (habitArray, now = Date.now()) {
+    let resetCount = 0;
+
+    for (let habit of habitArray) {
+        if (Number(habit.streak) === 0) continue;
+        if (!hasMissedOccurrence(habit, now)) continue;
+
+        updateHabit(habit.id, { streak: 0 });
+        resetCount++;
+    }
+
+    debug(LOCAL_DEBUG, `resetMissedStreaks : ${resetCount} streak(s) remis à 0`);
+
+    return resetCount;
 }
