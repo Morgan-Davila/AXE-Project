@@ -5,40 +5,53 @@ description: Règles et habitudes de style SCSS observées dans src/scss/ du pro
 
 # Style SCSS — AXE
 
-Règles déduites de l'analyse de `src/scss/`. Ce ne sont pas des préférences théoriques mais des habitudes réellement suivies dans le code existant — à reproduire pour rester cohérent.
+Règles déduites de `src/scss/` après l'intégration du redesign. Ce ne sont pas des préférences théoriques mais des habitudes réellement suivies dans le code — à reproduire pour rester cohérent.
 
-## Imports en tête de fichier
+## Organisation des fichiers
 
-Chaque partial de composant commence systématiquement par les deux mêmes `@use`, avec les mêmes alias, chemin relatif ajusté selon la profondeur du dossier :
-
-```scss
-@use '../abstracts/_variables.scss' as v;
-@use '../abstracts/_mixins.scss' as m;
+```
+src/scss/
+├── main.scss              # manifeste : uniquement des @use, dans l'ordre ci-dessous
+├── abstracts/
+│   ├── _tokens.scss       # variables CSS (clair + sombre), @font-face
+│   └── _variables.scss    # couleurs de marque Sass ($main-blue...), lues par _tokens.scss
+├── base/_base.scss        # reset, body, éléments HTML de base, prefers-reduced-motion
+├── layout/                # _layout (page-shell, page-header), _header, _footer
+└── components/            # _frame, _pills, _effects + un sous-dossier par composant JS
+    ├── dashboard/  habitManager/  calendar/  graph/
 ```
 
-(`../../abstracts/...` depuis `components/habitManager/` ou `components/dashboard/`.)
+- Un nouveau partial doit être ajouté dans `main.scss` via `@use`, sinon il n'est jamais compilé. Écrire le chemin complet avec underscore et extension (`@use 'components/dashboard/_dashboard.scss';`).
+- Un sous-dossier de `components/` correspond à un composant JS (`components/habitManager/` ↔ `src/js/components/habits/`).
+- Les partials ne font **aucun `@use`** : ils n'utilisent que des variables CSS, disponibles partout. Seul `_tokens.scss` importe `_variables.scss` (alias `v`).
 
-- Alias toujours `v` pour les variables, `m` pour les mixins — ne jamais renommer.
-- Si le fichier a besoin de fonctions Sass de couleur (`color.adjust`), ajouter `@use "sass:color";` juste après, avec le commentaire `//AI made` au-dessus si c'est toi (Claude) qui l'ajoutes.
-- Un nouveau partial doit être ajouté dans `main.scss` via `@use`, sinon il n'est jamais compilé.
+## Variables CSS (`abstracts/_tokens.scss`) — règle principale
 
-## Nommage des variables (`abstracts/_variables.scss`)
+Toute valeur de design passe par une variable CSS, **jamais une couleur en dur** : c'est ce qui permet au mode sombre de fonctionner (les variables sont redéfinies sous `:root[data-theme="dark"]`).
 
-- Préfixe par catégorie : `$font-*`, `$main-*`, `$secondary-*`.
-- Le suffixe de couleur mélange deux styles déjà en place — les deux sont acceptés mais ne pas en inventer un troisième :
-  - kebab-case : `$font-color-main--lite-mode`, `$font-color-main--dark-mode`
-  - camelCase : `$main-darkBlue`, `$main-liteGrey`, `$secondary-liteGrey`
-- Toute nouvelle couleur récurrente doit passer par une variable ici plutôt que d'être écrite en dur — même si le code existant contient déjà des hex codés en dur (`#000926`, `#ccc`, `#ECEDF3`...) qui dupliquent des variables existantes. Ne pas reproduire cette dérive dans le nouveau code.
+| Famille | Variables |
+|---|---|
+| Fonds | `--bg`, `--bg-soft`, `--bg-frame`, `--surface`, `--surface-2` |
+| Texte | `--ink`, `--ink-soft`, `--ink-faint`, `--on-brand` (texte sur fond de marque) |
+| Bordures | `--border`, `--border-strong` |
+| Accents | `--accent` (bleu), `--accent-violet`, `--success`, `--flame-cold/low/high` |
+| Espacements | `--space-1` (4px) … `--space-8` (64px) |
+| Rayons | `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`, `--radius-pill` |
+| Ombres | `--shadow-sm`, `--shadow-md`, `--shadow-lg` |
+| Typo | `--font-ui` (Inter), `--font-display` (Frick Condensed, titres), `--text-xs` … `--text-3xl` |
+| Mouvement | `--dur-fast`, `--dur-base`, `--dur-slow`, `--ease`, `--ease-spring` |
 
-## Nommage des mixins (`abstracts/_mixins.scss`)
-
-- Très majoritairement kebab-case : `day-hour-box-style`, `border-section-dashboard`, `title-section`, `text-habit-cell`, `center`.
-- Une exception existante en camelCase : `popupHabitFormBorder`. Ne pas la renommer sans raison, mais préférer le kebab-case pour tout nouveau mixin.
-- Un mixin regroupe un petit bloc de styles réutilisés tel quel (pas de paramètres pour l'instant) : couleur + police, ou bordure + radius, ou layout flex de centrage.
+- Nouvelle couleur récurrente → l'ajouter dans `_tokens.scss` **dans les deux blocs** (`:root` et `:root[data-theme="dark"]`).
+- Nouvelle couleur de marque → l'ajouter dans `_variables.scss` et l'exposer dans `_tokens.scss` via `#{v.$...}`.
+- Nuances dérivées (survol, halo de focus, fond teinté) : `color-mix()` plutôt qu'une variable dédiée ou `color.adjust()` (qui ne suit pas le thème) :
+  ```scss
+  &:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
+  &:focus { box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-violet) 15%, transparent); }
+  ```
 
 ## Structure BEM par nesting `&__`
 
-Convention systématique dans tous les composants : bloc racine en camelCase ou kebab-case, éléments enchaînés via `&__` imbriqués, parfois sur plusieurs niveaux :
+Bloc racine en camelCase ou kebab-case, éléments enchaînés via `&__` imbriqués :
 
 ```scss
 .habits__cell__title { ... }
@@ -46,89 +59,57 @@ Convention systématique dans tous les composants : bloc racine en camelCase ou 
 .header__hour-Box__text { ... }
 ```
 
-- Les modificateurs d'état utilisent tantôt `&--modifier` façon BEM (`&--done`, `&--right`), tantôt une classe séparée togglée en JS (`.activeTabs`, `.durationActive`, `.hiddenPopup`, `.hiddenTypeProposition`). Les deux formes coexistent dans le code existant :
-  - `--modifier` pour un état de style permanent lié au contenu/variante,
-  - classe `hiddenX` / `activeX` séparée quand l'état est piloté par du JS (ajout/retrait de classe).
-- Suivre cette même distinction pour du nouveau code plutôt que d'en inventer une troisième.
+- `&--modifier` pour un état de style lié au contenu/variante (`&--done`, `&--removing`).
+- Classe séparée togglée en JS quand l'état est piloté par du JS (`.activeTabs`, `.durationActive`, `.hiddenPopup`, `.hiddenTypeProposition`).
+- Attribut `data-*` quand le JS fournit une valeur plutôt qu'un état (`[data-tier="high"]` sur le badge streak).
+- **Ne jamais renommer une classe ou un id lu par le JS** (`src/js/`) : vérifier avec une recherche avant toute modification de markup ou de sélecteur.
+
+## Motifs partagés
+
+- **Cadre en tirets** (motif signature) : `components/_frame.scss` l'applique à `.habits, .schedule, .graph, .calendar, .habitManager`. Pour un nouveau bloc principal, l'ajouter à cette liste plutôt que de réécrire la bordure.
+- **Bouton pilule** (« Nouveau », « Vue ») : `components/_pills.scss`, même principe.
+- **Sections du dashboard** : `.xxx-box` (colonne) + `.xxx-box__title` (titre de section) + bloc de contenu `.xxx` encadré par `_frame.scss`.
+- **Titre de page** : `.page-header__title` en `--font-display`.
 
 ## Regroupement des propriétés par lignes vides
 
-À l'intérieur d'un bloc de règles, les propriétés sont groupées par thème et séparées par une ligne vide, dans cet ordre approximatif : position/layout → dimensions/espacement → couleur/fond → typographie → transition. Exemple représentatif (`_habit.scss`) :
+À l'intérieur d'un bloc, propriétés groupées par thème et séparées par une ligne vide : position/layout → dimensions/espacement → couleur/fond/bordure → typographie → transition.
 
 ```scss
-&__cell {
-    position: relative;
+.habitManagerMenu__menu {
+    cursor: pointer;
+    background: var(--brand-blue-ink);
+    height: 40px;
+    padding: 0 var(--space-2) 0 var(--space-4);
+    border-radius: var(--radius-pill);
 
-    margin-bottom: 14px;
-    background-color: #fff;
-    padding: 14px 20px 14px 18px;
-    min-height: 60px;
-    width: 90%;
-
-    border-radius: 18px;
-    border: 1px solid #ECEDF3;
-    box-shadow: 0 1px 2px rgba(15, 82, 186, 0.06), 0 6px 16px rgba(15, 82, 186, 0.06);
-
-    display: inline-flex;
+    display: flex;
     align-items: center;
 
-    transition: transform ease-in-out 200ms, box-shadow ease-in-out 220ms, border-color ease-in-out 220ms;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
 ```
 
-Reproduire ce blocage par lignes vides plutôt que d'écrire toutes les déclarations à la suite.
+## Transitions, hover et animations
 
-## Indentation
+- Transitions explicites par propriété avec les variables de mouvement : `transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-base) var(--ease);` — éviter `transition: all` / `transition: .2s`.
+- Micro-interaction de survol récurrente : `transform: translateY(-2px)` + ombre qui passe de `--shadow-sm` à `--shadow-md`.
+- Pas besoin de gérer `prefers-reduced-motion` composant par composant : `base/_base.scss` neutralise déjà toutes les animations et transitions.
 
-Le fichier de base est indenté en 4 espaces (`_reset.scss` et la plupart des composants récents utilisent des tabulations ou 4 espaces de façon incohérente selon le fichier — `_reset.scss` et certaines parties de `_habit.scss`/`_tabs.scss` utilisent des tabs, le reste des espaces). Pour tout nouveau fichier ou nouvelle section : **utiliser 4 espaces**, ne pas mélanger avec des tabs dans le même bloc.
+## Indentation et unités
 
-## Transitions et hover
-
-- Raccourci `transition: .2s;` ou `transition: all ease-in-out 200ms;` très fréquent pour les hovers simples.
-- Pour assombrir une couleur au survol, utiliser `color.adjust()` plutôt qu'une variable de couleur dédiée :
-  ```scss
-  &:hover {
-      background-color: color.adjust(v.$main-blue, $lightness: -10%);
-  }
-  ```
-- Micro-interaction de survol récurrente sur les cartes/cellules : `transform: translateY(-2px)` combiné à une transition sur `box-shadow`/`border-color`.
-
-## Sections "dashboard" (pattern boîte + contenu)
-
-Les trois blocs du dashboard (`habits`, `schedule`, `graph`) suivent le même moule à deux niveaux :
-
-```scss
-.xxx-box {
-    margin: auto;
-    flex: <ratio>;              // ex. 1 ou 1.618 (nombre d'or) selon la largeur relative voulue
-
-    &__title {
-        @include m.title-section;
-    }
-}
-
-.xxx {
-    height: 600px;              // ou 300px pour graph
-    margin: 40px;
-    background-color: white;    // ou une teinte proche
-    @include m.border-section-dashboard;
-}
-```
-
-Reproduire ce même moule (`*-box` avec `&__title`, puis bloc de contenu avec `border-section-dashboard`) pour toute nouvelle section du dashboard plutôt qu'une structure ad hoc.
+- 4 espaces, jamais de tabulations.
+- `px` et variables d'espacement dominants ; `rem` ponctuellement pour les tailles de police des formulaires. Pour du nouveau code dans un composant existant, s'aligner sur ce qu'il utilise déjà.
 
 ## Annotations et provenance
 
-- Tout bloc ajouté par une IA est précédé du commentaire `//AI made` (déjà en place dans `_popupSearch.scss`, `_tabs.scss`, `_table.scss`, `_habit.scss`) — règle déjà documentée dans `CLAUDE.md`, confirmée par l'usage réel.
-- Les snippets copiés d'une source externe sont crédités en commentaire au-dessus du bloc, ex. `// Hamburger menu, code from uiverse` ou `/* From Uiverse.io by Shoh2008 */`. Ces blocs (ex. `.checkbox-wrapper-4`, `.container`/`.checkmark`) utilisent des custom properties CSS (`--input-focus`, etc.) — c'est la seule zone du projet qui fait ça ; ne pas généraliser ce pattern ailleurs sans raison.
-- Les commentaires de section sont en français et souvent minimalistes (`//menu tabs`, `//faire disparaitre le menu`, `//animation`).
+- Tout bloc ajouté par une IA est précédé de `//AI made` (règle de `CLAUDE.md`).
+- Chaque partial commence par un en-tête `/* ==== ... ==== */` qui décrit le composant et, si utile, les classes conservées pour le JS.
+- Snippets externes crédités au-dessus du bloc (`/* From Uiverse.io by Shoh2008 */`).
+- **Zone protégée** : `components/dashboard/_checkmark.scss` (la case à cocher du dashboard) — ne pas modifier sans demande explicite.
+- Commentaires en français.
 
-## Unités
+## Styles en attente
 
-Mix rem/px déjà présent : `px` dominant (tailles de police, espacements, radius), `rem` ponctuellement dans les popups (`1.8rem`, `.95rem`, `1rem`). Ne pas chercher à unifier rétroactivement ; pour du nouveau code dans un composant existant, aligner sur l'unité déjà utilisée dans ce composant.
-
-## Points d'incohérence connus (ne pas reproduire, mais ne pas non plus "corriger" sans qu'on te le demande)
-
-- `main.scss` référence `components/habitManager/tabs.scss` (sans underscore) alors que le fichier s'appelle `_tabs.scss` — fonctionne car Sass résout les deux formes, mais à ne pas imiter pour un nouveau `@use`.
-- Couleurs codées en dur qui dupliquent des variables existantes (`#000926` au lieu de `v.$main-darkBlue`, `#0F52BA` au lieu de `v.$main-blue`).
-- Indentation tabs/espaces mélangée selon les fichiers.
+`.stats-*` (`graph/_graphs.scss`), `.calendar__*` (`calendar/_schedule.scss`) et `.schedule__agenda*` (`dashboard/_dashboard.scss`) ne sont pas encore utilisés : ils fixent la direction visuelle d'AXE 2 (stats) et AXE 3 (agenda). Les réutiliser plutôt que de repartir de zéro quand ces pages seront construites.

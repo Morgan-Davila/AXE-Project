@@ -2,7 +2,7 @@
    AXE — Redesign — Dashboard
    Classes conservées : .top, .bottom, .habits-box(__title), .habits(__cell...),
    .schedule-box(__title), .schedule(__date), .graph-box(__title), .graph
-   (le sous-détail du .checkmark reste dans components.css, zone protégée)
+   (le sous-détail du .checkmark reste dans _checkmark.scss, zone protégée)
    ========================================================================== */
 
 .top {
