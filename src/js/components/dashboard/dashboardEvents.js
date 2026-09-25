@@ -10,6 +10,8 @@ import {
 } from "./../../utils/dom.js"
 import { reactHabit } from "./dashboard.js";
 //AI made
+import { resetMissedStreaks } from "./dashboard.js";
+//AI made
 import { recallPlace, playCheckPulse } from "./dashboardUI.js";
 import { burstConfetti } from "./../../utils/effects.js";
 
@@ -68,4 +70,22 @@ export function setupCheckEffects () {
         const habitId = checkbox.closest(".habits__cell")?.dataset.habitId;
         if (habitId !== undefined) playCheckPulse(habitId);
     });
+}
+
+
+//AI made
+// Si la page reste ouverte au passage de minuit : on remet à 0 les streaks des échéances manquées
+// la veille et on re-rend le dashboard (les habitudes du nouveau jour apparaissent).
+export function setupMidnightRefresh () {
+    const now = new Date();
+    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+    // +1 s de marge pour être sûr d'être passé au jour suivant
+    setTimeout(() => {
+        resetMissedStreaks(habitArray);
+        reactHabit(habitArray);
+        setupRecallsCheckmarks();
+
+        setupMidnightRefresh();
+    }, nextMidnight - now + 1000);
 }
