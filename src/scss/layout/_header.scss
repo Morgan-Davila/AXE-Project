@@ -283,10 +283,9 @@
 }
 
 /* AI made — le header d'origine n'était pas sticky et n'avait donc jamais
-   besoin de rivaliser avec les popups (protégées) pour l'empilement. Comme
-   ce redesign le rend sticky avec un z-index, on s'assure ici qu'il reste
-   sous les popups quand elles s'ouvrent — sans toucher à une seule
-   déclaration de leur zone protégée. */
+   besoin de rivaliser avec les popups pour l'empilement. Comme ce redesign
+   le rend sticky avec un z-index, on s'assure ici qu'il reste sous les
+   popups quand elles s'ouvrent. */
 .habitPopupOverlay, .searchHabitPopupOverlay {
     z-index: 60;
 }
