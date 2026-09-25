@@ -130,7 +130,7 @@ export function renderWeeklyChart (dailyCounts) {
         return date.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "");
     });
 
-    const rootStyles = getComputedStyle(document.documentElement);
+    const colors = getChartColors();
 
     weeklyChart = new window.Chart(weeklyCanvas, {
         type: "bar",
@@ -138,7 +138,7 @@ export function renderWeeklyChart (dailyCounts) {
             labels,
             datasets: [{
                 data: dailyCounts,
-                backgroundColor: rootStyles.getPropertyValue("--accent").trim() || "#0F52BA",
+                backgroundColor: colors.bar,
                 borderRadius: 8,
                 maxBarThickness: 28
             }]
@@ -148,11 +148,43 @@ export function renderWeeklyChart (dailyCounts) {
             maintainAspectRatio: false,
             plugins: { legend: { display: false }, tooltip: { enabled: true } },
             scales: {
-                x: { grid: { display: false } },
-                y: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: rootStyles.getPropertyValue("--border").trim() } }
+                x: { grid: { display: false }, ticks: { color: colors.text } },
+                y: { beginAtZero: true, ticks: { precision: 0, color: colors.text }, grid: { color: colors.grid } }
             }
         }
     });
+
+}
+
+
+//AI made
+// couleurs du graphique lues dans les variables CSS du thème courant (cf. _tokens.scss)
+function getChartColors () {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const read = (name, fallback) => rootStyles.getPropertyValue(name).trim() || fallback;
+
+    return {
+        bar: read("--accent", "#0F52BA"),
+        grid: read("--border", "#E4E7F2"),
+        text: read("--ink-soft", "#5B6472")
+    };
+}
+
+
+//AI made
+// à appeler après un changement de thème : Chart.js ne suit pas les variables CSS tout seul
+export function updateWeeklyChartColors () {
+
+    if (!weeklyChart) return;
+
+    const colors = getChartColors();
+
+    weeklyChart.data.datasets[0].backgroundColor = colors.bar;
+    weeklyChart.options.scales.x.ticks.color = colors.text;
+    weeklyChart.options.scales.y.ticks.color = colors.text;
+    weeklyChart.options.scales.y.grid.color = colors.grid;
+
+    weeklyChart.update();
 
 }
 

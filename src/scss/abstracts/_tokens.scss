@@ -153,3 +153,13 @@
     --header-bg: rgba(18, 23, 41, 0.72);
     --scrollbar-thumb: rgba(76, 134, 230, 0.35);
 }
+
+//AI made
+/* Les popups (zone protégée) gardent leur design clair en mode sombre : sans ça,
+   color-scheme: dark assombrirait leurs champs natifs (input, select) sur fond blanc. */
+:root[data-theme="dark"] {
+    .habitPopupOverlay,
+    .searchHabitPopupOverlay {
+        color-scheme: light;
+    }
+}

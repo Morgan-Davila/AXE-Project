@@ -127,6 +127,13 @@
   --scrollbar-thumb: rgba(76, 134, 230, 0.35);
 }
 
+/* Les popups (zone protégée) gardent leur design clair en mode sombre : sans ça,
+   color-scheme: dark assombrirait leurs champs natifs (input, select) sur fond blanc. */
+:root[data-theme=dark] .habitPopupOverlay,
+:root[data-theme=dark] .searchHabitPopupOverlay {
+  color-scheme: light;
+}
+
 /* ==========================================================================
    AXE — Redesign — Base
    ========================================================================== */

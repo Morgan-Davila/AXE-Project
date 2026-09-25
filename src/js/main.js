@@ -1,6 +1,10 @@
 //from debug.js
 import  "./debug.js";
 
+//AI made
+import { setupThemeToggle } from "./components/theme/themeEvents.js";
+setupThemeToggle();
+
 //from utils/date.js
 
 import { updateHeader, updateFooter } from "./utils/date.js";
