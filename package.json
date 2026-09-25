@@ -1,5 +1,6 @@
 {
-  "name": "app",
+  "name": "axe-project",
+  "private": true,
   "version": "1.0.0",
   "description": "Mon app pour gérer ma productivité",
   "license": "ISC",
