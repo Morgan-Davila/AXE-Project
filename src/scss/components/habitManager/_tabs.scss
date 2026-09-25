@@ -1,22 +1,28 @@
-@use '../../abstracts/_variables.scss' as v;
-@use '../../abstracts/_mixins.scss' as m;
+/* ==========================================================================
+   Onglets de fréquence du popup d'habitude + sélecteurs de jours
+   Mêmes classes/ids que l'ancienne version (lus par habitsUI.js / habits.js) :
+   seules les couleurs passent sur les tokens du redesign (_tokens.scss),
+   ce qui les rend compatibles avec le mode sombre.
+   ========================================================================== */
 
-//menu tabs
+//AI made
+
 .tabs {
     width: 100%;
-    font-family: Arial, sans-serif;
+    font-family: inherit;
     margin: auto;
-
-
 }
 
 .tab {
     padding: 10px 15px;
     border: none;
     cursor: pointer;
-    background: #ddd;
+    background: var(--bg-soft);
+    color: var(--ink-soft);
     border-radius: 6px;
-    transition: 0.2s;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 
     &-buttons {
         display: flex;
@@ -26,30 +32,24 @@
     }
 
     &:hover {
-        background: #bbb;
+        background: color-mix(in srgb, var(--accent-violet) 12%, var(--bg-soft));
+        color: var(--ink);
     }
 
     &.activeTabs {
-        background: v.$main-violet;
-        color: white;
+        background: var(--accent-violet);
+        color: var(--on-brand);
     }
 
-    //AI made (transition de hauteur fluide entre les tabs, technique grid-template-rows)
     &-content {
         display: grid;
         grid-template-rows: 0fr;
-
         overflow: hidden;
-
         padding: 0 15px;
-        @include m.popupHabitFormBorder;
-
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
         opacity: 0;
-
-        transition:
-            grid-template-rows 300ms ease-in-out,
-            padding 300ms ease-in-out,
-            opacity 200ms ease-in-out;
+        transition: grid-template-rows 300ms ease-in-out, padding 300ms ease-in-out, opacity 200ms ease-in-out;
 
         > * {
             min-height: 0;
@@ -66,7 +66,6 @@
             display: inline-flex;
         }
     }
-
 }
 
 .frequency-interval {
@@ -77,7 +76,7 @@
 
     &__text {
         font-size: 14px;
-        opacity: 0.8;
+        color: var(--ink-soft);
         margin: 0;
     }
 
@@ -91,151 +90,142 @@
         width: 70px;
         padding: 6px 8px;
         font-size: 16px;
-
-        border: 1px solid #ccc;
         border-radius: 6px;
         outline: none;
-
-        transition: border-color 0.15s ease;
-
-        &:focus {
-        border-color: #666;
-        }
     }
 
     &__label {
         font-size: 14px;
-        opacity: 0.8;
+        color: var(--ink-soft);
     }
 }
 
 .frequency-weekly {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 
-	&__text {
-		font-size: 14px;
-		opacity: 0.8;
-		margin: 0;
-	}
+    &__text {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin: 0;
+    }
 
-	&__grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 10px;
-	}
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
 }
 
-/* From Uiverse.io by Shoh2008 */ 
-
+/* From Uiverse.io by Shoh2008 */
 .checkbox-wrapper-4 {
-	* {
-		box-sizing: border-box;
-		color: v.$main-darkBlue;
-	}
+    * {
+        box-sizing: border-box;
+        color: var(--ink);
+    }
 
-  	.cbx {
-		user-select: none;
-		cursor: pointer;
-		padding: 6px 8px;
-		border-radius: 6px;
-		overflow: hidden;
-		transition: all 0.2s ease;
-		display: inline-flex;
+    .cbx {
+        user-select: none;
+        cursor: pointer;
+        padding: 6px 8px;
+        border-radius: 6px;
+        overflow: hidden;
+        transition: all 0.2s ease;
+        display: inline-flex;
 
-		&:not(:last-child) {
-			margin-right: 6px;
-		}
+        &:not(:last-child) {
+            margin-right: 6px;
+        }
 
-		&:hover {
-			background: rgba(0, 119, 255, 0.06);
+        &:hover {
+            background: color-mix(in srgb, var(--accent) 8%, transparent);
 
-			span:first-child {
-				border-color: v.$main-blue;
-			}
-		}
+            span:first-child {
+                border-color: var(--accent);
+            }
+        }
 
-		span {
-			float: left;
-			vertical-align: middle;
-			transform: translate3d(0, 0, 0);
+        span {
+            float: left;
+            vertical-align: middle;
+            transform: translate3d(0, 0, 0);
 
-			&:first-child {
-				position: relative;
-				width: 18px;
-				height: 18px;
-				border-radius: 4px;
-				transform: scale(1);
-				border: 1px solid #cccfdb;
-				transition: all 0.2s ease;
-				box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+            &:first-child {
+                position: relative;
+                width: 18px;
+                height: 18px;
+                border-radius: 4px;
+                transform: scale(1);
+                background: var(--surface-2);
+                border: 1px solid var(--border-strong);
+                transition: all 0.2s ease;
+                box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
 
-				svg {
-					position: absolute;
-					top: 3px;
-					left: 2px;
-					fill: none;
-					stroke: #fff;
-					stroke-width: 2;
-					stroke-linecap: round;
-					stroke-linejoin: round;
-					stroke-dasharray: 16px;
-					stroke-dashoffset: 16px;
-					transition: all 0.3s ease;
-					transition-delay: 0.1s;
-					transform: translate3d(0, 0, 0);
-				}
-			}
+                svg {
+                    position: absolute;
+                    top: 3px;
+                    left: 2px;
+                    fill: none;
+                    stroke: #fff;
+                    stroke-width: 2;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-dasharray: 16px;
+                    stroke-dashoffset: 16px;
+                    transition: all 0.3s ease;
+                    transition-delay: 0.1s;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
 
-			&:last-child {
-				padding-left: 8px;
-				line-height: 18px;
-			}
-		}
-  	}
+            &:last-child {
+                padding-left: 8px;
+                line-height: 18px;
+            }
+        }
+    }
 
-  	.inp-cbx {
-		position: absolute;
-		visibility: hidden;
+    .inp-cbx {
+        position: absolute;
+        visibility: hidden;
 
-		&:checked {
-			+ .cbx {
-				span:first-child {
-					background: v.$main-blue;
-					border-color: v.$main-blue;
-					animation: wave-4 0.4s ease;
+        &:checked {
+            + .cbx {
+                span:first-child {
+                    background: var(--accent);
+                    border-color: var(--accent);
+                    animation: wave-4 0.4s ease;
 
-					svg {
-						stroke-dashoffset: 0;
-					}
-				}
-			}
-		}
-  	}
+                    svg {
+                        stroke-dashoffset: 0;
+                    }
+                }
+            }
+        }
+    }
 
-	.inline-svg {
-		position: absolute;
-		width: 0;
-		height: 0;
-		pointer-events: none;
-		user-select: none;
-	}
+    .inline-svg {
+        position: absolute;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        user-select: none;
+    }
 
-	@media screen and (max-width: 640px) {
-		.cbx {
-			width: 100%;
-			display: inline-block;
-		}
-	}
+    @media screen and (max-width: 640px) {
+        .cbx {
+            width: 100%;
+            display: inline-block;
+        }
+    }
 }
 
 @keyframes wave-4 {
-	50% {
-		transform: scale(0.9);
-	}
+    50% {
+        transform: scale(0.9);
+    }
 }
-
 
 .frequency-monthly {
     display: flex;
@@ -246,6 +236,7 @@
     &__text {
         margin: 0;
         font-size: 14px;
+        color: var(--ink-soft);
     }
 
     &__days {
@@ -254,8 +245,3 @@
         gap: 8px;
     }
 }
-
-
-
-
-

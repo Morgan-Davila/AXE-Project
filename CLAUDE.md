@@ -14,7 +14,7 @@ npm run sass          # compile src/scss/main.scss -> public/css/style.css une f
 npm run sass:watch    # recompile à chaque modification ; à lancer pendant l'édition de tout fichier .scss
 ```
 
-Il n'y a ni étape de build ni bundler — `index.html` et `public/pages/*.html` sont ouverts directement comme des fichiers statiques (par ex. via l'extension VS Code "Live Server" sur le port 5501, voir `app.code-workspace`). Il n'existe pas de script npm `dev`, contrairement à ce que laisse penser la section installation du README. Aucune suite de tests n'est configurée (`npm test` est un placeholder qui se termine en erreur).
+Il n'y a ni étape de build ni bundler — `index.html` et `public/pages/*.html` sont ouverts directement comme des fichiers statiques (par ex. via l'extension VS Code "Live Server" sur le port 5501, voir `app.code-workspace`). Il n'existe pas de script npm `dev`. Aucune suite de tests n'est configurée (`npm test` est un placeholder qui se termine en erreur).
 
 ## Architecture
 
@@ -22,16 +22,26 @@ Il n'y a ni étape de build ni bundler — `index.html` et `public/pages/*.html`
 
 **Système de debug global (`src/js/debug.js`).** Définit `window.AXE = { DEBUG, VERSION, ... }` et une fonction globale `window.debug(localDebug, ...args)` — pas un export ES. Chaque autre module déclare son propre `const LOCAL_DEBUG = true|false` en haut du fichier et appelle la fonction globale `debug(LOCAL_DEBUG, ...)` sans l'importer. Comme `debug()` est utilisé partout sans import, `debug.js` doit être le premier import dans `main.js`. Pour un nouveau module, reprends ce même schéma (const locale `LOCAL_DEBUG` + appels à `debug()` global) plutôt que d'importer un logger.
 
-**Couche de stockage (`src/js/services/storage.js`).** Basée sur localStorage, une seule clé `"habitArray"`. Exporte un tableau mutable au niveau du module, `habitArray`, ainsi que `addHabit/deleteHabit/updateHabit/getHabit/clearHabits`, qui mutent tous `habitArray` et appellent `saveHabits()` pour persister. Il n'y a pas d'autre couche de données pour l'instant — toute nouvelle fonctionnalité nécessitant de la persistance devrait suivre ce même schéma charger/muter/sauvegarder-dans-localStorage plutôt que d'introduire un autre pattern.
+**Couche de stockage (`src/js/services/storage.js`).** Basée sur localStorage. La clé `"habitArray"` contient les habitudes : le module exporte un tableau mutable, `habitArray`, ainsi que `addHabit/deleteHabit/updateHabit/getHabit/clearHabits`, qui mutent tous `habitArray` et appellent `saveHabits()` pour persister. La clé `"axeTheme"` (`"light"`/`"dark"`) contient le thème, via `loadTheme()`/`saveTheme()`. Toute nouvelle fonctionnalité nécessitant de la persistance devrait suivre ce même schéma charger/muter/sauvegarder-dans-localStorage plutôt que d'introduire un autre pattern.
 
-**Découpage des composants (`src/js/components/habits/`).** La fonctionnalité habits — la seule entièrement construite — est découpée en trois parties ; reproduis ce découpage pour les autres composants (dashboard et calendar sont pour l'instant des stubs) :
+**Découpage des composants (`src/js/components/`).** Chaque composant est découpé en trois parties ; reproduis ce découpage pour tout nouveau composant (calendar est pour l'instant un stub). Exemple avec habits :
 - `habits.js` — logique/données pures (ex. `createHabit`, `editHabit`, `getFrequency`, `getDuration`, `searchTypes`), aucun event listener.
 - `habitsUI.js` — rendu DOM et références aux éléments. À noter : de nombreuses références DOM (`habitsFormInput`, `habitsPopupOverlay`, `habitsCommandButton`, etc.) sont récupérées **une seule fois, à l'évaluation du module**, dans des `const` exportées — cela ne fonctionne correctement que sur les pages qui contiennent le markup correspondant (`habits.html`).
 - `habitsEvents.js` — branche les listeners, en appelant à la fois `habits.js`, `habitsUI.js` et `storage.js`. Un seul formulaire de popup partagé est réutilisé pour les flux de création et d'édition, basculé via la variable de module `habitPopupMode` (`"create"` / `"edit"`) et pré-rempli via `insertDataInHabitPopup()`.
 
+Autres composants suivant ce découpage :
+- `dashboard/` — `reactHabit()` (dans `dashboard.js`) calcule les habitudes du jour et re-rend les cartes, puis l'anneau de progression, les chiffres clés et le graphique Chart.js de la semaine. Elle est appelée au chargement et après chaque habitude cochée ; comme elle reconstruit les cartes, `setupRecallsCheckmarks()` doit être rappelée après chaque re-render. Les confettis et la pulsation passent par un listener délégué sur `.habits` (`setupCheckEffects`).
+- `theme/` — bascule clair/sombre du bouton `#themeToggle` : pose `data-theme="dark"` sur `<html>` (le clair est le défaut, sans attribut). Un petit script inline dans le `<head>` de chaque page applique le thème sauvegardé avant l'affichage pour éviter un flash clair ; il doit rester synchronisé avec la clé `"axeTheme"` de `storage.js`. Tout ce qui ne suit pas le CSS seul (ex. couleurs Chart.js, cf. `updateWeeklyChartColors`) doit être rafraîchi dans `themeEvents.js`.
+
+**Recherche d'habitudes.** Les critères de la recherche affichée sont gardés dans `habits.js` (`setActiveSearch`/`clearActiveSearch`). Pour re-rendre la table, utilise `renderHabits(getVisibleHabits())` et non `renderHabits()` seul, sinon une recherche en cours est perdue.
+
+**Effets visuels (`src/js/utils/effects.js`).** Helpers purement décoratifs (`countUp`, `burstConfetti`) qui respectent `prefers-reduced-motion`.
+
 **Helpers DOM sûrs (`src/js/utils/dom.js`).** `safeQuery`, `safeQueryAll`, `safeId` encapsulent `querySelector`/`getElementById` et logguent via `debug()` au lieu de lever une erreur quand rien ne correspond (`exists()` vérifie l'absence de `null`). Utilise ces helpers plutôt que `document.querySelector` brut dans le nouveau code — c'est la convention établie dans tous les composants existants.
 
-**Styles.** La structure SCSS reflète celle des composants JS (`abstracts/`, `base/`, `components/`, avec des sous-dossiers `components/dashboard/` et `components/habitManager/`). `src/scss/main.scss` est un manifeste de directives `@use` — une nouvelle feuille de style de composant doit y être ajoutée, sinon elle ne sera pas incluse dans le `public/css/style.css` compilé. Tout style doit toujours être écrit en SCSS (`src/scss/`), jamais directement dans `public/css/style.css`, qui est un fichier généré par `npm run sass` et ne doit pas être édité à la main.
+**Styles.** Structure SCSS : `abstracts/` (`_tokens.scss` + `_variables.scss`), `base/`, `layout/` (header, footer, mise en page), `components/` (avec les sous-dossiers `dashboard/`, `habitManager/`, `calendar/`, `graph/`). `src/scss/main.scss` est un manifeste de directives `@use` — une nouvelle feuille de style de composant doit y être ajoutée, sinon elle ne sera pas incluse dans le `public/css/style.css` compilé. Tout style doit toujours être écrit en SCSS (`src/scss/`), jamais directement dans `public/css/style.css`, qui est un fichier généré par `npm run sass` et ne doit pas être édité à la main.
+
+Les couleurs, espacements, rayons, ombres et durées sont des **variables CSS** définies dans `abstracts/_tokens.scss` (`var(--accent)`, `var(--ink)`, `var(--space-4)`…), redéfinies pour le mode sombre sous `:root[data-theme="dark"]`. Utilise toujours ces variables plutôt que des couleurs en dur, sinon le composant ne suivra pas le thème. Les couleurs de marque sont lues depuis `_variables.scss` (source unique). Voir `skill.md` pour les conventions détaillées. Les styles `.stats-*`, `.calendar__*` et `.schedule__agenda*` ne sont pas encore utilisés : ils préparent AXE 2 et AXE 3.
 
 ## Conventions
 

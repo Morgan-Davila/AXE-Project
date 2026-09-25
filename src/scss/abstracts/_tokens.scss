@@ -6,10 +6,13 @@
    défini dans le projet mais jamais utilisé jusqu'ici.
    ========================================================================== */
 
+//AI made
+@use '_variables.scss' as v;
+
 @font-face {
     font-family: "Inter";
-    src: url("../../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype-variations"),
-         url("../../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+    src: url("../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype-variations"),
+         url("../../src/font/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
     font-weight: 100 900;
     font-style: normal;
     font-display: swap;
@@ -17,8 +20,8 @@
 
 @font-face {
     font-family: "Inter";
-    src: url("../../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype-variations"),
-         url("../../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+    src: url("../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype-variations"),
+         url("../../src/font/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
     font-weight: 100 900;
     font-style: italic;
     font-display: swap;
@@ -28,7 +31,7 @@
    font-family CSS : utilisée ici pour les grands nombres (streaks, stats). */
 @font-face {
     font-family: "Frick Condensed";
-    src: url("../../../src/font/Frick/Frick0.3-Condensed.otf") format("opentype");
+    src: url("../../src/font/Frick/Frick0.3-Condensed.otf") format("opentype");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -81,13 +84,14 @@
     --dur-slow: 520ms;
 
     /* ---- Couleurs de marque (reprises telles quelles) ---- */
-    --brand-blue: #0F52BA;
-    --brand-blue-ink: #000926;
-    --brand-violet: #4338CA;
+    //AI made — valeurs lues depuis _variables.scss (source unique)
+    --brand-blue: #{v.$main-blue};
+    --brand-blue-ink: #{v.$main-darkBlue};
+    --brand-violet: #{v.$main-violet};
     --brand-success: #34A853;
-    --grey-500: #949494;
-    --grey-300: #CBCBCB;
-    --grey-100: #F3F3F3;
+    --grey-500: #{v.$main-grey};
+    --grey-300: #{v.$main-liteGrey};
+    --grey-100: #{v.$secondary-liteGrey};
 
     /* ---- Thème clair (défaut) ---- */
     --bg: #F6F7FC;

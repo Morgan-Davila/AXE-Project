@@ -3,8 +3,8 @@
    Classes conservées : .habitManagerBox, .habitManagerMenu(__icons...),
    .habitManager(__table__button), table/thead/tbody, .large/.narrow,
    .habitCell(__name/__type/__frequency/__duration/__commands...)
-   Popup (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir components.css,
-   zone protégée — non modifiée ici.
+   Popups (.habitPopupOverlay, .searchHabitPopupOverlay...) : voir _popup.scss,
+   _popupSearch.scss et _tabs.scss.
    ========================================================================== */
 
 .habitManagerBox {

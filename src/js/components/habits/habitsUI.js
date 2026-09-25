@@ -121,6 +121,57 @@ export function renderHabits (habits = habitArray) {
 
 
     }
+
+    //AI made
+    if (habits.length === 0) renderEmptyHabits();
+}
+
+
+//AI made
+// ligne "aucune habitude" affichée quand la table est vide
+export function renderEmptyHabits () {
+
+    const habitCellZone = safeId("habitCellZone");
+
+    if (!habitCellZone) return;
+
+    const emptyRow = document.createElement("tr");
+    const emptyCell = document.createElement("td");
+
+    emptyCell.colSpan = 4;
+    emptyCell.classList.add("habitManager__empty");
+    emptyCell.textContent = "Aucune habitude à afficher.";
+
+    emptyRow.appendChild(emptyCell);
+    habitCellZone.appendChild(emptyRow);
+
+}
+
+
+//AI made
+// retire une habitCell avec une petite animation (fondu + glissement), puis affiche l'état vide si besoin
+export function removeHabitRow (row) {
+
+    if (!row) return;
+
+    let removed = false;
+
+    const finish = () => {
+        if (removed) return;
+        removed = true;
+
+        row.remove();
+
+        const habitCellZone = safeId("habitCellZone");
+        if (habitCellZone && !safeQuery(".habitCell", habitCellZone)) renderEmptyHabits();
+    };
+
+    row.classList.add("habitCell--removing");
+    row.addEventListener("transitionend", finish, { once: true });
+
+    // filet de sécurité si aucune transition ne se déclenche (ex. prefers-reduced-motion)
+    setTimeout(finish, 400);
+
 }
 
 //AI maded

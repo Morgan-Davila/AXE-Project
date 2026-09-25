@@ -1,6 +1,10 @@
 //from debug.js
 import  "./debug.js";
 
+//AI made
+import { setupThemeToggle } from "./components/theme/themeEvents.js";
+setupThemeToggle();
+
 //from utils/date.js
 
 import { updateHeader, updateFooter } from "./utils/date.js";
@@ -71,6 +75,9 @@ loadDeletedHabits();
 
 import { reactHabit } from "./components/dashboard/dashboard.js";
 import { setupRecallsCheckmarks } from "./components/dashboard/dashboardEvents.js";
+//AI made
+import { setupCheckEffects } from "./components/dashboard/dashboardEvents.js";
+setupCheckEffects();
 
 
 document.addEventListener("DOMContentLoaded", () => {

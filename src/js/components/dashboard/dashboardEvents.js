@@ -9,6 +9,9 @@ import {
     safeId
 } from "./../../utils/dom.js"
 import { reactHabit } from "./dashboard.js";
+//AI made
+import { recallPlace, playCheckPulse } from "./dashboardUI.js";
+import { burstConfetti } from "./../../utils/effects.js";
 
 // import { checkboxRecalls } from "./dashboardUI.js";
 
@@ -34,6 +37,35 @@ export function setupRecallsCheckmarks () {
 
             updateHabit(checkmarkId, habit);
             reactHabit(habitArray);
+            //AI made — les cartes viennent d'être re-rendues : on rebranche les nouvelles checkbox
+            setupRecallsCheckmarks();
         });
     }
+}
+
+//AI made
+// Effets visuels à la validation d'une habitude (confettis + pulsation).
+// Écoute par délégation sur .habits : ne touche pas au listener de setupRecallsCheckmarks
+// et continue de fonctionner après chaque re-render des cartes.
+export function setupCheckEffects () {
+    if (!recallPlace) return;
+
+    // phase de capture : on part AVANT le listener existant, qui re-render les cartes
+    // (la checkmark cliquée est alors encore dans le DOM, on peut lire sa position)
+    recallPlace.addEventListener("change", (event) => {
+        const checkbox = event.target;
+        if (!checkbox.matches("input[type='checkbox']") || !checkbox.checked) return;
+
+        const checkmark = checkbox.parentElement.querySelector(".checkmark");
+        burstConfetti(checkmark ? checkmark.getBoundingClientRect() : checkbox.getBoundingClientRect());
+    }, true);
+
+    // phase de bouillonnement : les cartes ont été re-rendues, on anime la nouvelle carte "faite"
+    recallPlace.addEventListener("change", (event) => {
+        const checkbox = event.target;
+        if (!checkbox.matches("input[type='checkbox']") || !checkbox.checked) return;
+
+        const habitId = checkbox.closest(".habits__cell")?.dataset.habitId;
+        if (habitId !== undefined) playCheckPulse(habitId);
+    });
 }

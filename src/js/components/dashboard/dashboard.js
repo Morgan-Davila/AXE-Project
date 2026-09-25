@@ -14,8 +14,13 @@ import {
 } from "./../../utils/date.js"
 
 import { renderRecalls, recallPlace } from "./dashboardUI.js";
+//AI made
+import { renderProgressRing, renderDashboardStats, renderWeeklyChart } from "./dashboardUI.js";
 
 export function reactHabit (habitArray) {
+    //AI made — reactHabit est appelée sur toutes les pages : rien à rendre hors du dashboard
+    if (!recallPlace) return;
+
     const dueHabits = [];
     const doneHabits = [];
 
@@ -87,4 +92,37 @@ export function reactHabit (habitArray) {
         renderRecalls(dueHabits, false);
     }
 
+    //AI made — effets visuels du redesign (anneau du jour, chiffres clés, graphique de la semaine)
+    const totalToday = doneHabits.length + dueHabits.length;
+    const dailyCounts = computeDailyCompletions(habitArray, 7);
+    const weekTotal = dailyCounts.reduce((sum, count) => sum + count, 0);
+
+    renderProgressRing(doneHabits.length, totalToday);
+    renderDashboardStats(doneHabits.length, totalToday, weekTotal);
+    renderWeeklyChart(dailyCounts);
+
+}
+
+
+//AI made
+// nombre d'exécutions (toutes habitudes confondues) par jour, sur les `days` derniers jours (le dernier = aujourd'hui)
+export function computeDailyCompletions (habitArray, days) {
+    const counts = new Array(days).fill(0);
+    const msParDay = 1000 * 60 * 60 * 24;
+
+    const today = new Date();
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    for (let habit of habitArray) {
+        for (let execution of habit.executions ?? []) {
+            const date = new Date(Number(execution));
+            const execMidnight = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+            const diffJours = Math.round((todayMidnight - execMidnight) / msParDay);
+
+            if (diffJours >= 0 && diffJours < days) counts[days - 1 - diffJours] += 1;
+        }
+    }
+
+    return counts;
 }

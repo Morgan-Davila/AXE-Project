@@ -154,3 +154,21 @@ export function translateFrequency(data) {
     }
 
 }
+
+
+// ----------------------
+// Streak
+// ----------------------
+
+//AI made
+// palier de couleur du badge streak : "cold" (< 3), "low" (3 à 6), "high" (7 et plus)
+export function streakTier(streak) {
+
+    streak = Number(streak);
+
+    if (streak >= 7) return "high";
+    if (streak >= 3) return "low";
+
+    return "cold";
+
+}

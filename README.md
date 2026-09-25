@@ -33,7 +33,7 @@ L'objectif est de construire une application complète avec une architecture sol
 
 ## Librairies
 
-* Chart.js (prévu pour les statistiques)
+* Chart.js (graphique hebdomadaire du dashboard, futures statistiques)
 
 ## Outils
 
@@ -57,23 +57,28 @@ src
 │   ├── components
 │   │   ├── calendar
 │   │   ├── dashboard
-│   │   └── habits
-│   │       ├── habits.js
-│   │       ├── habitsEvents.js
-│   │       └── habitsUI.js
+│   │   ├── habits
+│   │   │   ├── habits.js
+│   │   │   ├── habitsEvents.js
+│   │   │   ├── habitsUI.js
+│   │   │   └── popupSearch
+│   │   └── theme
 │   │
 │   ├── services
 │   │   └── storage.js
 │   │
-│   ├── utils
+│   └── utils
 │       ├── date.js
 │       ├── dom.js
+│       ├── effects.js
 │       └── format.js
 │
 └── scss
-    ├── abstracts
+    ├── main.scss
+    ├── abstracts   (_tokens.scss : variables CSS clair/sombre, _variables.scss)
     ├── base
-    └── components
+    ├── layout      (header, footer, mise en page)
+    └── components  (dashboard, habitManager, calendar, graph)
 ```
 
 ---
@@ -89,6 +94,7 @@ Exemple :
 * `components/habits` : gestionnaire d'habitudes
 * `components/dashboard` : affichage du tableau de bord
 * `components/calendar` : calendrier
+* `components/theme` : bascule mode clair / mode sombre
 
 ---
 
@@ -102,7 +108,7 @@ Actuellement :
 
 Responsabilités :
 
-* Sauvegarde des données
+* Sauvegarde des données (habitudes, préférence de thème)
 * Récupération des données
 * Suppression des données
 
@@ -117,6 +123,15 @@ Exemples :
 * Protection des sélecteurs DOM
 * Conversion des formats
 * Gestion des dates
+* Effets visuels (compteurs animés, confettis)
+
+---
+
+## Styles
+
+Les styles sont écrits en SCSS dans `src/scss/` et compilés dans `public/css/style.css` (fichier généré, à ne pas modifier à la main).
+
+Couleurs, espacements, rayons et ombres sont des variables CSS définies dans `abstracts/_tokens.scss`, redéfinies pour le mode sombre. Les conventions détaillées sont décrites dans `skill.md`.
 
 ---
 
@@ -156,6 +171,9 @@ Fonctionnalités disponibles :
   * Mensuelle
 * Gestion de la durée
 * Stockage local des habitudes
+* Modification, suppression et recherche d'habitudes
+* Dashboard : habitudes du jour, séries (streaks), anneau de progression, graphique de la semaine
+* Interface redessinée, mode clair / mode sombre
 
 Fonctionnalités restantes :
 
@@ -264,11 +282,13 @@ Installer les dépendances :
 npm install
 ```
 
-Lancer le projet :
+Compiler les styles (ou `npm run sass:watch` pour recompiler à chaque modification) :
 
 ```bash
-npm run dev
+npm run sass
 ```
+
+Lancer le projet : il n'y a pas de serveur de développement. Ouvrir `index.html` avec un serveur statique, par exemple l'extension VS Code « Live Server ».
 
 ---
 

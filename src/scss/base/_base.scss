@@ -93,30 +93,6 @@ ul {
     border: 0;
 }
 
-.preview-note {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-
-    width: fit-content;
-    margin: 0 auto var(--space-5);
-    padding: var(--space-2) var(--space-4);
-
-    background: var(--surface);
-    border: 1px dashed var(--border-strong);
-    border-radius: var(--radius-pill);
-
-    color: var(--ink-soft);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    letter-spacing: .01em;
-
-    svg {
-        flex-shrink: 0;
-        color: var(--accent);
-    }
-}
-
 /* ---- Respect des préférences de mouvement réduit ---- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
