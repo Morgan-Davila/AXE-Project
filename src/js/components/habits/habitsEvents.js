@@ -12,7 +12,9 @@ import {
 import {
     createHabit,
     searchTypes,
-    editHabit
+    editHabit,
+    //AI made
+    getVisibleHabits
 } from "./habits.js";
 
 import {
@@ -121,7 +123,8 @@ export function setupHabitsForm() {
 
                 debug(LOCAL_DEBUG, habit);
                 addHabit(habit);
-                renderHabits();
+                //AI made — garde la recherche en cours affichée
+                renderHabits(getVisibleHabits());
                 closeHabitsPopup();
                 setupHabitDeleteButton();
                 //AI made — les lignes viennent d'être re-rendues : sans ça, le bouton d'édition ne répond plus
@@ -135,7 +138,8 @@ export function setupHabitsForm() {
                 const habit = editHabit(data);
 
                 updateHabit(actualId, habit);
-                renderHabits();
+                //AI made — garde la recherche en cours affichée
+                renderHabits(getVisibleHabits());
                 closeHabitsPopup();
                 setupHabitDeleteButton();
                 setupHabitEditButton();

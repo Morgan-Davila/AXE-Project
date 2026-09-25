@@ -5,7 +5,10 @@ debug(LOCAL_DEBUG, "Chargement habitsSearchEvents.js");
 
 import {
     searchTypes,
-    searchHabits
+    //AI made
+    setActiveSearch,
+    clearActiveSearch,
+    getVisibleHabits
 } from "../habits.js";
 
 import {
@@ -129,10 +132,11 @@ export function setupSearchLaunch () {
     if (!searchLaunchButton || !searchHabitInput) return;
 
     const runSearch = () => {
-        const results = searchHabits(searchHabitInput.value, searchTypeSelect.dataset.value);
+        //AI made — les critères sont mémorisés pour que création/édition gardent le filtre
+        setActiveSearch(searchHabitInput.value, searchTypeSelect.dataset.value);
 
         searchActive = true;
-        renderHabits(results);
+        renderHabits(getVisibleHabits());
         setupHabitDeleteButton();
         setupHabitEditButton();
         closeSearchPopup();
@@ -152,6 +156,8 @@ export function setupSearchLaunch () {
 // remet la table à l'état normal (habitArray complet) et masque le bouton
 function clearSearch () {
     searchActive = false;
+    //AI made
+    clearActiveSearch();
 
     renderHabits();
     setupHabitDeleteButton();

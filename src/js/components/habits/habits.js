@@ -196,3 +196,24 @@ export function searchHabits(name, type) {
         return matchesName && matchesType;
     });
 }
+
+//AI made
+// critères de la recherche affichée dans la table (null = pas de recherche, on affiche tout)
+let activeSearch = null;
+
+//AI made
+export function setActiveSearch(name, type) {
+    activeSearch = { name, type };
+}
+
+//AI made
+export function clearActiveSearch() {
+    activeSearch = null;
+}
+
+//AI made
+// habitudes à afficher dans la table : résultats de la recherche en cours (relancée pour refléter
+// les dernières modifications), sinon toutes les habitudes
+export function getVisibleHabits() {
+    return activeSearch ? searchHabits(activeSearch.name, activeSearch.type) : habitArray;
+}
