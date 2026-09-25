@@ -71,6 +71,9 @@ loadDeletedHabits();
 
 import { reactHabit } from "./components/dashboard/dashboard.js";
 import { setupRecallsCheckmarks } from "./components/dashboard/dashboardEvents.js";
+//AI made
+import { setupCheckEffects } from "./components/dashboard/dashboardEvents.js";
+setupCheckEffects();
 
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -39,7 +39,9 @@ import {
     closeHabitsPopup,
     renderTypesProposition,
     emptyPopup,
-    insertDataInHabitPopup
+    insertDataInHabitPopup,
+    //AI made
+    removeHabitRow
 
 } from "./habitsUI.js";
 
@@ -61,7 +63,8 @@ export function setupHabitDeleteButton () {
             saveDeletedHabits();
 
             deleteHabit(habitID);
-            parent.remove();
+            //AI made — suppression animée (remplace parent.remove())
+            removeHabitRow(parent);
         });
     }
     
