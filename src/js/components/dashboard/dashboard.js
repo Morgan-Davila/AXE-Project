@@ -18,6 +18,9 @@ import { renderRecalls, recallPlace } from "./dashboardUI.js";
 import { renderProgressRing, renderDashboardStats, renderWeeklyChart } from "./dashboardUI.js";
 
 export function reactHabit (habitArray) {
+    //AI made — reactHabit est appelée sur toutes les pages : rien à rendre hors du dashboard
+    if (!recallPlace) return;
+
     const dueHabits = [];
     const doneHabits = [];
 
