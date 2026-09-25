@@ -124,6 +124,8 @@ export function setupHabitsForm() {
                 renderHabits();
                 closeHabitsPopup();
                 setupHabitDeleteButton();
+                //AI made — les lignes viennent d'être re-rendues : sans ça, le bouton d'édition ne répond plus
+                setupHabitEditButton();
                 emptyPopup();
                 break;
             }
