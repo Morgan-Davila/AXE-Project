@@ -478,7 +478,7 @@ main {
 .header__burger input:checked ~ .mobile-menu {
   transform: translateX(0);
 }
-@media (max-width: 1120px) {
+@media (max-width: 1240px) {
   .header__hour-Box, .header__day-Box {
     display: none;
   }

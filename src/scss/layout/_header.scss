@@ -251,7 +251,8 @@
         }
     }
 
-    @media (max-width: 1120px) {
+    //AI made — masquées dès 1240px : en dessous, le menu (5 liens) manque de place
+    @media (max-width: 1240px) {
         &__hour-Box, &__day-Box {
             display: none;
         }
