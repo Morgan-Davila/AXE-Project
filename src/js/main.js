@@ -92,3 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //AI made
     setupMidnightRefresh();
 });
+
+
+import { setupFlashcardFlip } from "./components/scolar/scolar-effects.js";
+setupFlashcardFlip();
