@@ -583,7 +583,7 @@ main {
    AXE — Redesign — Motif signature : le cadre en tirets bleus
    (.habits, .schedule, .graph, .calendar, .habitManager)
    ========================================================================== */
-.habits, .schedule, .graph, .calendar, .habitManager {
+.habits, .schedule, .graph, .calendar, .habitManager, .scolar {
   border: 2px dashed var(--accent);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
@@ -2403,6 +2403,10 @@ td:last-child {
 /* ---- Compteurs animés (juste pour garantir des chiffres bien alignés) ---- */
 [data-count-up] {
   font-variant-numeric: tabular-nums;
+}
+
+.scolar {
+  min-height: 640px;
 }
 
 /*# sourceMappingURL=style.css.map */
