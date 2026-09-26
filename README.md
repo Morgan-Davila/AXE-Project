@@ -16,6 +16,7 @@ AXE a pour objectif de devenir un espace central de gestion personnelle regroupa
 * Organisation du temps
 * Planification
 * Suivi des objectifs
+* Gestion scolaire (flashcards, cahiers)
 
 L'objectif est de construire une application complète avec une architecture solide, en évoluant progressivement d'une application front-end locale vers une application complète avec backend.
 
@@ -201,7 +202,41 @@ Fonctionnalités :
 
 ---
 
-## AXE 2 - Statistics & Progression
+## AXE 2 - Gestion scolaire
+
+Objectif : Centraliser les révisions et les cours dans AXE. La mise à jour se fait en deux parties.
+
+### Partie 1 - Flashcards
+
+Fonctionnalités :
+
+* Création, modification et suppression de flashcards
+* Classification des flashcards dans des dossiers et sous-dossiers (arborescence sans limite de profondeur)
+* Déplacement des flashcards et des dossiers dans l'arborescence
+* Impression des flashcards (d'une carte, d'un dossier ou d'une sélection)
+* Session de révision lancée sur un dossier ou une sélection de flashcards
+
+### Partie 2 - Cahiers
+
+Fonctionnalités :
+
+* Création de cahiers, avec choix du type de page : grands carreaux ou petits carreaux
+* Ajout de chapitres dans un cahier
+* Fenêtre d'édition de texte en Markdown
+* Rendu du Markdown sur un cahier virtuel, consultable facilement
+* Hiérarchisation automatique à partir des titres Markdown :
+
+  * Thème
+  * Chapitre
+  * Grandes parties (I, II, III…)
+  * Sous-parties (A, B, C…)
+  * Activité ou autre
+  * Textes / leçon / bilan
+* Ajout d'images et de documents (documents fournis par le professeur, scannés)
+
+---
+
+## AXE 3 - Statistics & Progression
 
 Objectif : Transformer les habitudes en données exploitables.
 
@@ -216,7 +251,7 @@ Fonctionnalités :
 
 ---
 
-## AXE 3 - Agenda & Organisation
+## AXE 4 - Agenda & Organisation
 
 Objectif : Ajouter une gestion complète du temps.
 
@@ -231,7 +266,7 @@ Fonctionnalités :
 
 ---
 
-## AXE 4 - Backend Update
+## AXE 5 - Backend Update
 
 Objectif : Transformer AXE en application complète avec une architecture client/serveur.
 
@@ -250,6 +285,25 @@ Technologies envisagées :
 * Node.js
 * Base de données SQL ou NoSQL
 * API REST
+
+---
+
+## AXE 6 - Application native
+
+Objectif : Migrer AXE vers Electron pour en faire une application de bureau native.
+
+Fonctionnalités :
+
+* Migration du front-end vers Electron
+* Installation d'AXE comme application de bureau
+* Accès au système de fichiers local (import d'images et de documents scannés, export)
+* Notifications natives du système
+* Intégration avec le backend (synchronisation des données)
+
+Technologies envisagées :
+
+* Electron
+* Node.js
 
 ---
 
