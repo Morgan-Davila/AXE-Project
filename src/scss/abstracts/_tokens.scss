@@ -1,13 +1,10 @@
 /* ==========================================================================
    AXE — Redesign — Design tokens
-   Palette étendue à partir des variables déjà existantes dans
-   src/scss/abstracts/_variables.scss (main-blue, main-darkBlue, main-violet,
-   main-grey...). Le mode sombre active enfin $font-color-main--dark-mode,
-   défini dans le projet mais jamais utilisé jusqu'ici.
+   Variables CSS du thème clair et du thème sombre ; les couleurs de marque
+   sont définies directement ici (source unique).
    ========================================================================== */
 
 //AI made
-@use '_variables.scss' as v;
 
 @font-face {
     font-family: "Inter";
@@ -84,14 +81,14 @@
     --dur-slow: 520ms;
 
     /* ---- Couleurs de marque (reprises telles quelles) ---- */
-    //AI made — valeurs lues depuis _variables.scss (source unique)
-    --brand-blue: #{v.$main-blue};
-    --brand-blue-ink: #{v.$main-darkBlue};
-    --brand-violet: #{v.$main-violet};
+    //AI made — valeurs de marque définies directement ici (source unique)
+    --brand-blue: #0F52BA;
+    --brand-blue-ink: #000926;
+    --brand-violet: #4338ca;
     --brand-success: #34A853;
-    --grey-500: #{v.$main-grey};
-    --grey-300: #{v.$main-liteGrey};
-    --grey-100: #{v.$secondary-liteGrey};
+    --grey-500: #949494;
+    --grey-300: #CBCBCB;
+    --grey-100: #f3f3f3;
 
     /* ---- Thème clair (défaut) ---- */
     --bg: #F6F7FC;

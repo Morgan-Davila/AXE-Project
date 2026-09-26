@@ -75,7 +75,7 @@ src
 │
 └── scss
     ├── main.scss
-    ├── abstracts   (_tokens.scss : variables CSS clair/sombre, _variables.scss)
+    ├── abstracts   (_tokens.scss : variables CSS clair/sombre)
     ├── base
     ├── layout      (header, footer, mise en page)
     └── components  (dashboard, habitManager, calendar, graph)

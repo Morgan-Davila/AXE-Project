@@ -1,10 +1,8 @@
 @charset "UTF-8";
 /* ==========================================================================
    AXE — Redesign — Design tokens
-   Palette étendue à partir des variables déjà existantes dans
-   src/scss/abstracts/_variables.scss (main-blue, main-darkBlue, main-violet,
-   main-grey...). Le mode sombre active enfin $font-color-main--dark-mode,
-   défini dans le projet mais jamais utilisé jusqu'ici.
+   Variables CSS du thème clair et du thème sombre ; les couleurs de marque
+   sont définies directement ici (source unique).
    ========================================================================== */
 @font-face {
   font-family: "Inter";

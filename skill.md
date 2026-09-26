@@ -13,8 +13,7 @@ Règles déduites de `src/scss/` après l'intégration du redesign. Ce ne sont p
 src/scss/
 ├── main.scss              # manifeste : uniquement des @use, dans l'ordre ci-dessous
 ├── abstracts/
-│   ├── _tokens.scss       # variables CSS (clair + sombre), @font-face
-│   └── _variables.scss    # couleurs de marque Sass ($main-blue...), lues par _tokens.scss
+│   └── _tokens.scss       # variables CSS (clair + sombre, couleurs de marque), @font-face
 ├── base/_base.scss        # reset, body, éléments HTML de base, prefers-reduced-motion
 ├── layout/                # _layout (page-shell, page-header), _header, _footer
 └── components/            # _frame, _pills, _effects + un sous-dossier par composant JS
@@ -23,7 +22,7 @@ src/scss/
 
 - Un nouveau partial doit être ajouté dans `main.scss` via `@use`, sinon il n'est jamais compilé. Écrire le chemin complet avec underscore et extension (`@use 'components/dashboard/_dashboard.scss';`).
 - Un sous-dossier de `components/` correspond à un composant JS (`components/habitManager/` ↔ `src/js/components/habits/`).
-- Les partials ne font **aucun `@use`** : ils n'utilisent que des variables CSS, disponibles partout. Seul `_tokens.scss` importe `_variables.scss` (alias `v`).
+- Les partials ne font **aucun `@use`** : ils n'utilisent que des variables CSS, disponibles partout. Aucune variable Sass n'est utilisée.
 
 ## Variables CSS (`abstracts/_tokens.scss`) — règle principale
 
@@ -42,7 +41,7 @@ Toute valeur de design passe par une variable CSS, **jamais une couleur en dur**
 | Mouvement | `--dur-fast`, `--dur-base`, `--dur-slow`, `--ease`, `--ease-spring` |
 
 - Nouvelle couleur récurrente → l'ajouter dans `_tokens.scss` **dans les deux blocs** (`:root` et `:root[data-theme="dark"]`).
-- Nouvelle couleur de marque → l'ajouter dans `_variables.scss` et l'exposer dans `_tokens.scss` via `#{v.$...}`.
+- Nouvelle couleur de marque → l'ajouter directement comme variable CSS dans `_tokens.scss` (`--brand-...`).
 - Nuances dérivées (survol, halo de focus, fond teinté) : `color-mix()` plutôt qu'une variable dédiée ou `color.adjust()` (qui ne suit pas le thème) :
   ```scss
   &:hover { background: color-mix(in srgb, var(--accent) 85%, black); }
