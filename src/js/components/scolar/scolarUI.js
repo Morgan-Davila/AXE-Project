@@ -9,13 +9,15 @@ import {
     exists
 } from "../../utils/dom.js"
 
+export const scolarBox = safeQuery(".scolar");
+
 
 export function renderTestFlashCards (destination, amount) {
     let packet = [];
     for (let i = 0; i < amount ; i ++) {
 
         let flashcard = document.createElement("article");
-        article.classList.add("flashcard");
+        flashcard.classList.add("flashcard");
 
         let flashcardInner = document.createElement("div");
         flashcardInner.classList.add("flashcard__inner");
@@ -35,10 +37,9 @@ export function renderTestFlashCards (destination, amount) {
 
         flashcard.appendChild(flashcardInner);
 
-        packet.push(flashcard);
+        destination.appendChild(flashcard)
     }
 
-    destination.appendChild(packet);
 }
 
 

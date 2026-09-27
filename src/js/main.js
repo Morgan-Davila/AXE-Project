@@ -94,5 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-import { setupFlashcardFlip } from "./components/scolar/scolar-effects.js";
+import { setupFlashcardFlip } from "./components/scolar/scolarUI.js";
+import { setupFlashcard } from "./components/scolar/scolar.js";
 setupFlashcardFlip();
+setupFlashcard();
