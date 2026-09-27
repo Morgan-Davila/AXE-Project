@@ -93,8 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMidnightRefresh();
 });
 
+import { setupFlashcard } from "./components/scolar/scolar.js";
+setupFlashcard();
+
 
 import { setupFlashcardFlip } from "./components/scolar/scolarUI.js";
-import { setupFlashcard } from "./components/scolar/scolar.js";
+
 setupFlashcardFlip();
-setupFlashcard();
