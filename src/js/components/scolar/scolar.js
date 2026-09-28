@@ -14,5 +14,5 @@ import { scolarBox, renderTestFlashCards } from "./scolarUI.js";
 
 export function setupFlashcard () {
     //lancement des flashcards de test
-    renderTestFlashCards(scolarBox, 8);
+    renderTestFlashCards(scolarBox, 80);
 }
