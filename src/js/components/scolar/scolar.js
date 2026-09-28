@@ -9,10 +9,10 @@ import {
     exists
 } from "../../utils/dom.js"
 
-import { scolarBox, renderTestFlashCards } from "./scolarUI.js";
+import { flashcardBox, renderTestFlashCards } from "./scolarUI.js";
 
 
 export function setupFlashcard () {
     //lancement des flashcards de test
-    renderTestFlashCards(scolarBox, 80);
+    renderTestFlashCards(flashcardBox, 5);
 }

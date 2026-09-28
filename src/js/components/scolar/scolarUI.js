@@ -9,7 +9,7 @@ import {
     exists
 } from "../../utils/dom.js"
 
-export const scolarBox = safeQuery(".scolar");
+export const flashcardBox = safeQuery(".flashcardBox");
 
 
 export function renderTestFlashCards (destination, amount) {
