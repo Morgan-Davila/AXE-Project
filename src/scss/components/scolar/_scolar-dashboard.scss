@@ -8,12 +8,18 @@
     flex-wrap: wrap;
     
     justify-content: center;
+    //AI made : marge intérieure entre le conteneur et la grille de flashcards
+    padding: var(--space-6);
 }
 
+//AI made : grille alignée à gauche (comme du texte), gaps identiques en ligne et en colonne
 .flashcardBox {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: var(--space-5);
+    justify-content: start;
+    align-content: start;
 }
 .flashcard {
     perspective: 1000px;

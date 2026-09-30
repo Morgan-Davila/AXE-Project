@@ -2410,12 +2410,16 @@ td:last-child {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: var(--space-6);
 }
 
 .flashcardBox {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  gap: var(--space-5);
+  justify-content: start;
+  align-content: start;
 }
 
 .flashcard {
