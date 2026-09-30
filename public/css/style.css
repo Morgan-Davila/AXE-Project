@@ -2472,19 +2472,16 @@ button {
   border: none;
   border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-  background: var(--brand-blue);
-}
-
-button, button span {
   transition: 200ms;
 }
-
+button span {
+  transition: 200ms;
+}
 button .text {
   transform: translateX(35px);
   color: white;
   font-weight: bold;
 }
-
 button .icon {
   position: absolute;
   border-left: 1px solid var(--brand-blue);
@@ -2495,30 +2492,24 @@ button .icon {
   align-items: center;
   justify-content: center;
 }
-
 button svg {
   width: 15px;
   fill: #eee;
 }
-
 button:hover {
   background: var(--brand-blue);
 }
-
 button:hover .text {
   color: transparent;
 }
-
 button:hover .icon {
   width: 150px;
   border-left: none;
   transform: translateX(0);
 }
-
 button:focus {
   outline: none;
 }
-
 button:active .icon svg {
   transform: scale(0.8);
 }

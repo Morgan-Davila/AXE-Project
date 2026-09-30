@@ -70,7 +70,8 @@
 
 
 
-/* From Uiverse.io by cssbuttons-io */ 
+/* From Uiverse.io by cssbuttons-io */
+//AI made
 button {
     width: 150px;
     height: 50px;
@@ -81,53 +82,53 @@ button {
     border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-    background: var(--brand-blue);
-}
-
-button, button span {
     transition: 200ms;
-}
 
-button .text {
-    transform: translateX(35px);
-    color: white;
-    font-weight: bold;
-}
+    span {
+        transition: 200ms;
+    }
 
-button .icon {
-    position: absolute;
-    border-left: 1px solid var(--brand-blue);;
-    transform: translateX(110px);
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .text {
+        transform: translateX(35px);
+        color: white;
+        font-weight: bold;
+    }
 
-button svg {
-    width: 15px;
-    fill: #eee;
-}
+    .icon {
+        position: absolute;
+        border-left: 1px solid var(--brand-blue);
+        transform: translateX(110px);
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-button:hover {
-    background: var(--brand-blue);;
-}
+    svg {
+        width: 15px;
+        fill: #eee;
+    }
 
-button:hover .text {
-    color: transparent;
-}
+    &:hover {
+        background: var(--brand-blue);
 
-button:hover .icon {
-    width: 150px;
-    border-left: none;
-    transform: translateX(0);
-}
+        .text {
+            color: transparent;
+        }
 
-button:focus {
-    outline: none;
-}
+        .icon {
+            width: 150px;
+            border-left: none;
+            transform: translateX(0);
+        }
+    }
 
-button:active .icon svg {
-    transform: scale(0.8);
+    &:focus {
+        outline: none;
+    }
+
+    &:active .icon svg {
+        transform: scale(0.8);
+    }
 }
