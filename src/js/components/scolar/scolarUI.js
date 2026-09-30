@@ -13,7 +13,7 @@ export const flashcardBox = safeQuery(".flashcardBox");
 
 
 export function renderTestFlashCards (destination, amount) {
-    let packet = [];
+    
     for (let i = 0; i < amount ; i ++) {
 
         let flashcard = document.createElement("article");
