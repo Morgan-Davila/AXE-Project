@@ -1,0 +1,44 @@
+//AI made : overlay de la popup flashcard (même rendu que .habitPopupOverlay)
+.overlayPopupFlashcardLab {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-4);
+    background: rgba(9, 12, 22, 0.35);
+    backdrop-filter: blur(6px);
+    opacity: 1;
+    transition: opacity var(--dur-fast) var(--ease);
+
+    &--hidden {
+        opacity: 0;
+        pointer-events: none;
+
+        .popupFlashcardLab {
+            transform: scale(0.95);
+        }
+    }
+}
+
+//AI made : contenu de la popup (vide pour l'instant)
+.popupFlashcardLab {
+    width: 550px;
+    max-width: 90vw;
+    min-height: 300px;
+    max-height: calc(100vh - 2 * var(--space-4));
+    overflow-y: auto;
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    color: var(--ink);
+    box-shadow: var(--shadow-lg);
+    transform: scale(1);
+    transition: transform var(--dur-base) var(--ease-spring);
+
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+    }
+}

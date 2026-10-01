@@ -11,6 +11,28 @@ import {
 
 export const flashcardBox = safeQuery(".flashcardBox");
 
+//AI made : références de la popup flashcard
+export const flashcardCreateButton = safeQuery(".flashcardCreateButton");
+export const flashcardPopupOverlay = safeQuery(".overlayPopupFlashcardLab");
+
+//AI made
+export function openFlashcardPopup() {
+    if (!flashcardPopupOverlay) return;
+    flashcardPopupOverlay.classList.remove("overlayPopupFlashcardLab--hidden");
+}
+
+//AI made
+export function closeFlashcardPopup() {
+    if (!flashcardPopupOverlay) return;
+    flashcardPopupOverlay.classList.add("overlayPopupFlashcardLab--hidden");
+}
+
+//AI made
+export function isFlashcardPopupOpen() {
+    return exists(flashcardPopupOverlay)
+        && !flashcardPopupOverlay.classList.contains("overlayPopupFlashcardLab--hidden");
+}
+
 
 export function renderTestFlashCards (destination, amount) {
     

@@ -2418,7 +2418,7 @@ td:last-child {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   gap: var(--space-5);
-  justify-content: start;
+  justify-content: center;
   align-content: start;
 }
 
@@ -2488,7 +2488,7 @@ td:last-child {
 }
 
 /* From Uiverse.io by cssbuttons-io */
-button {
+.flashcardCreateButton {
   width: 150px;
   height: 50px;
   cursor: pointer;
@@ -2499,16 +2499,17 @@ button {
   border-radius: 5px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   transition: 200ms;
+  margin: auto;
 }
-button span {
+.flashcardCreateButton span {
   transition: 200ms;
 }
-button .text {
+.flashcardCreateButton .text {
   transform: translateX(35px);
   color: white;
   font-weight: bold;
 }
-button .icon {
+.flashcardCreateButton .icon {
   position: absolute;
   border-left: 1px solid var(--brand-blue);
   transform: translateX(110px);
@@ -2518,26 +2519,68 @@ button .icon {
   align-items: center;
   justify-content: center;
 }
-button svg {
+.flashcardCreateButton svg {
   width: 15px;
   fill: #eee;
 }
-button:hover {
+.flashcardCreateButton:hover {
   background: var(--brand-blue);
 }
-button:hover .text {
+.flashcardCreateButton:hover .text {
   color: transparent;
 }
-button:hover .icon {
+.flashcardCreateButton:hover .icon {
   width: 150px;
   border-left: none;
   transform: translateX(0);
 }
-button:focus {
+.flashcardCreateButton:focus {
   outline: none;
 }
-button:active .icon svg {
+.flashcardCreateButton:active .icon svg {
   transform: scale(0.8);
+}
+
+.overlayPopupFlashcardLab {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-4);
+  background: rgba(9, 12, 22, 0.35);
+  backdrop-filter: blur(6px);
+  opacity: 1;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.overlayPopupFlashcardLab--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.overlayPopupFlashcardLab--hidden .popupFlashcardLab {
+  transform: scale(0.95);
+}
+
+.popupFlashcardLab {
+  width: 550px;
+  max-width: 90vw;
+  min-height: 300px;
+  max-height: calc(100vh - 2 * var(--space-4));
+  overflow-y: auto;
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  transform: scale(1);
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+@media (prefers-reduced-motion: reduce) {
+  .popupFlashcardLab {
+    transition: none;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

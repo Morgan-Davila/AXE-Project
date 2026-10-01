@@ -100,3 +100,7 @@ setupFlashcard();
 import { setupFlashcardFlip } from "./components/scolar/scolarUI.js";
 
 setupFlashcardFlip();
+
+//AI made
+import { setupFlashcardPopup } from "./components/scolar/scolarEvents.js";
+setupFlashcardPopup();
