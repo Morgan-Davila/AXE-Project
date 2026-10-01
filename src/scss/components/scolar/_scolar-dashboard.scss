@@ -55,6 +55,9 @@
         position: relative;
         width: 100%;
         height: 100%;
+        //AI made : rotation à 0deg plutôt que "none" pour rester en 3D au retour au recto (évite le flash)
+        transform: rotate3d(1, 1, 0, 0deg);
+        will-change: transform;
         transition: transform 0.6s;
         transform-style: preserve-3d;
 
