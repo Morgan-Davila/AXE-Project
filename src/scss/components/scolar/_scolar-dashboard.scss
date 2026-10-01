@@ -18,7 +18,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, 300px);
     gap: var(--space-5);
-    justify-content: start;
+    justify-content: center;
     align-content: start;
 }
 .flashcard {
@@ -106,8 +106,8 @@
 
 
 /* From Uiverse.io by cssbuttons-io */
-//AI made
-button {
+
+.flashcardCreateButton {
     width: 150px;
     height: 50px;
     cursor: pointer;
@@ -118,6 +118,7 @@ button {
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
     transition: 200ms;
+    margin: auto;
 
     span {
         transition: 200ms;
