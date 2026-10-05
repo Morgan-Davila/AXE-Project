@@ -21,7 +21,7 @@
     justify-content: center;
     align-content: start;
 }
-.flashcard {
+.flashcard, .editableFlashcard {
     perspective: 1000px;
     width: 300px;
     height: 200px;
@@ -93,9 +93,10 @@
         }
 
         &--back {
-            background-color: var(--brand-violet);
-            border-color: var(--brand-violet);
-            color: white;
+            //AI made : verso sur fond neutre, seule la bordure est violette
+            background-color: var(--surface);
+            border: 3px solid var(--brand-violet);
+            color: var(--ink);
             transform: rotate3d(1, 1, 0, 180deg);
         }
     }

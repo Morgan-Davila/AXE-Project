@@ -101,9 +101,20 @@
             </div>
 
             <!-- AI made : popup flashcard, cachée par défaut -->
-            <div class="overlayPopupFlashcardLab overlayPopupFlashcardLab--hidden">
+            <div class="overlayPopupFlashcardLab "><!--overlayPopupFlashcardLab--hidden-->
                 <div class="popupFlashcardLab" role="dialog" aria-modal="true">
+                    <p>Entrez le texte au recto et au verso :</p>
 
+                    <article class="editableFlashcard">
+                        <div class="editableFlashcard__inner">
+                            <div class="editableFlashcard__face editableFlashcard__face--front">
+                                <div class="champ" contenteditable="plaintext-only"></div>
+                            </div>
+                            <div class="editableFlashcard__face editableFlashcard__face--back">
+                                Verso
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </main>

@@ -2422,32 +2422,32 @@ td:last-child {
   align-content: start;
 }
 
-.flashcard {
+.flashcard, .editableFlashcard {
   perspective: 1000px;
   width: 300px;
   height: 200px;
   cursor: pointer;
   transition: transform var(--dur-base) var(--ease);
 }
-.flashcard:hover {
+.flashcard:hover, .editableFlashcard:hover {
   transform: translateY(-3px);
 }
-.flashcard:hover .flashcard__face {
+.flashcard:hover .flashcard__face, .flashcard:hover .editableFlashcard__face, .editableFlashcard:hover .flashcard__face, .editableFlashcard:hover .editableFlashcard__face {
   box-shadow: var(--shadow-md);
   border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
 }
-.flashcard:hover .flashcard__face--back {
+.flashcard:hover .flashcard__face--back, .flashcard:hover .editableFlashcard__face--back, .editableFlashcard:hover .flashcard__face--back, .editableFlashcard:hover .editableFlashcard__face--back {
   border-color: color-mix(in srgb, var(--accent-violet) 60%, white);
 }
 @media (prefers-reduced-motion: reduce) {
-  .flashcard {
+  .flashcard, .editableFlashcard {
     transition: none;
   }
-  .flashcard:hover {
+  .flashcard:hover, .editableFlashcard:hover {
     transform: none;
   }
 }
-.flashcard__inner {
+.flashcard__inner, .editableFlashcard__inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -2457,14 +2457,14 @@ td:last-child {
   transform-style: preserve-3d;
 }
 @media (prefers-reduced-motion: reduce) {
-  .flashcard__inner {
+  .flashcard__inner, .editableFlashcard__inner {
     transition: none;
   }
 }
-.flashcard--flipped .flashcard__inner {
+.flashcard--flipped .flashcard__inner, .flashcard--flipped .editableFlashcard__inner, .editableFlashcard--flipped .flashcard__inner, .editableFlashcard--flipped .editableFlashcard__inner {
   transform: rotate3d(1, 1, 0, 180deg);
 }
-.flashcard__face {
+.flashcard__face, .editableFlashcard__face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
@@ -2476,14 +2476,14 @@ td:last-child {
   box-shadow: var(--shadow-sm);
   transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
-.flashcard__face--front {
+.flashcard__face--front, .editableFlashcard__face--front {
   background-color: var(--surface);
   color: var(--ink);
 }
-.flashcard__face--back {
-  background-color: var(--brand-violet);
-  border-color: var(--brand-violet);
-  color: white;
+.flashcard__face--back, .editableFlashcard__face--back {
+  background-color: var(--surface);
+  border: 3px solid var(--brand-violet);
+  color: var(--ink);
   transform: rotate3d(1, 1, 0, 180deg);
 }
 
@@ -2581,6 +2581,31 @@ td:last-child {
   .popupFlashcardLab {
     transition: none;
   }
+}
+.popupFlashcardLab .editableFlashcard {
+  margin: auto;
+  margin-top: 20px;
+}
+.popupFlashcardLab .editableFlashcard__face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.popupFlashcardLab .editableFlashcard__face .champ {
+  width: 90%;
+  height: 90%;
+  box-sizing: border-box;
+  /* Centrage du texte */
+  display: flex;
+  align-items: center; /* vertical */
+  justify-content: center; /* horizontal */
+  text-align: center; /* pour les lignes multiples */
+  outline: none;
+  overflow: auto;
+  font: inherit;
+  color: inherit;
 }
 
 /*# sourceMappingURL=style.css.map */

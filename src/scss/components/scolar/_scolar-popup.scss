@@ -41,4 +41,35 @@
     @media (prefers-reduced-motion: reduce) {
         transition: none;
     }
+
+    .editableFlashcard {
+        margin: auto;
+        margin-top: 20px;
+
+        &__face {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+            .champ {
+                width: 90%;
+                height: 90%;
+                box-sizing: border-box;
+
+                /* Centrage du texte */
+                display: flex;
+                align-items: center;      /* vertical */
+                justify-content: center;  /* horizontal */
+                text-align: center;       /* pour les lignes multiples */
+
+                outline: none;
+                overflow: auto;
+                font: inherit;
+                color: inherit;
+            }
+            
+        }
+    }
 }
