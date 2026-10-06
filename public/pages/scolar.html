@@ -20,6 +20,9 @@
         <!-- Lib -->
         <script src="../../node_modules/chart.js/dist/chart.umd.min.js"></script>
         <script src="../../node_modules/dompurify/dist/purify.min.js"></script>
+
+        <link rel="stylesheet" href="../../node_modules/quill/dist/quill.snow.css">
+        <script src="../../node_modules/quill/dist/quill.js"></script>
     </head>
     <body>
         <!-- AI made -->
@@ -108,7 +111,9 @@
             <div class="overlayPopupFlashcardLab "><!--overlayPopupFlashcardLab--hidden-->
                 <div class="popupFlashcardLab" role="dialog" aria-modal="true">
                     <p>Entrez le texte au recto et au verso :</p>
-
+                    <div class="flashcardEditor">
+                        <div id="editor"></div>
+                    </div>
                     <article class="editableFlashcard">
                         <div class="editableFlashcard__inner">
                             <div class="editableFlashcard__face editableFlashcard__face--front">
