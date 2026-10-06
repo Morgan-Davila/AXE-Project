@@ -7,8 +7,25 @@ import {
     flashcardPopupOverlay,
     openFlashcardPopup,
     closeFlashcardPopup,
-    isFlashcardPopupOpen
+    isFlashcardPopupOpen,
+    editableFlashcard,
+    flashcardSwitchButton,
+    flipFlashcard
 } from "./scolarUI.js";
+
+import { showEditorFace } from "./flashcardsEditor.js";
+
+
+//AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
+export function setupFlashcardSwitch() {
+    if (!flashcardSwitchButton || !editableFlashcard) return;
+
+    flashcardSwitchButton.addEventListener("click", () => {
+        const isBack = flipFlashcard(editableFlashcard, "editableFlashcard");
+        flashcardSwitchButton.setAttribute("aria-pressed", String(isBack));
+        showEditorFace(isBack ? "back" : "front");
+    });
+}
 
 
 //AI made : ouverture/fermeture de la popup flashcard

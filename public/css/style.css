@@ -2589,6 +2589,12 @@ td:last-child {
   gap: var(--space-3);
   margin-top: 20px;
 }
+.popupFlashcardLab .flashcardLab__controls {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  max-width: 100%;
+}
 .popupFlashcardLab .editableFlashcard {
   flex-shrink: 0;
   cursor: text;
@@ -2600,7 +2606,7 @@ td:last-child {
   width: 100%;
   height: 100%;
 }
-.popupFlashcardLab #editor.ql-container.ql-snow {
+.popupFlashcardLab .flashcardEditor.ql-container.ql-snow {
   width: 100%;
   height: 100%;
   border: none;
@@ -2635,6 +2641,9 @@ td:last-child {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-family: inherit;
+}
+.flashcardToolbar.ql-toolbar.ql-snow.flashcardToolbar--hidden {
+  display: none;
 }
 .flashcardToolbar.ql-toolbar.ql-snow .ql-formats {
   display: flex;
@@ -2691,6 +2700,53 @@ td:last-child {
 }
 .flashcardToolbar.ql-toolbar.ql-snow .ql-picker.ql-expanded .ql-picker-label {
   border-color: var(--border);
+}
+
+.flashcardSwitch {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.flashcardSwitch:hover, .flashcardSwitch:focus-visible {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+.flashcardSwitch[aria-pressed=true] {
+  color: var(--accent-violet);
+}
+.flashcardSwitch::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  padding: 2px var(--space-2);
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: var(--text-xs);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.flashcardSwitch:hover::after, .flashcardSwitch:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .flashcardSwitch::after {
+    transition: none;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

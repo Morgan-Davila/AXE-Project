@@ -51,6 +51,14 @@
         margin-top: 20px;
     }
 
+    //AI made : bouton Switch + barre d'outils sur une ligne, à la même hauteur
+    .flashcardLab__controls {
+        display: flex;
+        align-items: stretch;
+        gap: var(--space-2);
+        max-width: 100%;
+    }
+
     .editableFlashcard {
         flex-shrink: 0;
         cursor: text;
@@ -64,8 +72,8 @@
         }
     }
 
-    //AI made : Quill directement dans la face de la carte, sans le cadre du thème snow
-    #editor.ql-container.ql-snow {
+    //AI made : Quill directement dans chaque face de la carte, sans le cadre du thème snow
+    .flashcardEditor.ql-container.ql-snow {
         width: 100%;
         height: 100%;
         border: none;
@@ -105,6 +113,11 @@
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     font-family: inherit;
+
+    //AI made : barre de la face cachée (cf. showEditorFace)
+    &.flashcardToolbar--hidden {
+        display: none;
+    }
 
     .ql-formats {
         display: flex;
@@ -158,5 +171,60 @@
 
     .ql-picker.ql-expanded .ql-picker-label {
         border-color: var(--border);
+    }
+}
+
+//AI made : bouton qui retourne la carte, à gauche de la barre d'outils
+.flashcardSwitch {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--space-3);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+
+    &:hover, &:focus-visible {
+        color: var(--accent);
+        border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+    }
+
+    // sur le verso, même violet que la bordure de la face arrière
+    &[aria-pressed="true"] {
+        color: var(--accent-violet);
+    }
+
+    // info-bulle "Switch" au survol
+    &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: calc(100% + 6px);
+        left: 50%;
+        padding: 2px var(--space-2);
+        border-radius: 6px;
+        background: var(--ink);
+        color: var(--surface);
+        font-size: var(--text-xs);
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transform: translate(-50%, 4px);
+        transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+    }
+
+    &:hover::after, &:focus-visible::after {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &::after {
+            transition: none;
+        }
     }
 }

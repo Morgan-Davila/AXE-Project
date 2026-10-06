@@ -15,6 +15,10 @@ export const flashcardBox = safeQuery(".flashcardBox");
 export const flashcardCreateButton = safeQuery(".flashcardCreateButton");
 export const flashcardPopupOverlay = safeQuery(".overlayPopupFlashcardLab");
 
+//AI made : carte éditable de la popup et bouton qui la retourne
+export const editableFlashcard = safeQuery(".editableFlashcard");
+export const flashcardSwitchButton = safeQuery(".flashcardSwitch");
+
 //AI made
 export function openFlashcardPopup() {
     if (!flashcardPopupOverlay) return;
@@ -65,12 +69,18 @@ export function renderTestFlashCards (destination, amount) {
 }
 
 
+//AI made : retourne une carte ; block = classe BEM de la carte ("flashcard" ou "editableFlashcard")
+// renvoie true si la carte montre maintenant son verso
+export function flipFlashcard(card, block = "flashcard") {
+    return card.classList.toggle(`${block}--flipped`);
+}
+
 export function setupFlashcardFlip() {
     const cards = safeQueryAll(".flashcard");
 
     cards.forEach(card => {
         card.addEventListener("click", () => {
-            card.classList.toggle("flashcard--flipped");
+            flipFlashcard(card);
         });
     });
 }
