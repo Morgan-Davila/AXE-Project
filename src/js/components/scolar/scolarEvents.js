@@ -1,4 +1,4 @@
-const LOCAL_DEBUG = false;
+const LOCAL_DEBUG = true;
 
 debug(LOCAL_DEBUG, "Chargement scolarEvents.js"); //test
 
@@ -10,10 +10,11 @@ import {
     isFlashcardPopupOpen,
     editableFlashcard,
     flashcardSwitchButton,
-    flipFlashcard
+    flipFlashcard,
+    saveFlashcardButton
 } from "./scolarUI.js";
 
-import { showEditorFace } from "./flashcardsEditor.js";
+import { showEditorFace, editors } from "./flashcardsEditor.js";
 
 
 //AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
@@ -52,5 +53,21 @@ export function setupFlashcardPopup() {
         if (event.key === "Escape" && isFlashcardPopupOpen()) {
             closeFlashcardPopup();
         }
+    });
+}
+
+
+
+
+export function setupFlashcardSaving () {
+    if (!saveFlashcardButton) return;
+
+    saveFlashcardButton.addEventListener("click", () => {
+        const flashcard = {
+            front: editors.front.getContents(),
+            back: editors.back.getContents()
+        };
+        
+        debug(LOCAL_DEBUG, flashcard)
     });
 }

@@ -11,6 +11,8 @@ import {
 
 export const flashcardBox = safeQuery(".flashcardBox");
 
+export const saveFlashcardButton = safeQuery(".flashcardLab__saveButton");
+
 //AI made : références de la popup flashcard
 export const flashcardCreateButton = safeQuery(".flashcardCreateButton");
 export const flashcardPopupOverlay = safeQuery(".overlayPopupFlashcardLab");
