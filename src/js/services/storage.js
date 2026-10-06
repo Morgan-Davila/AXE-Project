@@ -7,6 +7,7 @@ debug(LOCAL_DEBUG, "Chargement storage.js");
 
 const STORAGE_KEY = "habitArray";
 const DELETED_STORAGE_KEY = "deletedHabitsArray";
+const FLASHCARDS_STORAGE_KEY = "flashcardsArray"
 
 
 
@@ -108,4 +109,70 @@ export function loadTheme() {
 //AI made
 export function saveTheme(theme) {
     localStorage.setItem(THEME_KEY, theme);
+}
+
+
+//--------------------
+//flashcard management
+//--------------------
+
+// Charger les flashcards
+export function loadFlashcards() {
+    return JSON.parse(localStorage.getItem(FLASHCARDS_STORAGE_KEY)) || [];
+}
+
+// Chargement initial
+export let flashcardsArray = loadHabits();
+
+// Sauvegarder
+export function saveFlashcards() {
+    localStorage.setItem(
+        FLASHCARDS_STORAGE_KEY,
+        JSON.stringify(flashcardsArray)
+    );
+}
+
+// Ajouter une flashcard
+export function addFlashcard(flashcard) {
+    flashcardsArray.push(flashcard);
+
+    saveFlashcards();
+}
+
+
+// Supprimer une habitude
+export function deleteFlashcard(id) {
+
+    flashcardsArray = flashcardsArray.filter(
+        flashcard => flashcard.id !== id
+    );
+
+    saveFlashcards();
+}
+
+
+// Modifier une habitude
+export function updateFlashcard(id, data) {
+
+    const flashcard = flashcardsArray.find(
+        flashcard => flashcard.id === id
+    );
+
+    if (!flashcard) return;
+
+    Object.assign(flashcard, data);
+
+    saveFlashcards();
+}
+
+export function getFlashcard(id) {
+    return flashcardsArray.find(
+        flashcard => flashcard.id === id
+    );
+}
+
+export function clearFlashcards() {
+    flashcardsArray = [];
+
+    saveFlashcards();
 }
