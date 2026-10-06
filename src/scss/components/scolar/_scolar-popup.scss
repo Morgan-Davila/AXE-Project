@@ -42,9 +42,18 @@
         transition: none;
     }
 
-    .editableFlashcard {
-        margin: auto;
+    //AI made : carte + barre d'outils côte à côte
+    .flashcardLab {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: var(--space-3);
         margin-top: 20px;
+    }
+
+    .editableFlashcard {
+        flex-shrink: 0;
+        cursor: text;
 
         &__face {
             display: flex;
@@ -52,24 +61,103 @@
             justify-content: center;
             width: 100%;
             height: 100%;
-
-            .champ {
-                width: 90%;
-                height: 90%;
-                box-sizing: border-box;
-
-                /* Centrage du texte */
-                display: flex;
-                align-items: center;      /* vertical */
-                justify-content: center;  /* horizontal */
-                text-align: center;       /* pour les lignes multiples */
-
-                outline: none;
-                overflow: auto;
-                font: inherit;
-                color: inherit;
-            }
-            
         }
+    }
+
+    //AI made : Quill directement dans la face de la carte, sans le cadre du thème snow
+    #editor.ql-container.ql-snow {
+        width: 100%;
+        height: 100%;
+        border: none;
+        font: inherit;
+        color: inherit;
+    }
+
+    .ql-editor {
+        // texte centré verticalement dans la carte
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--space-4);
+        overflow-y: auto;
+        font-size: 16px; // taille par défaut, affichée "16px" dans la barre d'outils
+
+        &.ql-blank::before {
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--ink-faint);
+            font-style: normal;
+        }
+    }
+}
+
+//AI made : barre d'outils Quill verticale, à droite de la carte
+.flashcardToolbar.ql-toolbar.ql-snow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    width: 64px;
+    padding: var(--space-2) var(--space-1);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+
+    .ql-formats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        margin-right: 0;
+
+        // séparateur entre les groupes
+        & + .ql-formats {
+            padding-top: var(--space-2);
+            border-top: 1px solid var(--border);
+        }
+    }
+
+    // icônes aux couleurs du thème (le CSS snow les met en gris foncé, illisible en sombre)
+    .ql-stroke { stroke: var(--ink-soft); }
+    .ql-fill, .ql-stroke.ql-fill { fill: var(--ink-soft); }
+    .ql-picker { color: var(--ink-soft); }
+
+    button:hover, button:focus, button.ql-active,
+    .ql-picker-label:hover, .ql-picker-label.ql-active,
+    .ql-picker-item:hover, .ql-picker-item.ql-selected {
+        color: var(--accent);
+
+        .ql-stroke { stroke: var(--accent); }
+        .ql-fill, .ql-stroke.ql-fill { fill: var(--accent); }
+    }
+
+    // taille : affiche la valeur en px au lieu de "Normal"
+    .ql-picker.ql-size {
+        width: 56px;
+
+        .ql-picker-label::before,
+        .ql-picker-item::before {
+            content: attr(data-value);
+        }
+
+        .ql-picker-label:not([data-value])::before,
+        .ql-picker-item:not([data-value])::before {
+            content: "16px";
+        }
+    }
+
+    // menus déroulants : ouverts vers la gauche pour ne pas sortir de la popup
+    .ql-picker-options {
+        left: auto;
+        right: 0;
+        z-index: 2;
+        background: var(--surface);
+        border-color: var(--border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .ql-picker.ql-expanded .ql-picker-label {
+        border-color: var(--border);
     }
 }

@@ -111,19 +111,46 @@
             <div class="overlayPopupFlashcardLab "><!--overlayPopupFlashcardLab--hidden-->
                 <div class="popupFlashcardLab" role="dialog" aria-modal="true">
                     <p>Entrez le texte au recto et au verso :</p>
-                    <div class="flashcardEditor">
-                        <div id="editor"></div>
-                    </div>
-                    <article class="editableFlashcard">
-                        <div class="editableFlashcard__inner">
-                            <div class="editableFlashcard__face editableFlashcard__face--front">
-                                <div class="champ" contenteditable="plaintext-only"></div>
+                    <!-- AI made : carte éditable + barre d'outils Quill verticale à droite -->
+                    <div class="flashcardLab">
+                        <article class="editableFlashcard">
+                            <div class="editableFlashcard__inner">
+                                <div class="editableFlashcard__face editableFlashcard__face--front">
+                                    <div id="editor"></div>
+                                </div>
+                                <div class="editableFlashcard__face editableFlashcard__face--back">
+                                    Verso
+                                </div>
                             </div>
-                            <div class="editableFlashcard__face editableFlashcard__face--back">
-                                Verso
-                            </div>
+                        </article>
+
+                        <div id="flashcardToolbar" class="flashcardToolbar">
+                            <span class="ql-formats">
+                                <select class="ql-size" aria-label="Taille du texte">
+                                    <option value="12px">12px</option>
+                                    <option value="14px">14px</option>
+                                    <option selected></option>
+                                    <option value="18px">18px</option>
+                                    <option value="24px">24px</option>
+                                    <option value="32px">32px</option>
+                                    <option value="48px">48px</option>
+                                </select>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-bold" aria-label="Gras"></button>
+                                <button class="ql-italic" aria-label="Italique"></button>
+                                <button class="ql-underline" aria-label="Souligné"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-color" aria-label="Couleur du texte"></select>
+                                <select class="ql-background" aria-label="Surlignage"></select>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-align" aria-label="Alignement"></select>
+                                <button class="ql-clean" aria-label="Effacer la mise en forme"></button>
+                            </span>
                         </div>
-                    </article>
+                    </div>
                 </div>
             </div>
         </main>

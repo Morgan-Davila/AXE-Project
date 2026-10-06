@@ -16,13 +16,8 @@ export function setupEditor() {
         theme: "snow",
         placeholder: "Écris ta flashcard...",
         modules: {
-            toolbar: [
-                [{ size: Size.whitelist }],
-                ["bold", "italic", "underline"],
-                [{ color: [] }, { background: [] }],  // background = surlignage
-                [{ align: [] }],
-                ["clean"]
-            ]
+            //AI made : barre d'outils écrite dans scolar.html (#flashcardToolbar) pour pouvoir la placer à droite de la carte
+            toolbar: "#flashcardToolbar"
         }
     });
 }
