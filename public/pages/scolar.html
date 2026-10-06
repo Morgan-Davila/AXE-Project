@@ -111,19 +111,8 @@
             <div class="overlayPopupFlashcardLab "><!--overlayPopupFlashcardLab--hidden-->
                 <div class="popupFlashcardLab" role="dialog" aria-modal="true">
                     <p>Entrez le texte au recto et au verso :</p>
-                    <!-- AI made : carte éditable + barre d'outils Quill verticale à droite -->
+                    <!-- AI made : barre d'outils Quill horizontale au-dessus de la carte éditable -->
                     <div class="flashcardLab">
-                        <article class="editableFlashcard">
-                            <div class="editableFlashcard__inner">
-                                <div class="editableFlashcard__face editableFlashcard__face--front">
-                                    <div id="editor"></div>
-                                </div>
-                                <div class="editableFlashcard__face editableFlashcard__face--back">
-                                    Verso
-                                </div>
-                            </div>
-                        </article>
-
                         <div id="flashcardToolbar" class="flashcardToolbar">
                             <span class="ql-formats">
                                 <select class="ql-size" aria-label="Taille du texte">
@@ -150,6 +139,17 @@
                                 <button class="ql-clean" aria-label="Effacer la mise en forme"></button>
                             </span>
                         </div>
+
+                        <article class="editableFlashcard">
+                            <div class="editableFlashcard__inner">
+                                <div class="editableFlashcard__face editableFlashcard__face--front">
+                                    <div id="editor"></div>
+                                </div>
+                                <div class="editableFlashcard__face editableFlashcard__face--back">
+                                    Verso
+                                </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </div>
