@@ -68,6 +68,7 @@
   --dur-slow: 520ms;
   /* ---- Couleurs de marque (reprises telles quelles) ---- */
   --brand-blue: #0F52BA;
+  --brand-blue-hover: color-mix(in srgb, var(--brand-blue), black 15%);
   --brand-blue-ink: #000926;
   --brand-violet: #4338ca;
   --brand-success: #34A853;
@@ -2588,6 +2589,16 @@ td:last-child {
   align-items: center;
   gap: var(--space-3);
   margin-top: 20px;
+}
+.popupFlashcardLab .flashcardLab__saveButton {
+  background-color: var(--brand-blue);
+  color: white;
+  font-size: var(--text-md);
+  padding: 8px 25px;
+  border-radius: var(--radius-sm);
+}
+.popupFlashcardLab .flashcardLab__saveButton:hover {
+  background-color: var(--brand-blue-hover);
 }
 .popupFlashcardLab .flashcardLab__controls {
   display: flex;

@@ -83,6 +83,7 @@
     /* ---- Couleurs de marque (reprises telles quelles) ---- */
     //AI made — valeurs de marque définies directement ici (source unique)
     --brand-blue: #0F52BA;
+    --brand-blue-hover: color-mix(in srgb, var(--brand-blue), black 15%);
     --brand-blue-ink: #000926;
     --brand-violet: #4338ca;
     --brand-success: #34A853;

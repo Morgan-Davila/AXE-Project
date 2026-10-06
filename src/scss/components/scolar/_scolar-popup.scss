@@ -1,3 +1,6 @@
+@use "sass:color";
+
+
 //AI made : overlay de la popup flashcard (même rendu que .habitPopupOverlay)
 .overlayPopupFlashcardLab {
     position: fixed;
@@ -49,6 +52,18 @@
         align-items: center;
         gap: var(--space-3);
         margin-top: 20px;
+
+        &__saveButton {
+            background-color: var(--brand-blue);
+            color: white;
+            font-size: var(--text-md);
+            padding: 8px 25px;
+            border-radius: var(--radius-sm);
+
+            &:hover {
+                background-color: var(--brand-blue-hover);
+            }
+        }
     }
 
     //AI made : bouton Switch + barre d'outils sur une ligne, à la même hauteur
