@@ -15,6 +15,9 @@ import {
 } from "./scolarUI.js";
 
 import { showEditorFace, editors } from "./flashcardsEditor.js";
+import { addFlashcard } from "../../services/storage.js";
+
+
 
 
 //AI made : le bouton "Switch" retourne la carte éditable et passe l'éditeur sur l'autre face
@@ -68,6 +71,6 @@ export function setupFlashcardSaving () {
             back: editors.back.getContents()
         };
         
-        debug(LOCAL_DEBUG, flashcard)
+        addFlashcard(flashcard)
     });
 }

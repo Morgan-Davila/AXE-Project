@@ -122,7 +122,7 @@ export function loadFlashcards() {
 }
 
 // Chargement initial
-export let flashcardsArray = loadHabits();
+export let flashcardsArray = loadFlashcards();
 
 // Sauvegarder
 export function saveFlashcards() {
