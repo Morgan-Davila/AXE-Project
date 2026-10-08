@@ -16,6 +16,7 @@ import {
 
 import { showEditorFace, editors } from "./flashcardsEditor.js";
 import { addFlashcard } from "../../services/storage.js";
+import { createFlashcard } from "./scolar.js";
 
 
 
@@ -66,11 +67,12 @@ export function setupFlashcardSaving () {
     if (!saveFlashcardButton) return;
 
     saveFlashcardButton.addEventListener("click", () => {
-        const flashcard = {
+        const content = {
             front: editors.front.getContents(),
             back: editors.back.getContents()
         };
         
-        addFlashcard(flashcard)
+        const flashcard = createFlashcard(content);
+        addFlashcard(flashcard);
     });
 }

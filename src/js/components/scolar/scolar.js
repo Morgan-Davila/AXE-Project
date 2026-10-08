@@ -16,3 +16,12 @@ export function setupFlashcard () {
     //lancement des flashcards de test
     renderTestFlashCards(flashcardBox, 5);
 }
+
+
+export function createFlashcard (content) {
+    return {
+        id: Date.now(),
+        createdAt: Date.now(),
+        content : content
+    }
+}
