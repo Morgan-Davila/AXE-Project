@@ -14,7 +14,7 @@ import {
     saveFlashcardButton
 } from "./scolarUI.js";
 
-import { showEditorFace, editors } from "./flashcardsEditor.js";
+import { showEditorFace, editors, resetFlashcardEditor } from "./flashcardsEditor.js";
 import { addFlashcard } from "../../services/storage.js";
 import { createFlashcard } from "./scolar.js";
 
@@ -74,5 +74,7 @@ export function setupFlashcardSaving () {
         
         const flashcard = createFlashcard(content);
         addFlashcard(flashcard);
+        closeFlashcardPopup();
+        resetFlashcardEditor();
     });
 }

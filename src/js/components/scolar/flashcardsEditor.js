@@ -1,4 +1,5 @@
 import { safeId, safeQuery } from "../../utils/dom.js";
+import { editableFlashcard, flashcardSwitchButton } from "./scolarUI.js";
 
 //AI made : un éditeur Quill par face de la carte
 export const editors = { front: null, back: null };
@@ -58,4 +59,17 @@ export function showEditorFace(face, focus = true) {
     if (faces[hidden]) faces[hidden].inert = true;
 
     if (focus) editors[face].focus();
+}
+
+
+//AI made : vide les deux faces et remet la carte sur le recto
+export function resetFlashcardEditor() {
+    if (!editors.front || !editors.back) return;   // pas sur la page scolar
+
+    editors.front.setContents([]);
+    editors.back.setContents([]);
+
+    if (editableFlashcard) editableFlashcard.classList.remove("editableFlashcard--flipped");
+    if (flashcardSwitchButton) flashcardSwitchButton.setAttribute("aria-pressed", "false");
+    showEditorFace("front", false);
 }
